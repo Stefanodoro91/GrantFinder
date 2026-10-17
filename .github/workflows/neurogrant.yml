@@ -1,0 +1,63 @@
+# Percorso nel repository: .github/workflows/neurogrant.yml
+#
+# Ogni lunedì mattina cerca i bandi, analizza i nuovi con un LLM gratuito
+# (Ollama, eseguito sul server di GitHub), invia l'Excel per email e salva
+# lo stato nel repository. Si può avviare anche a mano da
+# Actions → «NeuroGrant settimanale» → «Run workflow».
+
+name: NeuroGrant settimanale
+
+on:
+  schedule:
+    - cron: "0 2 * * 1"   # lunedì alle 2:00 UTC (3:00 o 4:00 in Italia): l'email arriva in mattinata
+  workflow_dispatch:
+    inputs:
+      minuti_llm:
+        description: "Minuti massimi di analisi LLM (0 = senza LLM, più veloce)"
+        default: "45"
+
+permissions:
+  contents: write
+
+concurrency: neurogrant
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    env:
+      MINUTI_LLM: ${{ github.event.inputs.minuti_llm || '180' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installa dipendenze
+        run: pip install -r requirements.txt
+
+      - name: Avvia LLM locale gratuito (Ollama)
+        if: env.MINUTI_LLM != '0'
+        continue-on-error: true
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          curl -s http://localhost:11434 >/dev/null || (nohup ollama serve > /tmp/ollama.log 2>&1 &)
+          for i in $(seq 1 30); do curl -s http://localhost:11434 >/dev/null && break; sleep 2; done
+          ollama pull qwen2.5:3b
+
+      - name: Cerca bandi, crea l'Excel e invia l'email
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python neurogrant.py --minuti-llm "$MINUTI_LLM"
+
+      - name: Salva stato e ultimo Excel nel repository
+        if: always()
+        run: |
+          git config user.name "neurogrant-bot"
+          git config user.email "neurogrant-bot@users.noreply.github.com"
+          git add dati report 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "NeuroGrant: aggiornamento $(date +%F)"
+          git push
