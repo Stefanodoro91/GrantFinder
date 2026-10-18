@@ -14,7 +14,7 @@ on:
     inputs:
       minuti_llm:
         description: "Minuti massimi di analisi LLM (0 = senza LLM, più veloce)"
-        default: "45"
+        default: "60"
 
 permissions:
   contents: write
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 340
     env:
-      MINUTI_LLM: ${{ github.event.inputs.minuti_llm || '180' }}
+      MINUTI_LLM: ${{ github.event.inputs.minuti_llm || '240' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,7 @@ jobs:
           curl -fsSL https://ollama.com/install.sh | sh
           curl -s http://localhost:11434 >/dev/null || (nohup ollama serve > /tmp/ollama.log 2>&1 &)
           for i in $(seq 1 30); do curl -s http://localhost:11434 >/dev/null && break; sleep 2; done
-          ollama pull qwen2.5:3b
+          ollama pull qwen2.5:7b
 
       - name: Cerca bandi, crea l'Excel e invia l'email
         env:
