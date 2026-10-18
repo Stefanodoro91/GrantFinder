@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-NeuroGrant – monitoraggio settimanale dei bandi per la riabilitazione
-(ictus, Parkinson, invecchiamento, tecnologie per la riabilitazione).
+NeuroGrant – monitoraggio settimanale dei bandi di ricerca clinica sulla
+riabilitazione (ictus, Parkinson, invecchiamento, tecnologie per la riabilitazione),
+aperti a enti italiani.
 
 Fonti:
   * EU Funding & Tenders Portal (tutti i programmi UE) – API pubblica
@@ -11,11 +12,14 @@ Fonti:
 
 Flusso:
   1. raccoglie i bandi aperti o in apertura;
-  2. tiene quelli pertinenti alla riabilitazione (filtro ampio a parole chiave);
-  3. con un LLM gratuito in locale (Ollama) legge il testo della call, giudica
-     la pertinenza e scrive titolo e sommario in italiano;
+  2. tiene quelli pertinenti (filtro a parole chiave) e scarta subito quelli
+     non aperti all'Italia, oncologici, preclinici o di infrastruttura;
+  3. con un LLM (Gemini, API gratuita; in alternativa Ollama in locale) legge la
+     call, giudica pertinenza, tipo di ricerca e ammissibilita' dell'Italia,
+     scrive titolo e sommario in italiano; scarta i bandi non pertinenti;
   4. calcola copertura finanziaria, progetti finanziabili e competitivita';
-  5. genera l'Excel (fogli BANDI, FONTI, LOG) e lo invia per email.
+  5. ordina (Italia ammessa -> pertinenza -> scadenza), genera l'Excel
+     (fogli BANDI, FONTI, LOG) e lo invia per email.
 
 Uso locale:   pip install -r requirements.txt && python neurogrant.py --no-email
 """
@@ -38,7 +42,7 @@ import unicodedata
 from datetime import date, datetime, timedelta, timezone
 from email.message import EmailMessage
 from pathlib import Path
-from urllib.parse import urljoin, urlparse, urldefrag
+from urllib.parse import unquote, urljoin, urlparse, urldefrag
 from urllib.robotparser import RobotFileParser
 
 import requests
@@ -54,8 +58,10 @@ USER_AGENT = ("NeuroGrantBot/0.1 (monitoraggio bandi di ricerca sulla riabilitaz
 # Filtro tematico: ampio ma solo sanitario.
 # Ogni voce: (gruppo, espressione regolare, tipo)
 #   S = specifico: conta sempre
-#   N = generico: conta solo con un contesto sanitario nel testo
-#   C = malattia cronica non trasmissibile: conta solo con riabilitazione/cronicità
+#   N = generico: conta solo con un contesto clinico nel testo
+#   D = disabilità: conta solo con un contesto clinico (esclude inclusione
+#       sociale, lavoro, accessibilità, urbanistica)
+#   C = malattia cronica non trasmissibile: conta solo con riabilitazione
 #   R = "riabilitazione": conta solo se vicino c'è un contesto clinico
 #       (esclude riabilitazione di edifici, habitat, detenuti, infrastrutture)
 # Un bando entra se il punteggio totale è almeno 3: per esempio un termine
@@ -77,11 +83,11 @@ TERMINI = [
     ("Invecchiamento", r"\bdementi|\bdemenz", "S"),
     ("Invecchiamento", r"alzheimer", "S"),
     ("Invecchiamento", r"cognitive (decline|impairment)|declino cognitivo|decadimento cognitivo", "S"),
-    ("Invecchiamento", r"healthy (ageing|aging)|active (and|&) assisted living|invecchiamento (attivo|in salute|sano)", "S"),
+    ("Invecchiamento", r"healthy (ageing|aging)|active (and|&) assisted living|invecchiamento (attivo|in salute|sano)", "N"),
     ("Invecchiamento", r"\bfrailty|fragilita", "S"),
     ("Invecchiamento", r"geriatr|gerontolog", "S"),
     ("Invecchiamento", r"falls? prevention|prevenzione (delle )?cadute", "S"),
-    ("Invecchiamento", r"older (adults|people|persons|population)|elderly|anzian|terza eta", "N"),
+    ("Invecchiamento", r"older (adults|people|persons|population)|elderly|\banzian|terza eta", "N"),
     ("Invecchiamento", r"\b(ageing|aging)\b|invecchiamento|longevit", "N"),
     # Tecnologie per la riabilitazione
     ("Tecnologie riabilitazione", r"assistive (technolog|device)|tecnologie assistive|\bausili", "S"),
@@ -113,28 +119,29 @@ TERMINI = [
     ("Altre malattie e riabilitazione", r"cerebral palsy|paralisi cerebrale", "S"),
     ("Altre malattie e riabilitazione", r"neurological (disorder|disease|condition)|malattie neurologiche|neurologic(al)? rehabil", "S"),
     ("Altre malattie e riabilitazione", r"chronic pain|dolore cronico", "S"),
-    ("Altre malattie e riabilitazione", r"\bdisabilit|persons with disabilities|people with disabilities|disabled (people|persons)", "S"),
+    ("Altre malattie e riabilitazione", r"\bdisabilit|persons with disabilities|people with disabilities|disabled (people|persons)", "D"),
     ("Altre malattie e riabilitazione", r"non-?communicable disease|malattie non trasmissibili|chronic (disease|condition)|malattie croniche|cronicita|multimorbid", "C"),
     ("Altre malattie e riabilitazione", r"cardiovascular|heart failure|cardiac|cardiolog|cardiovascolar|scompenso cardiaco", "C"),
     ("Altre malattie e riabilitazione", r"\bcopd\b|bpco|pulmonary|respiratory|polmonar|respiratori", "C"),
-    ("Altre malattie e riabilitazione", r"\bcancer|oncolog|tumou?r|tumore", "C"),
     ("Altre malattie e riabilitazione", r"diabet|obesit", "C"),
 ]
 _TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 
-CONTESTO_SANITARIO = re.compile(
-    r"\b(health|healthcare|clinical|clinic|patients?|medical|medicine|diseases?|disorders?|therap|"
-    r"hospital|neurolog|salute|sanitari|pazient|malatti|ospedal|clinic|rehabilit|riabilit|"
-    r"physiother|fisioter)", re.I)
+# contesto clinico: servono almeno due espressioni diverse (una sola citazione
+# di "salute" o "pazienti" in un bando sociale o ambientale non basta)
+CONTESTO_CLINICO = re.compile(
+    r"\b(clinical|clinic[aoi]?|patients?|pazient[ei]|trials?|sperimentazion[ei] clinic\w*|therap\w*|terapi\w*|"
+    r"rehabilit\w*|riabilit\w*|hospitals?|ospedal\w*|neurolog\w*|diagnos\w*|treatments?|"
+    r"physiother\w*|fisioterap\w*|medical|medic[oi]|disease|disorders?|malattia|malattie)\b", re.I)
+# per le malattie croniche serve un contesto riabilitativo vero e proprio
 CONTESTO_CRONICITA = re.compile(
-    r"(rehabilit|riabilit|chronic care|long[- ]term (care|management|conditions?)|self[- ]management|"
-    r"autogestione|physical activity|attivita fisica|\bexercise|esercizio fisico|functional (capacity|status|recovery|decline)|"
-    r"quality of life|qualita della vita|telemonitor|disease management|presa in carico|cronicita|survivorship|"
-    r"disabilit)", re.I)
+    r"(rehabilit|riabilit|physical therap|fisioterap|exercise (therapy|training|intervention|program)|"
+    r"esercizio terapeutico|functional (capacity|recovery|decline|status)|recupero funzionale|"
+    r"self[- ]management|autogestione|telemonitor|tele-?rehab|teleriabil)", re.I)
 VICINO_CLINICO = re.compile(
     r"(patient|pazient|stroke|ictus|physical|fisic|motor|clinic|health|salute|sanit|disabilit|neurolog|"
     r"cognit|therap|terap|medic|function|funzional|injur|lesion|disease|malatti|cardiac|cardi|pulmonary|"
-    r"cancer|oncolog|older|anzian|elderly|sclerosis|sclerosi|parkinson|dementi)", re.I)
+    r"older|\banzian|elderly|sclerosis|sclerosi|parkinson|dementi)", re.I)
 # frasi standard (diritti civili, non discriminazione) che citano disabilità o
 # "Rehabilitation Act" senza che il bando riguardi la sanità
 BOILERPLATE = re.compile(
@@ -174,7 +181,7 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
     tit = norm(togli_boilerplate(titolo or ""))
     corpo = norm(togli_boilerplate(testo or ""))
     tutto = f"{tit} {corpo}"
-    sanitario = bool(CONTESTO_SANITARIO.search(tutto))
+    clinico = len({m.group(0).lower()[:6] for m in CONTESTO_CLINICO.finditer(tutto)}) >= 2
     cronicita = bool(CONTESTO_CRONICITA.search(tutto))
     riab_ok = _riab_clinica(tutto)
     punteggio, gruppi, parole = 0, {}, []
@@ -183,7 +190,7 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
         occorrenze = len(rx.findall(corpo))
         if not (nel_titolo or occorrenze):
             continue
-        if (tipo == "N" and not sanitario) or (tipo == "C" and not cronicita) or (tipo == "R" and not riab_ok):
+        if (tipo in ("N", "D") and not clinico) or (tipo == "C" and not cronicita) or (tipo == "R" and not riab_ok):
             continue
         peso = 1 if tipo == "N" else 2
         peso += 1 if nel_titolo else 0
@@ -201,6 +208,38 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
     if altri and gruppi.get("Altre malattie e riabilitazione", 0) < max(gruppi[g] for g in altri):
         gruppi.pop("Altre malattie e riabilitazione", None)
     return [g for g in GRUPPI_ORDINE if g in gruppi], parole[:12]
+
+
+# ---------------------------------------------------------------------------
+# Esclusioni per regola (prima dell'LLM, sul titolo originale)
+#   - oncologia e tumori;
+#   - infrastrutture (centri di coordinamento, archivi dati, reti, NIH U24/P30...);
+#   - ricerca preclinica (modelli animali, in vitro).
+# Il resto (servizi sociali, condizioni non legate alla riabilitazione) lo
+# decide l'LLM leggendo la call.
+# ---------------------------------------------------------------------------
+
+ESCLUSIONI_TITOLO = [
+    ("Oncologia", re.compile(
+        r"\b(cancers?|oncolog\w*|tumou?rs?|tumore|tumori|carcinom\w*|leuk[a]?emi\w*|lymphom\w*|"
+        r"melanom\w*|sarcom\w*|cancro|neoplas\w*|chemotherap\w*|chemioterap\w*)\b|-CANCER-", re.I)),
+    ("Infrastruttura", re.compile(
+        r"(\binfrastructure\b|infrastruttur|coordinating cent(er|re)|coordination cent(er|re)|"
+        r"data (management|coordinating|coordination|resource|sharing) (cent(er|re)|core)|\bdmcc\b|\bdcc\b|"
+        r"data archive|archivio|repositor(y|ies)|biobank|biorepositor|resource cent(er|re)|"
+        r"\b(u24|p30|s10|g20|c06|u2c|u42)\b)", re.I)),
+    ("Preclinica", re.compile(
+        r"\b(mouse|mice|murine|rodents?|rats?|animal models?|preclinical|pre-clinical|non-human primates?|"
+        r"zebrafish|drosophila|in vitro|organoids?|cell lines?|modelli animali|preclinic[ao])\b", re.I)),
+]
+
+
+def esclusione_titolo(titolo: str) -> str | None:
+    t = html.unescape(titolo or "")
+    for motivo, rx in ESCLUSIONI_TITOLO:
+        if rx.search(t):
+            return motivo
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -293,8 +332,8 @@ def numero(v) -> float | None:
         s = s.replace(",", "") if s.rfind(".") > s.rfind(",") else s.replace(".", "").replace(",", ".")
     elif s.count(",") >= 1 and len(s.split(",")[-1]) == 3:
         s = s.replace(",", "")
-    elif s.count(".") > 1:
-        s = s.replace(".", "")
+    elif s.count(".") > 1 or re.fullmatch(r"\d{1,3}\.\d{3}", s):
+        s = s.replace(".", "")          # 10.000 = diecimila (separatore delle migliaia)
     s = s.replace(",", ".")
     try:
         x = float(s)
@@ -393,6 +432,7 @@ def nuovo_record(**kw) -> dict:
                 scadenza=None, apertura=None, durata=None, tipo_bando=None, chi_puo=None,
                 partenariato=None, paesi=None, lingua=None, url=None, sommario=None,
                 stato=None, aggiornato=iso(OGGI), prima_vista=None, note=None,
+                italia=None, tipo_ricerca=None,
                 _testo="", _origine="api")
     base.update(kw)
     return base
@@ -414,6 +454,12 @@ EU_PROGRAMMI = {
     "EMFAF": "FEAMPA", "RFCS": "Research Fund for Coal and Steel", "EUAF": "EU Anti-Fraud",
     "JUST": "Giustizia", "SOCPL": "Social prerogatives", "UCPM": "Protezione civile UE",
 }
+# Programmi e cluster UE senza ricerca clinica: scartati prima del filtro tematico.
+# CL2 cultura e società, CL3 sicurezza, CL5 clima ed energia, CL6 alimentazione e
+# ambiente, Missions (compresa quella sul cancro), infrastrutture, Euratom. Modificabile.
+EU_PREFISSI_ESCLUSI = re.compile(
+    r"^(CERV|JUST|LIFE|AGRIP|EMFAF|RFCS|EDF|CEF|UCPM|CREA|EUAF|SOCPL|ERASMUS|ESF|SMP|I3|EIE|"
+    r"HORIZON-CL[2356]|HORIZON-MISS|HORIZON-INFRA|HORIZON-EURATOM|EURATOM|HORIZON-WIDERA|HORIZON-EIE)\b", re.I)
 
 
 def _meta(m: dict, k: str):
@@ -455,8 +501,8 @@ def scarica_eu(http: Http) -> tuple[list[dict], int]:
 def converti_eu(v: dict) -> dict | None:
     m = v.get("metadata") or {}
     ident = _meta(m, "identifier") or v.get("reference")
-    titolo = _meta(m, "title") or v.get("title") or ident
-    if not ident:
+    titolo = html.unescape(str(_meta(m, "title") or v.get("title") or ident or ""))
+    if not ident or EU_PREFISSI_ESCLUSI.search(str(ident)):
         return None
     descr = html_a_testo(_meta(m, "descriptionByte") or v.get("summary") or "")
     parole = " ".join(m.get("keywords") or []) + " " + " ".join(m.get("tags") or [])
@@ -505,7 +551,7 @@ def converti_eu(v: dict) -> dict | None:
         tipo_bando=tipo_da_azione_eu(ident, tipi), copertura=copertura_eu(ident, tipi),
         partenariato=partenariato_eu(ident, tipi),
         paesi="Stati membri UE e paesi associati (altri paesi secondo le condizioni del topic)",
-        lingua="Inglese", url=url, stato=stato, _testo=testo[:8000])
+        italia="Sì", lingua="Inglese", url=url, stato=stato, _testo=testo[:8000])
 
 
 def copertura_eu(ident: str, tipi: str) -> str | None:
@@ -641,11 +687,65 @@ def scarica_grants_gov(http: Http) -> tuple[list[dict], int]:
     return risultati, len(ids)
 
 
+_RX_COMPONENTI = re.compile(r"(non-?domestic|foreign)[^.;]{0,40}?components?[^.;]*", re.I)
+_RX_ESTERI_NO = re.compile(
+    r"(non-?domestic|foreign)\s*(\(non-?u\.?s\.?\)\s*)?(entities|institutions|organi[sz]ations|applicants)"
+    r"[^.;]{0,60}?\b(is|are)\s+not\s+(eligible|allowed|permitted)|"
+    r"\bnot\s+eligible[^.;]{0,30}?(non-?domestic|foreign)\s*(\(non-?u\.?s\.?\)\s*)?(entities|institutions|organi[sz]ations)|"
+    r"\bonly\s+(domestic|u\.?s\.?(-based)?)\s+(institutions|organi[sz]ations|entities|applicants)", re.I)
+_RX_ESTERI_SI = re.compile(
+    r"non-?domestic\s*\(non-?u\.?s\.?\)\s*entities|"
+    r"(foreign|non-?domestic|international)\s+(institutions|organi[sz]ations|entities|applicants)"
+    r"[^.;]{0,40}?\b(are|is)\s+(also\s+)?(eligible|allowed|permitted)|"
+    r"(foreign|international)\s+(institutions|organi[sz]ations|applicants)\s+(may|can)\s+apply", re.I)
+
+
+def _valori_testo(x, escludi: tuple[str, ...] = ()) -> list[tuple[str, str]]:
+    """(chiave, testo) di tutti i valori di tipo stringa, anche annidati."""
+    out = []
+    if isinstance(x, dict):
+        for k, v in x.items():
+            if k in escludi:
+                continue
+            if isinstance(v, str):
+                out.append((k, v))
+            else:
+                out += _valori_testo(v, escludi)
+    elif isinstance(x, list):
+        for v in x:
+            out += _valori_testo(v, escludi)
+    return out
+
+
+def italia_grants_gov(syn: dict, tipi_ente: list[str]) -> str:
+    """'Sì', 'No' o 'Da verificare' per un ente italiano come richiedente.
+    Cerca nei valori del record (i nomi dei campi di Grants.gov variano) le frasi
+    standard sugli enti esteri, ignorando le 'foreign components' di enti USA."""
+    if not syn:
+        return "Da verificare"
+    valori = _valori_testo(syn)
+    t = html_a_testo(" ".join(v for _, v in valori))
+    t = _RX_COMPONENTI.sub(" ", t)
+    if _RX_ESTERI_NO.search(t):
+        return "No"
+    if _RX_ESTERI_SI.search(t) or any(re.search(r"foreign|non-?domestic", x, re.I) for x in tipi_ente):
+        return "Sì"
+    if any(re.search(r"unrestricted", x, re.I) for x in tipi_ente):
+        return "Da verificare"
+    # testo sull'ammissibilità (escluse le descrizioni dei tipi di ente)
+    elig = html_a_testo(" ".join(v for k, v in _valori_testo(syn, ("applicantTypes",)) if re.search(r"eligib", k, re.I)))
+    if len(elig) < 40 or re.search(r"\bsee (section|the nofo|nofo|the (full )?(funding )?(opportunity|announcement))", elig, re.I):
+        return "Da verificare"
+    return "No"                         # elenco di enti ammessi senza enti esteri: riservato agli USA
+
+
 def converti_grants_gov(hit: dict, det: dict) -> dict | None:
     syn = det.get("synopsis") or det.get("forecast") or {}
-    titolo = hit.get("title") or det.get("opportunityTitle")
+    titolo = html.unescape(str(hit.get("title") or det.get("opportunityTitle") or ""))
     descr = html_a_testo(_primo(syn, "synopsisDesc", "forecastDesc", "description") or "")
-    testo = f"{titolo}. {descr}"
+    eleggibilita = html_a_testo(str(_primo(syn, "applicantEligibilityDesc", "applicantEligibilityDescription",
+                                           "eligibilityDesc", "additionalEligibilityInfo") or ""))
+    testo = f"{titolo}. {descr}" + (f" Eligibility: {eleggibilita}" if eleggibilita else "")
     gruppi, chiavi = classifica(titolo, descr)
     if not gruppi:
         return None
@@ -657,7 +757,7 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
         return None
 
     tipi_ente = [t.get("description", "") for t in (_primo(syn, "applicantTypes") or []) if isinstance(t, dict)]
-    stranieri = any(re.search(r"foreign|non-domestic", t, re.I) for t in tipi_ente)
+    italia = italia_grants_gov(syn, tipi_ente)
     cost = _primo(syn, "costSharing", "costSharingOrMatchingRequirement")
     if isinstance(cost, str):
         cost = cost.strip().lower() in ("true", "yes", "y")
@@ -678,8 +778,9 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
         valuta="USD", progetti_finanziabili=int(progetti) if progetti else None,
         scadenza=iso(scad), apertura=iso(apertura), copertura=copertura,
         chi_puo="; ".join(tipi_ente)[:400] or None,
-        paesi="Anche enti non statunitensi" if stranieri else "Solo enti statunitensi (salvo diversa indicazione)",
-        lingua="Inglese", url=GG_URL.format(id=hit.get("id")), stato=stato, _testo=testo[:8000])
+        paesi={"Sì": "Ammessi anche enti non statunitensi", "No": "Solo enti statunitensi"}.get(
+            italia, "Enti esteri: da verificare nel bando"),
+        italia=italia, lingua="Inglese", url=GG_URL.format(id=hit.get("id")), stato=stato, _testo=testo[:9000])
 
 
 # ---------------------------------------------------------------------------
@@ -692,6 +793,25 @@ RX_LINK_BANDO = re.compile(
 RX_PAGINA_BANDO = re.compile(
     r"(bando|avviso|call for (proposals|applications)|grant|funding (opportunity|call|round)|"
     r"fellowship|award|finanziament|application deadline|how to apply|come partecipare|scadenza)", re.I)
+# pagine che non sono bandi: notizie, elenchi di vincitori, portfolio, moduli...
+RX_URL_NON_BANDO = re.compile(
+    r"/(news|notizie|notizia|press|comunicati|blog|stories|story|events?|eventi|webinars?|podcasts?|faqs?|"
+    r"privacy|cookies?|cookie-policy|careers?|jobs|lavora-con-noi|about|about-us|chi-siamo|team|staff|"
+    r"donate|dona|shop|governance|our-research|research-we-fund|what-we-fund|funded-research|"
+    r"progetti-finanziati)(/|$)|"
+    r"(recipients?|awardees?|grantees?|vincitori|portfolio|annual-report|template|nomination|"
+    r"press-release|comunicato-stampa)", re.I)
+RX_TITOLO_NON_BANDO = re.compile(
+    r"\b(recipients?|awardees?|grantees?|vincitori|portfolio|templates?|nomination|award conditions|"
+    r"terms and conditions|committee|annual report|press release|comunicato stampa|newsletter|celebrat\w+|"
+    r"announces?|receives?|we'?re investing|we are investing|meet\b|research we fund|what research)", re.I)
+# senza una scadenza futura la pagina deve almeno dire che la call è aperta
+RX_APERTO = re.compile(
+    r"(applications? (are |is )?(now )?open|now open|open for (applications|submissions|proposals)|"
+    r"apply (now|online|here|by)|call (is )?open|currently accepting|accepting (applications|proposals|submissions)|"
+    r"candidature (aperte|entro)|domande (entro|possono essere presentate)|"
+    r"presentazione delle (domande|proposte|candidature)|bando aperto|deadline|closing date|scadenza|"
+    r"termine (per la presentazione|ultimo))", re.I)
 ESTENSIONI_SALTA = (".jpg", ".jpeg", ".png", ".gif", ".svg", ".zip", ".doc", ".docx", ".xls",
                     ".xlsx", ".ppt", ".pptx", ".mp4", ".mp3", ".ics")
 
@@ -734,6 +854,8 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
         if url in visti:
             continue
         visti.add(url)
+        if prof > 0 and RX_URL_NON_BANDO.search(urlparse(url).path):
+            continue
         if not http.consentito(url):
             log.debug("robots.txt non consente %s", url)
             continue
@@ -752,7 +874,8 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
         if "pdf" in tipo or url.lower().endswith(".pdf"):
             if len(r.content) <= 8_000_000:
                 testo = _testo_pdf(r.content)
-                titolo = Path(urlparse(url).path).stem.replace("-", " ").replace("_", " ")
+                titolo = unquote(Path(urlparse(url).path).stem).replace("\ufeff", "")
+                titolo = re.sub(r"^[\d\s_-]+", "", re.sub(r"[-_]+", " ", titolo)).strip()
                 rec = valuta_pagina(fonte, url, titolo, testo, pdf=True)
                 if rec:
                     candidati.append(rec)
@@ -790,6 +913,13 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
 def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = False) -> dict | None:
     if len(testo) < 300:
         return None
+    if RX_TITOLO_NON_BANDO.search(titolo or "") or RX_URL_NON_BANDO.search(urlparse(url).path):
+        return None
+    anni = [int(a) for a in re.findall(r"\b(20\d\d)\b", titolo or "")]
+    if anni and max(anni) < OGGI.year:
+        return None                      # bando di un anno passato
+    if esclusione_titolo(titolo):
+        return None
     if not (RX_PAGINA_BANDO.search(titolo) or RX_PAGINA_BANDO.search(url) or
             RX_PAGINA_BANDO.search(testo[:3000])):
         return None
@@ -799,11 +929,15 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
     scad, solo_passate = scadenza_da_testo(testo[:30000])
     if solo_passate:
         return None                      # bando chiuso
+    if not scad and not RX_APERTO.search(testo[:30000]):
+        return None                      # nessun segno di call aperta
     lingua = "Italiano" if re.search(r"\b(della|degli|delle|bando|ricerca|scadenza)\b", testo[:3000], re.I) else "Inglese"
     budget = None
     m = re.search(r"(?:€|eur(?:o|os)?|\$|usd|£|gbp)\s?([\d.,]{4,})|([\d.,]{4,})\s?(?:€|euro|eur\b)", testo[:20000], re.I)
     if m:
         budget = numero(m.group(1) or m.group(2))
+        if budget and budget < 1000:
+            budget = None                # marche da bollo, quote di iscrizione, numeri spuri
     valuta = None
     if budget:
         frammento = m.group(0).lower()
@@ -817,24 +951,34 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
         macrogruppi=gruppi, parole_chiave=chiavi, budget_totale=budget, valuta=valuta,
         scadenza=iso(scad), copertura=cof, lingua=lingua,
         paesi=fonte.get("copertura") or None, url=url,
+        italia="Sì" if (fonte.get("italia") or "").strip().lower() in ("si", "sì") else "Da verificare",
         stato="Aperto" if scad else "Scadenza da verificare",
         _testo=f"{titolo}. {testo}"[:8000], _origine="web" + ("-pdf" if pdf else ""))
 
 
 # ---------------------------------------------------------------------------
-# LLM gratuito in locale (Ollama)
+# LLM: Gemini (API gratuita di Google) oppure, senza chiave, Ollama in locale
 # ---------------------------------------------------------------------------
 
-PROMPT_VERSIONE = "2"
-ISTRUZIONI_LLM = """Sei un esperto italiano di bandi di ricerca sanitaria. Leggi il testo di una
-call e rispondi SOLO con un oggetto JSON (nessun altro testo), scritto in italiano corretto
-(mai spagnolo o altre lingue), con queste chiavi:
+PROMPT_VERSIONE = "3"
+ISTRUZIONI_LLM = """Sei un esperto italiano di finanziamenti per la ricerca clinica in riabilitazione.
+Ricevi un elenco JSON di call (bandi), ciascuna con un "id". Rispondi SOLO con JSON nella forma
+{"bandi": [ ... ]}: un oggetto per ogni call ricevuta, con lo stesso "id", scritto in italiano
+corretto. Ogni oggetto ha queste chiavi:
 {
+ "id": "copia esatta dell'id ricevuto",
+ "e_un_bando": true se il testo descrive un'opportunità di finanziamento a cui candidarsi;
+               false se è una notizia, un elenco di progetti finanziati o di vincitori, un modulo,
+               una pagina informativa generica,
+ "aperto": true se la call è aperta o in apertura, false se è chiusa, null se non si capisce,
+ "italia_ammessa": "si" se un ente o un ricercatore con sede in Italia può ricevere il finanziamento
+               come capofila o partner beneficiario (anche se il bando è limitato a una regione
+               italiana); "no" se il bando è riservato a enti di altri paesi; null se il testo non lo dice,
+ "tipo_ricerca": "clinica" | "tecnologia" | "formazione" | "preclinica" | "infrastruttura" | "servizi" | "altro",
  "rilevanza": "Alta" | "Media" | "Bassa",
- "motivo": "una frase: perché è (o non è) pertinente",
- "titolo_it": "traduzione italiana fedele del titolo, max 15 parole; sigle e nomi propri invariati",
- "sommario_it": "100-150 parole: obiettivi, chi può partecipare, cosa si finanzia",
- "aperto": true | false | null,
+ "motivo": "una frase: perché ha questa rilevanza",
+ "titolo_it": "traduzione italiana del titolo",
+ "sommario_it": "80-130 parole: obiettivi, chi può partecipare, cosa si finanzia",
  "scadenza": "AAAA-MM-GG" oppure null,
  "budget_totale": numero oppure null,
  "budget_progetto": numero oppure null,
@@ -848,22 +992,164 @@ call e rispondi SOLO con un oggetto JSON (nessun altro testo), scritto in italia
  "durata_mesi": numero oppure null,
  "tipo_bando": "Ricerca" | "Innovazione" | "Dottorato / formazione / mobilità" | "Infrastruttura" | "Altro"
 }
-Ambito di interesse: ictus, Parkinson, sclerosi multipla e altre malattie neurologiche e
-neurodegenerative, invecchiamento e demenze, disabilità e inclusione delle persone con
-disabilità, tecnologie per la riabilitazione (robotica, terapie digitali, teleriabilitazione,
-ausili), malattie croniche non trasmissibili quando riguardano riabilitazione o gestione
-a lungo termine.
-Rilevanza: Alta se il bando è dedicato a questi temi; Media se li ammette tra altri temi
-sanitari; Bassa se è fuori dalla sanità o li cita solo di passaggio.
-Copertura: "interamente" se il finanziamento copre tutti i costi ammissibili o se il testo
-dice che non serve co-finanziamento; "richiesto" se il beneficiario deve coprire una quota.
-Usa solo informazioni presenti nel testo: se un dato manca scrivi null. Non inventare
-importi o date."""
+
+TIPO DI RICERCA
+- clinica: studi su pazienti o persone (trial clinici, studi osservazionali, ricerca su interventi,
+  percorsi di cura o servizi sanitari, valutazione degli esiti).
+- tecnologia: sviluppo e validazione clinica di dispositivi, robotica, terapie digitali, ausili.
+- formazione: borse, fellowship, career award, programmi di formazione alla ricerca.
+- preclinica: ricerca di base, modelli animali o cellulari, scoperta di farmaci o bersagli prima
+  della sperimentazione sull'uomo.
+- infrastruttura: centri di coordinamento, reti, banche dati, archivi, piattaforme, attrezzature.
+- servizi: erogazione di servizi sociali o assistenziali, programmi di salute pubblica, campagne
+  di sensibilizzazione, inclusione lavorativa, attività per comunità, scuole o territorio.
+
+RILEVANZA (ambito: riabilitazione)
+- Alta: dedicata alla riabilitazione, al recupero funzionale o alla gestione a lungo termine della
+  disabilità in ictus, Parkinson, sclerosi multipla, SLA, altre malattie neurologiche o
+  neurodegenerative, demenze, invecchiamento (fragilità, cadute), lesioni midollari o cerebrali,
+  dolore cronico; oppure alla riabilitazione cardiologica, respiratoria o di altre malattie croniche
+  non oncologiche; oppure alle tecnologie per la riabilitazione.
+- Media: riguarda queste condizioni ma non specificamente la riabilitazione (diagnosi, farmaci,
+  biomarcatori, assistenza), oppure è un bando sanitario ampio che ammette esplicitamente
+  progetti di riabilitazione.
+- Bassa: oncologia e tumori; condizioni non legate alla riabilitazione; temi non sanitari; bandi
+  che citano questi temi solo di passaggio.
+
+TRADUZIONE
+titolo_it: italiano naturale e professionale, massimo 20 parole, come lo scriverebbe un ricercatore
+italiano. Usa la terminologia medica italiana corretta (spinal cord injury = lesione del midollo
+spinale; amyotrophic lateral sclerosis = sclerosi laterale amiotrofica (SLA); multiple sclerosis =
+sclerosi multipla; award = finanziamento; investigator-initiated = promosso dal ricercatore;
+counterfeiting = contraffazione; healthy ageing = invecchiamento in salute). Non tradurre parola
+per parola. Lascia invariati sigle, codici (R01, U01, UG3/UH3, RIA, CSA) e nomi propri.
+
+COPERTURA
+"interamente" se il finanziamento copre tutti i costi ammissibili o il testo dice che non serve
+co-finanziamento; "richiesto" se il beneficiario deve coprire una quota.
+
+Usa solo informazioni presenti nel testo: se un dato manca scrivi null. Non inventare importi o date."""
+
+TIPI_RICERCA = {"clinica": "Ricerca clinica", "tecnologia": "Tecnologia / innovazione",
+                "formazione": "Formazione / fellowship", "preclinica": "Preclinica",
+                "infrastruttura": "Infrastruttura", "servizi": "Servizi / programmi", "altro": "Altro"}
 
 
-class LLM:
+class QuotaEsaurita(Exception):
+    """Nessun modello Gemini ha più quota disponibile oggi."""
+
+
+class ErroreFatale(Exception):
+    """Errore che non si risolve riprovando (per esempio chiave non valida)."""
+
+
+def _payload(recs: list[dict], caratteri: int) -> str:
+    return json.dumps([{"id": r["id"], "ente": r.get("ente"), "programma": r.get("programma"),
+                        "titolo": r.get("titolo"), "testo": r["_testo"][:caratteri]} for r in recs],
+                      ensure_ascii=False)
+
+
+def estrai_lotto(testo: str, recs: list[dict]) -> dict[str, dict]:
+    testo = re.sub(r"^\s*```(?:json)?|```\s*$", "", testo.strip())
+    dati = json.loads(testo)
+    if isinstance(dati, dict):
+        elenco = dati.get("bandi")
+        if elenco is None:
+            elenco = [dati]
+    else:
+        elenco = dati
+    elenco = [x for x in (elenco or []) if isinstance(x, dict)]
+    ids = {r["id"] for r in recs}
+    risultati = {str(x.get("id")): x for x in elenco if str(x.get("id")) in ids}
+    if not risultati and len(elenco) == len(recs):          # id non ricopiati: si usa l'ordine
+        risultati = {r["id"]: x for r, x in zip(recs, elenco)}
+    return risultati
+
+
+class Gemini:
+    URL = "https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
+
+    def __init__(self, chiave: str, modelli: list[str], rpm: float = 8):
+        self.chiave, self.modelli, self.i = chiave, modelli, 0
+        self.pausa, self._ultimo = 60 / rpm, 0.0
+        self.nome = "gemini"
+        self.s = requests.Session()
+
+    @property
+    def modello(self) -> str | None:
+        return self.modelli[self.i] if self.i < len(self.modelli) else None
+
+    def _passa_al_prossimo(self, perche: str) -> None:
+        log.warning("Gemini %s: %s", self.modello, perche)
+        self.i += 1
+        if self.modello:
+            log.info("Gemini: si prosegue con %s", self.modello)
+
+    def analizza_lotto(self, recs: list[dict]) -> dict[str, dict]:
+        corpo = {
+            "systemInstruction": {"parts": [{"text": ISTRUZIONI_LLM}]},
+            "contents": [{"role": "user", "parts": [{"text": _payload(recs, 6000)}]}],
+            "generationConfig": {"responseMimeType": "application/json", "temperature": 0.1,
+                                 "maxOutputTokens": 32768},
+        }
+        tentativi = 0
+        while self.modello:
+            attesa = self.pausa - (time.time() - self._ultimo)
+            if attesa > 0:
+                time.sleep(attesa)
+            self._ultimo = time.time()
+            try:
+                r = self.s.post(self.URL.format(m=self.modello), json=corpo, timeout=300,
+                                headers={"x-goog-api-key": self.chiave})
+            except requests.RequestException as e:
+                tentativi += 1
+                if tentativi >= 4:
+                    raise
+                log.warning("Gemini irraggiungibile (%s), nuovo tentativo", e)
+                time.sleep(15 * tentativi)
+                continue
+            if r.status_code == 200:
+                dati = r.json()
+                cand = (dati.get("candidates") or [{}])[0]
+                parti = (cand.get("content") or {}).get("parts") or []
+                testo = "".join(p.get("text", "") for p in parti if not p.get("thought"))
+                if not testo:
+                    raise RuntimeError(f"risposta vuota ({cand.get('finishReason')})")
+                return estrai_lotto(testo, recs)
+            dettaglio = r.text[:600]
+            if r.status_code == 429:
+                if re.search(r"PerDay|per day|daily", r.text, re.I):
+                    self._passa_al_prossimo("quota giornaliera esaurita")
+                    tentativi = 0
+                    continue
+                tentativi += 1
+                if tentativi >= 6:
+                    self._passa_al_prossimo("troppe richieste respinte")
+                    tentativi = 0
+                    continue
+                m = re.search(r'"retryDelay":\s*"(\d+)', r.text)
+                time.sleep(min(int(m.group(1)) + 2 if m else 20 * tentativi, 120))
+                continue
+            if r.status_code in (401, 403) or (r.status_code == 400 and re.search(r"API key", r.text, re.I)):
+                raise ErroreFatale(f"chiave Gemini non valida o non autorizzata (HTTP {r.status_code}): {dettaglio}")
+            if r.status_code == 404 or (r.status_code == 400 and re.search(r"model|not supported", r.text, re.I)):
+                self._passa_al_prossimo(f"modello non disponibile (HTTP {r.status_code})")
+                tentativi = 0
+                continue
+            if r.status_code >= 500:
+                tentativi += 1
+                if tentativi >= 4:
+                    raise RuntimeError(f"Gemini HTTP {r.status_code}")
+                time.sleep(20 * tentativi)
+                continue
+            raise RuntimeError(f"Gemini HTTP {r.status_code}: {dettaglio}")
+        raise QuotaEsaurita("quota gratuita esaurita su tutti i modelli configurati")
+
+
+class Ollama:
     def __init__(self, url: str, modello: str):
         self.url, self.modello = url.rstrip("/"), modello
+        self.nome = f"ollama:{modello}"
         self.s = requests.Session()
 
     def disponibile(self) -> bool:
@@ -874,17 +1160,17 @@ class LLM:
         except Exception:
             return False
 
-    def analizza(self, rec: dict) -> dict | None:
-        contenuto = json.dumps({"ente": rec.get("ente"), "programma": rec.get("programma"),
-                                "titolo": rec.get("titolo"), "testo": rec["_testo"][:5000]},
-                               ensure_ascii=False)
-        r = self.s.post(self.url + "/api/chat", timeout=400, json={
-            "model": self.modello, "stream": False, "format": "json",
-            "options": {"temperature": 0.1, "num_ctx": 4096, "num_predict": 600},
-            "messages": [{"role": "system", "content": ISTRUZIONI_LLM},
-                         {"role": "user", "content": contenuto}]})
-        r.raise_for_status()
-        return json.loads(r.json()["message"]["content"])
+    def analizza_lotto(self, recs: list[dict]) -> dict[str, dict]:
+        risultati = {}
+        for rec in recs:
+            r = self.s.post(self.url + "/api/chat", timeout=400, json={
+                "model": self.modello, "stream": False, "format": "json",
+                "options": {"temperature": 0.1, "num_ctx": 6144, "num_predict": 900},
+                "messages": [{"role": "system", "content": ISTRUZIONI_LLM},
+                             {"role": "user", "content": _payload([rec], 4500)}]})
+            r.raise_for_status()
+            risultati.update(estrai_lotto(r.json()["message"]["content"], [rec]))
+        return risultati
 
 
 def impronta(testo: str) -> str:
@@ -895,7 +1181,14 @@ def applica_llm(rec: dict, out: dict) -> None:
     ril = str(out.get("rilevanza") or "").capitalize()
     rec["rilevanza"] = ril if ril in ("Alta", "Media", "Bassa") else rec.get("rilevanza")
     rec["motivo"] = (out.get("motivo") or "")[:400] or rec.get("motivo")
-    rec["titolo_it"] = (out.get("titolo_it") or "")[:250] or rec.get("titolo_it")
+    rec["titolo_it"] = html.unescape(str(out.get("titolo_it") or ""))[:250] or rec.get("titolo_it")
+    tr = norm(str(out.get("tipo_ricerca") or "")).lower().strip()
+    if tr in TIPI_RICERCA:
+        rec["tipo_ricerca"] = TIPI_RICERCA[tr]
+    it = norm(str(out.get("italia_ammessa") or "")).lower().strip()
+    rec["_italia_llm"] = "Sì" if it in ("si", "yes", "true") else "No" if it in ("no", "false") else None
+    rec["_e_bando"] = out.get("e_un_bando") if isinstance(out.get("e_un_bando"), bool) else None
+    rec["_aperto"] = out.get("aperto") if isinstance(out.get("aperto"), bool) else None
     som = out.get("sommario_it") or ""
     if 200 <= len(som) <= 2000:
         rec["sommario"] = som
@@ -933,8 +1226,36 @@ def applica_llm(rec: dict, out: dict) -> None:
             d = da_iso(out.get("scadenza")) if isinstance(out.get("scadenza"), str) else None
             if d and d >= OGGI:
                 rec["scadenza"], rec["stato"] = iso(d), "Aperto"
-        if out.get("aperto") is False and not rec.get("scadenza"):
-            rec["stato"] = "Da verificare (forse chiuso)"
+
+
+# ---------------------------------------------------------------------------
+# Esclusioni: prima dell'LLM (regole) e dopo (giudizio dell'LLM)
+# ---------------------------------------------------------------------------
+
+def esclusione_preliminare(rec: dict) -> str | None:
+    if rec.get("italia") == "No":
+        return "Italia non ammessa"
+    return esclusione_titolo(rec.get("titolo") or "")
+
+
+def esclusione_finale(rec: dict) -> str | None:
+    """Motivo di esclusione dopo l'analisi LLM, oppure None se il bando resta.
+    Aggiorna anche il campo 'italia' quando la regola non era conclusiva."""
+    llm_it = rec.get("_italia_llm")
+    web = str(rec.get("_origine", "")).startswith("web")
+    if llm_it and (rec.get("italia") in (None, "Da verificare") or (web and llm_it == "No")):
+        rec["italia"] = llm_it
+    if rec.get("italia") == "No":
+        return "Italia non ammessa"
+    if web and rec.get("_e_bando") is False:
+        return "Pagina che non è un bando"
+    if rec.get("_aperto") is False and not rec.get("scadenza"):
+        return "Call chiusa"
+    if rec.get("tipo_ricerca") in ("Preclinica", "Infrastruttura", "Servizi / programmi"):
+        return rec["tipo_ricerca"]
+    if rec.get("rilevanza") == "Bassa":
+        return "Non pertinente alla riabilitazione"
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -975,8 +1296,6 @@ def calcola_indicatori(rec: dict, tassi) -> None:
 
 def calcola_stato(rec: dict) -> None:
     scad, ap = da_iso(rec.get("scadenza")), da_iso(rec.get("apertura"))
-    if rec.get("stato", "").startswith("Da verificare"):
-        return
     if ap and ap > OGGI:
         rec["stato"] = "In apertura"
     elif scad and (scad - OGGI).days <= 30:
@@ -1008,18 +1327,19 @@ def salva_stato(path: Path, stato: dict) -> None:
 # ---------------------------------------------------------------------------
 
 COLONNE = [
-    ("ID", "id", 22), ("Fonte", "fonte", 18), ("Programma", "programma", 30),
-    ("Ente finanziatore", "ente", 24), ("Titolo", "titolo", 45), ("Titolo IT", "titolo_it", 45),
-    ("Macrogruppo", "macrogruppi", 22), ("Parole chiave", "parole_chiave", 28),
-    ("Rilevanza LLM", "rilevanza", 12), ("Motivo LLM", "motivo", 40),
+    ("ID", "id", 22), ("Italia ammessa", "italia", 11), ("Pertinenza riabilitazione", "rilevanza", 13),
+    ("Tipo di ricerca", "tipo_ricerca", 16), ("Titolo IT", "titolo_it", 50),
+    ("Scadenza", "scadenza", 12), ("Giorni alla scadenza", None, 11), ("Stato", "stato", 18),
+    ("Ente finanziatore", "ente", 24), ("Fonte", "fonte", 18), ("Programma", "programma", 30),
+    ("Titolo originale", "titolo", 45), ("Macrogruppo", "macrogruppi", 22), ("Parole chiave", "parole_chiave", 28),
+    ("Motivo LLM", "motivo", 40),
     ("Budget totale", "budget_totale", 15), ("Budget per progetto", "budget_progetto", 15),
     ("Valuta", "valuta", 8), ("Progetti finanziabili", "progetti_finanziabili", 12),
     ("Indicatore competitività", "competitivita", 34), ("Copertura finanziaria", "copertura", 30),
-    ("Scadenza", "scadenza", 12), ("Giorni alla scadenza", None, 11), ("Apertura", "apertura", 12),
-    ("Durata progetto", "durata", 12), ("Tipo di bando", "tipo_bando", 18),
+    ("Apertura", "apertura", 12), ("Durata progetto", "durata", 12), ("Tipo di bando", "tipo_bando", 18),
     ("Chi può candidarsi", "chi_puo", 30), ("Struttura partenariato", "partenariato", 34),
     ("Paesi ammessi", "paesi", 26), ("Lingua bando", "lingua", 10), ("URL", "url", 40),
-    ("Sommario", "sommario", 70), ("Stato", "stato", 18), ("Aggiornato il", "aggiornato", 12),
+    ("Sommario", "sommario", 70), ("Aggiornato il", "aggiornato", 12),
     ("Prima vista", "prima_vista", 12), ("Note", "note", 30),
 ]
 
@@ -1064,7 +1384,7 @@ def scrivi_excel(path: Path, bandi: list[dict], stato: dict) -> None:
                     val = da_iso(val)
             c = ws.cell(row=i, column=j, value=val)
             c.font = font
-            c.alignment = a_capo if nome in ("Sommario", "Motivo LLM", "Titolo", "Titolo IT",
+            c.alignment = a_capo if nome in ("Sommario", "Motivo LLM", "Titolo originale", "Titolo IT",
                                              "Struttura partenariato", "Chi può candidarsi",
                                              "Indicatore competitività", "Copertura finanziaria") else in_alto
             if chiave in ("scadenza", "apertura", "aggiornato", "prima_vista"):
@@ -1104,13 +1424,15 @@ def scrivi_excel(path: Path, bandi: list[dict], stato: dict) -> None:
 
     # LOG
     wl = wb.create_sheet("LOG")
-    intest = ["Data esecuzione", "Bandi esaminati", "Bandi nuovi aggiunti", "Bandi rimossi", "Errori", "Durata (minuti)"]
-    for j, (n, w) in enumerate(zip(intest, [20, 14, 14, 14, 80, 12]), 1):
+    intest = ["Data esecuzione", "Bandi esaminati", "Bandi nuovi aggiunti", "Bandi rimossi",
+              "Esclusi dal filtro", "Analizzati con LLM", "Errori", "Durata (minuti)"]
+    for j, (n, w) in enumerate(zip(intest, [20, 14, 14, 14, 50, 14, 80, 12]), 1):
         c = wl.cell(row=1, column=j, value=n)
         c.font, c.fill = font_b, testata
         wl.column_dimensions[get_column_letter(j)].width = w
     for i, e in enumerate(reversed(stato["esecuzioni"]), 2):
-        for j, k in enumerate(["data", "esaminati", "nuovi", "rimossi", "errori", "durata_min"], 1):
+        for j, k in enumerate(["data", "esaminati", "nuovi", "rimossi", "esclusi", "llm_analizzati",
+                               "errori", "durata_min"], 1):
             c = wl.cell(row=i, column=j, value=e.get(k))
             c.font, c.alignment = font, a_capo
 
@@ -1135,48 +1457,73 @@ def _fmt_soldi(v, valuta):
     return f"{v:,.0f}".replace(",", ".") + f" {simbolo}".rstrip()
 
 
-def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: str, destinatario: str) -> EmailMessage:
-    gruppi = [
-        ("⏰ In scadenza entro 30 giorni", [b for b in bandi if b["stato"].startswith("In scadenza")]),
-        ("📂 Aperti", [b for b in bandi if b["stato"] == "Aperto"]),
-        ("🔜 In apertura", [b for b in bandi if b["stato"] == "In apertura"]),
-        ("❔ Scadenza da verificare", [b for b in bandi if b["stato"].startswith(("Scadenza da", "Da verificare"))]),
-    ]
-    in_scadenza = len(gruppi[0][1])
-    oggetto = (f"NeuroGrant – {len(bandi)} bandi aperti ({len(nuovi)} {'nuovo' if len(nuovi) == 1 else 'nuovi'}, "
-               f"{in_scadenza} in scadenza)")
+ETICHETTE_ESCLUSI = {
+    "Italia non ammessa": "non aperti all'Italia", "Oncologia": "oncologici", "Infrastruttura": "di infrastruttura",
+    "Preclinica": "preclinici", "Servizi / programmi": "servizi o programmi sociali",
+    "Pagina che non è un bando": "pagine che non sono bandi", "Call chiusa": "chiusi",
+    "Non pertinente alla riabilitazione": "non pertinenti alla riabilitazione",
+}
+
+
+def _testo_esclusi(esclusi: dict[str, int]) -> str:
+    return ", ".join(f"{n} {ETICHETTE_ESCLUSI.get(m, m.lower())}"
+                     for m, n in sorted(esclusi.items(), key=lambda x: -x[1]))
+
+
+def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: str, destinatario: str,
+                  esclusi: dict[str, int] | None = None) -> EmailMessage:
+    in_scadenza = sum(1 for b in bandi if b["stato"].startswith("In scadenza"))
+    oggetto = (f"NeuroGrant – {len(bandi)} bandi per la riabilitazione ({len(nuovi)} "
+               f"{'nuovo' if len(nuovi) == 1 else 'nuovi'}, {in_scadenza} in scadenza)")
+    blocchi = [("🇮🇹 Aperti a enti italiani", "Sì"), ("❔ Ammissibilità dell'Italia da verificare", "Da verificare")]
+    livelli = [("Pertinenza alta", "Alta"), ("Pertinenza media", "Media"), ("Non ancora analizzati", "Non analizzato")]
+    legenda = "⏰ scade entro 30 giorni · 🔜 in apertura · 🆕 nuovo"
 
     def riga(b):
-        tit = b.get("titolo_it") or b.get("titolo")
-        ril = f", pertinenza {b['rilevanza']}" if b.get("rilevanza") else ""
-        return (("🆕 " if b["id"] in nuovi else "") + tit, b.get("ente") or b.get("fonte"),
-                _fmt_data(b.get("scadenza")), _fmt_soldi(b.get("budget_progetto") or b.get("budget_totale"), b.get("valuta")),
-                (b.get("copertura") or "Non indicato").split(" (")[0].split(";")[0].strip(),
-                (b.get("competitivita") or "").split("–")[0].strip() + ril,
-                b.get("url"))
+        icone = ("⏰ " if b["stato"].startswith("In scadenza") else "") + \
+                ("🔜 " if b["stato"] == "In apertura" else "") + ("🆕 " if b["id"] in nuovi else "")
+        tit = b.get("titolo_it") or b.get("titolo") or ""
+        dettagli = [b.get("ente") or b.get("fonte") or "", f"scade {_fmt_data(b.get('scadenza'))}",
+                    _fmt_soldi(b.get("budget_progetto") or b.get("budget_totale"), b.get("valuta")),
+                    (b.get("copertura") or "Non indicato").split(" (")[0].split(";")[0].strip()]
+        if b.get("tipo_ricerca"):
+            dettagli.append(b["tipo_ricerca"])
+        dettagli.append("competitività " + (b.get("competitivita") or "").split("–")[0].strip())
+        return icone, tit, dettagli, b.get("url") or ""
 
-    testo = [oggetto, ""]
-    corpo = [f"<h2 style='font-family:Arial'>{html.escape(oggetto)}</h2>"]
-    for titolo, elenco in gruppi:
-        if not elenco:
+    testo = [oggetto, legenda, ""]
+    corpo = [f"<h2 style='font-family:Arial'>{html.escape(oggetto)}</h2>",
+             f"<p style='font-family:Arial;color:#555;font-size:13px'>{html.escape(legenda)}</p>"]
+    for titolo_blocco, valore in blocchi:
+        del_blocco = [b for b in bandi if (b.get("italia") or "Da verificare") == valore]
+        if not del_blocco:
             continue
-        testo += [f"{titolo} ({len(elenco)})", "-" * 40]
-        corpo.append(f"<h3 style='font-family:Arial;margin-top:24px'>{titolo} ({len(elenco)})</h3><ul style='font-family:Arial;font-size:14px;padding-left:18px'>")
-        for b in elenco:
-            t, ente, scad, soldi, cop, comp, url = riga(b)
-            testo.append(f"• {t} – {ente} – scade {scad} – {soldi} – {cop} – competitività {comp} – {url}")
-            corpo.append(
-                f"<li style='margin-bottom:6px'><a href='{html.escape(url or '')}'>{html.escape(t)}</a> – "
-                f"{html.escape(ente or '')} – <b>scade {scad}</b> – {html.escape(soldi)} – "
-                f"{html.escape(cop)} – competitività {html.escape(comp)}</li>")
-        corpo.append("</ul>")
-        testo.append("")
+        testo += [f"{titolo_blocco} ({len(del_blocco)})", "=" * 40]
+        corpo.append(f"<h3 style='font-family:Arial;margin-top:28px'>{html.escape(titolo_blocco)} ({len(del_blocco)})</h3>")
+        for titolo_liv, ril in livelli:
+            elenco = [b for b in del_blocco if (b.get("rilevanza") or "Non analizzato") == ril]
+            if not elenco:
+                continue
+            testo += [f"{titolo_liv} ({len(elenco)})", "-" * 30]
+            corpo.append(f"<h4 style='font-family:Arial;margin:14px 0 6px;color:#1F4E5A'>{titolo_liv} ({len(elenco)})</h4>"
+                         "<ul style='font-family:Arial;font-size:14px;padding-left:18px;margin-top:0'>")
+            for b in elenco:
+                icone, tit, dettagli, url = riga(b)
+                testo.append(f"• {icone}{tit} – " + " – ".join(dettagli) + f" – {url}")
+                corpo.append(f"<li style='margin-bottom:6px'>{icone}<a href='{html.escape(url)}'>{html.escape(tit)}</a> – "
+                             + " – ".join(f"<b>{html.escape(d)}</b>" if d.startswith("scade") else html.escape(d)
+                                          for d in dettagli) + "</li>")
+            corpo.append("</ul>")
+            testo.append("")
     conteggio = {g: sum(1 for b in bandi if g in b.get("macrogruppi", [])) for g in GRUPPI_ORDINE}
     riepilogo = " | ".join(f"{g}: {n}" for g, n in conteggio.items())
-    testo += ["Riepilogo per macrogruppo: " + riepilogo, f"In allegato: {allegato.name}"]
+    nota_esclusi = f"Esclusi automaticamente: {_testo_esclusi(esclusi)}." if esclusi else ""
+    testo += ["Riepilogo per macrogruppo: " + riepilogo, nota_esclusi, f"In allegato: {allegato.name}"]
     corpo.append(f"<p style='font-family:Arial;color:#555'>Riepilogo per macrogruppo: {html.escape(riepilogo)}<br>"
-                 f"In allegato il database completo: {html.escape(allegato.name)}. "
-                 "Competitività e copertura sono stime automatiche: verificare sempre il testo ufficiale della call.</p>")
+                 + (f"{html.escape(nota_esclusi)}<br>" if nota_esclusi else "")
+                 + f"In allegato il database completo: {html.escape(allegato.name)}. "
+                 "Ammissibilità, competitività e copertura sono stime automatiche: verificare sempre il testo "
+                 "ufficiale della call.</p>")
 
     msg = EmailMessage()
     msg["Subject"], msg["From"], msg["To"] = oggetto, mittente, destinatario
@@ -1210,10 +1557,15 @@ def registra_fonte(stato, nome, tipo, copertura, finanz, url, recs, esaminati, e
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="NeuroGrant – bandi per la riabilitazione")
+    ap = argparse.ArgumentParser(description="NeuroGrant – bandi di ricerca clinica sulla riabilitazione")
     ap.add_argument("--minuti-llm", type=float, default=180, help="tempo massimo per l'LLM (0 = disattivo)")
     ap.add_argument("--ollama-url", default=os.environ.get("OLLAMA_URL", "http://localhost:11434"))
-    ap.add_argument("--modello", default=os.environ.get("NEUROGRANT_MODEL", "qwen2.5:7b"))
+    ap.add_argument("--modello", default=os.environ.get("NEUROGRANT_MODEL", "qwen2.5:7b"),
+                    help="modello Ollama, usato solo senza GEMINI_API_KEY")
+    ap.add_argument("--modelli-gemini", default=os.environ.get("GEMINI_MODELS", "").strip() or
+                    "gemini-flash-latest,gemini-flash-lite-latest",
+                    help="modelli Gemini in ordine di preferenza: si passa al successivo quando la quota finisce")
+    ap.add_argument("--lotto", type=int, default=6, help="bandi per richiesta a Gemini")
     ap.add_argument("--fonti", default="eu,gg,web", help="sottoinsieme di eu,gg,web")
     ap.add_argument("--max-pagine-web", type=int, default=35)
     ap.add_argument("--no-email", action="store_true")
@@ -1263,6 +1615,12 @@ def main() -> None:
     if "web" in fonti:
         for fonte in leggi_fonti_web(BASE / "fonti_web.csv"):
             nome = fonte.get("nome") or fonte["url"]
+            if (fonte.get("italia") or "").strip().lower() == "no":
+                f = stato["fonti"].setdefault(nome, {"trovati_tot": 0, "pertinenti": []})
+                f.update({"tipo": "Lettura pagine web", "copertura": fonte.get("copertura"),
+                          "finanziamenti": fonte.get("tipo"), "url": fonte["url"],
+                          "note": "Saltata: non aperta a enti italiani (colonna 'italia' di fonti_web.csv)"})
+                continue
             try:
                 recs, n, errore = esplora_fonte(http, fonte, args.max_pagine_web)
             except Exception as e:
@@ -1306,60 +1664,100 @@ def main() -> None:
             r["_ultima_vista"] = prec.get("_ultima_vista")
             unici[rid] = r
 
-    # LLM
-    llm = LLM(args.ollama_url, args.modello) if args.minuti_llm > 0 else None
-    if llm and not llm.disponibile():
-        log.warning("Ollama non disponibile: si prosegue senza LLM")
-        llm = None
-    scadenza_llm = time.time() + args.minuti_llm * 60
-    versione = f"{PROMPT_VERSIONE}:{args.modello}"
-    da_analizzare = []
+    # esclusioni per regola (prima dell'LLM: non consumano quota)
+    esclusi: dict[str, int] = {}
+    candidati: dict[str, dict] = {}
     for rid, r in unici.items():
+        motivo = esclusione_preliminare(r)
+        if motivo:
+            esclusi[motivo] = esclusi.get(motivo, 0) + 1
+        else:
+            candidati[rid] = r
+    log.info("Esclusi per regola: %s", _testo_esclusi(esclusi) or "nessuno")
+
+    # LLM: Gemini se c'è la chiave, altrimenti Ollama in locale
+    llm, lotto = None, 1
+    if args.minuti_llm > 0:
+        chiave = os.environ.get("GEMINI_API_KEY", "").strip()
+        if chiave:
+            llm = Gemini(chiave, [m.strip() for m in args.modelli_gemini.split(",") if m.strip()])
+            lotto = max(1, args.lotto)
+        else:
+            llm = Ollama(args.ollama_url, args.modello)
+            if not llm.disponibile():
+                log.warning("Né GEMINI_API_KEY né Ollama disponibili: si prosegue senza LLM")
+                llm = None
+    scadenza_llm = time.time() + args.minuti_llm * 60
+    versione = f"{PROMPT_VERSIONE}:{llm.nome}" if llm else None
+    da_analizzare = []
+    for rid, r in candidati.items():
         cache = stato["llm"].get(rid)
         if cache:
             applica_llm(r, cache["risultato"])        # intanto vale il risultato precedente
-        aggiornata = cache and cache.get("versione") == versione and \
+        aggiornata = cache and cache.get("versione", "").split(":")[0] == PROMPT_VERSIONE and \
+            (versione is None or cache.get("versione") == versione) and \
             (not r["_testo"] or cache.get("hash") == impronta(r["_testo"]))
         if r["_testo"] and not aggiornata:
             da_analizzare.append((1 if cache else 0, r))
-    # prima i bandi mai analizzati, poi quelli analizzati con la versione precedente;
-    # a parità, le scadenze più vicine
+    # prima i bandi mai analizzati, poi quelli analizzati con una versione precedente;
+    # a parità, prima quelli aperti all'Italia e con la scadenza più vicina
     da_analizzare = [r for _, r in sorted(da_analizzare, key=lambda x: (
-        x[0], x[1].get("scadenza") is None, x[1].get("scadenza") or ""))]
+        x[0], x[1].get("italia") != "Sì", x[1].get("scadenza") is None, x[1].get("scadenza") or ""))]
     analizzati = 0
-    if llm:
-        for r in da_analizzare:
+    if llm and da_analizzare:
+        log.info("LLM (%s): %d bandi da analizzare", llm.nome, len(da_analizzare))
+        for k in range(0, len(da_analizzare), lotto):
             if time.time() > scadenza_llm:
-                log.info("Tempo LLM esaurito: %d bandi rimandati alla prossima esecuzione",
-                         len(da_analizzare) - analizzati)
+                log.info("Tempo LLM esaurito")
                 break
+            gruppo = da_analizzare[k:k + lotto]
             try:
-                out = llm.analizza(r)
-                stato["llm"][r["id"]] = {"hash": impronta(r["_testo"]), "versione": versione, "risultato": out}
+                risultati = llm.analizza_lotto(gruppo)
+            except QuotaEsaurita as e:
+                log.warning("LLM: %s", e)
+                errori.append(f"LLM: {e}")
+                break
+            except ErroreFatale as e:
+                log.error("LLM: %s", e)
+                errori.append(f"LLM: {e}")
+                break
+            except Exception as e:
+                log.warning("LLM non riuscito per %s: %s", ", ".join(r["id"] for r in gruppo), e)
+                continue
+            for r in gruppo:
+                out = risultati.get(r["id"])
+                if not out:
+                    continue
+                stato["llm"][r["id"]] = {"hash": impronta(r["_testo"]), "versione": versione,
+                                         "modello": getattr(llm, "modello", None), "risultato": out}
                 applica_llm(r, out)
                 analizzati += 1
-                if analizzati % 10 == 0:
-                    log.info("LLM: %d/%d analizzati", analizzati, len(da_analizzare))
-            except Exception as e:
-                log.warning("LLM non riuscito per %s: %s", r["id"], e)
-    for r in unici.values():
-        if not r.get("rilevanza"):
-            r["rilevanza"] = "Non analizzato"
-        r["titolo_it"] = r.get("titolo_it") or r.get("titolo")
+            log.info("LLM: %d/%d analizzati", analizzati, len(da_analizzare))
+        if analizzati < len(da_analizzare):
+            log.info("%d bandi rimandati alla prossima esecuzione", len(da_analizzare) - analizzati)
 
     tassi = leggi_tassi(BASE / "tassi_successo.csv")
     attivi = []
-    for r in unici.values():
+    for r in candidati.values():
+        r["rilevanza"] = r.get("rilevanza") or "Non analizzato"
+        r["titolo_it"] = r.get("titolo_it") or r.get("titolo")
         scad = da_iso(r.get("scadenza"))
         if scad and scad < OGGI:
             continue
+        motivo = esclusione_finale(r)
+        if motivo:
+            esclusi[motivo] = esclusi.get(motivo, 0) + 1
+            continue
+        r["italia"] = r.get("italia") or "Da verificare"
         calcola_indicatori(r, tassi)
         calcola_stato(r)
         attivi.append(r)
-    ordine_stato = {"In scadenza (≤30 gg)": 0, "Aperto": 1, "In apertura": 2}
-    ordine_ril = {"Alta": 0, "Media": 1, "Non analizzato": 2, "Bassa": 3}
-    attivi.sort(key=lambda r: (ordine_stato.get(r["stato"], 3), ordine_ril.get(r.get("rilevanza"), 2),
+    # ordine: Italia ammessa -> pertinenza alla riabilitazione -> scadenza (senza data in fondo)
+    ordine_it = {"Sì": 0, "Da verificare": 1}
+    ordine_ril = {"Alta": 0, "Media": 1, "Non analizzato": 2}
+    attivi.sort(key=lambda r: (ordine_it.get(r["italia"], 1), ordine_ril.get(r.get("rilevanza"), 2),
                                r.get("scadenza") or "9999"))
+    log.info("Esclusi in totale: %s", _testo_esclusi(esclusi) or "nessuno")
 
     nuovi = {r["id"] for r in attivi if not ultima_esecuzione or (r["prima_vista"] or "") > ultima_esecuzione
              or r["id"] not in stato["bandi"]}
@@ -1374,10 +1772,12 @@ def main() -> None:
         s["_attivo"] = True
         nuovi_bandi[r["id"]] = s
     stato["bandi"] = nuovi_bandi
-    stato["llm"] = {k: v for k, v in stato["llm"].items() if k in nuovi_bandi}
+    # la memoria LLM tiene anche i bandi esclusi ancora online, per non rianalizzarli ogni settimana
+    stato["llm"] = {k: v for k, v in stato["llm"].items() if k in unici}
     durata = round((time.time() - t0) / 60, 1)
     stato["esecuzioni"].append({"data": datetime.now().strftime("%Y-%m-%d %H:%M"), "esaminati": esaminati_tot,
                                 "nuovi": len(nuovi), "rimossi": rimossi,
+                                "esclusi": _testo_esclusi(esclusi) or "Nessuno",
                                 "errori": "; ".join(errori)[:2000] or "Nessuno", "durata_min": durata,
                                 "llm_analizzati": analizzati})
 
@@ -1401,7 +1801,7 @@ def main() -> None:
     allegato = BASE / "report" / f"NeuroGrant_{OGGI.isoformat()}.xlsx"
     allegato.write_bytes(ultimo.read_bytes())
     try:
-        invia_email(componi_email(attivi, nuovi, allegato, utente, destinatario), utente, password)
+        invia_email(componi_email(attivi, nuovi, allegato, utente, destinatario, esclusi), utente, password)
         log.info("Email inviata a %s", destinatario)
     finally:
         allegato.unlink(missing_ok=True)
