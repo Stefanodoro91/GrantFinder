@@ -1,8 +1,8 @@
 # Percorso nel repository: .github/workflows/neurogrant.yml
 #
-# Ogni lunedì mattina cerca i bandi, analizza i nuovi con un LLM gratuito
-# (Ollama, eseguito sul server di GitHub), invia l'Excel per email e salva
-# lo stato nel repository. Si può avviare anche a mano da
+# Ogni lunedì mattina cerca i bandi, analizza i nuovi con Gemini (API gratuita
+# di Google; senza chiave usa Ollama sul server di GitHub), invia l'Excel per
+# email e salva lo stato nel repository. Si può avviare anche a mano da
 # Actions → «NeuroGrant settimanale» → «Run workflow».
 
 name: NeuroGrant settimanale
@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 340
     env:
       MINUTI_LLM: ${{ github.event.inputs.minuti_llm || '240' }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_MODELS: ${{ vars.GEMINI_MODELS }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,8 +39,9 @@ jobs:
       - name: Installa dipendenze
         run: pip install -r requirements.txt
 
-      - name: Avvia LLM locale gratuito (Ollama)
-        if: env.MINUTI_LLM != '0'
+      # Solo se manca la chiave Gemini: LLM locale gratuito, più lento e meno preciso
+      - name: Avvia LLM locale (Ollama, riserva)
+        if: env.MINUTI_LLM != '0' && env.GEMINI_API_KEY == ''
         continue-on-error: true
         run: |
           curl -fsSL https://ollama.com/install.sh | sh
