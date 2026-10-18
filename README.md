@@ -1,6 +1,8 @@
 # NeuroGrant
 
-Bot che ogni lunedì cerca i bandi aperti per la ricerca sulla riabilitazione (ictus, Parkinson, invecchiamento, tecnologie per la riabilitazione) e invia per email un Excel con tutti i bandi.
+Bot che ogni lunedì cerca i bandi aperti in ambito sanitario su ictus, Parkinson, sclerosi multipla e altre malattie neurologiche, invecchiamento e demenze, disabilità, tecnologie per la riabilitazione e malattie croniche non trasmissibili quando riguardano riabilitazione o gestione a lungo termine. Invia per email un Excel con tutti i bandi.
+
+Macrogruppi: Ictus · Parkinson · Invecchiamento · Tecnologie riabilitazione · Altre malattie e riabilitazione (SM, SLA, altre neurologiche, disabilità, croniche).
 
 ## Fonti
 
@@ -14,11 +16,23 @@ Per aggiungere una fonte basta una riga in `fonti_web.csv` (nome; indirizzo; cop
 
 ## Come seleziona i bandi
 
-1. **Filtro ampio a parole chiave** (italiano e inglese) su titolo e testo della call. I termini generici come «robot», «wearable» o «ageing» contano solo se il testo ha anche un contesto sanitario, così un bando su robot industriali o batterie non entra.
-2. **LLM gratuito** (Qwen 2.5 3B tramite Ollama, eseguito sul server di GitHub): legge la call e assegna la pertinenza (Alta, Media o Bassa) con il motivo. Scrive inoltre titolo e sommario in italiano e completa i dati mancanti (partenariato, copertura, chi può candidarsi). Non scarta mai un bando: segnala soltanto.
+1. **Filtro a punteggio** (italiano e inglese) su titolo e testo della call. Un bando entra con un termine specifico nel titolo, oppure con almeno due termini nel testo. Regole principali:
+   - i termini generici («robot», «wearable», «ageing») contano solo con un contesto sanitario;
+   - le malattie croniche (cardiovascolari, respiratorie, tumori, diabete) contano solo insieme a riabilitazione, cronicità o qualità della vita;
+   - «riabilitazione» conta solo in senso clinico, non per edifici, habitat o detenuti;
+   - le frasi standard sui diritti civili e la non discriminazione vengono ignorate;
+   - su Grants.gov sono escluse le agenzie senza bandi sanitari (agricoltura, trasporti, giustizia, energia…: elenco `GG_AGENZIE_ESCLUSE` nel codice).
+2. **LLM gratuito** (Qwen 2.5 7B tramite Ollama, eseguito sul server di GitHub): legge la call e assegna la pertinenza (Alta, Media o Bassa) con il motivo. Scrive inoltre titolo e sommario in italiano e completa i dati mancanti (partenariato, copertura, chi può candidarsi). Non scarta mai un bando: segnala soltanto.
 3. **Dati strutturati prima dell’LLM**: scadenze, budget, numero di progetti e copertura dei bandi UE e USA vengono dalle API ufficiali; l’LLM riempie solo i campi vuoti.
 
-L’analisi LLM ha un tempo massimo (180 minuti la settimana, 45 per gli avvii manuali). Ogni bando viene analizzato una sola volta: quelli rimasti in coda vengono analizzati alla settimana successiva e intanto compaiono come «Non analizzato».
+L’analisi LLM ha un tempo massimo (240 minuti la settimana, 60 per gli avvii manuali; circa 2-3 minuti per bando). Ogni bando viene analizzato una sola volta: quelli rimasti in coda vengono analizzati alla settimana successiva e intanto compaiono come «Non analizzato».
+
+## Copertura finanziaria
+
+- **Interamente finanziato**: certo (regole UE del tipo di azione, Grants.gov, oppure confermato dall’LLM leggendo il testo).
+- **Co-finanziamento richiesto**: certo, con la percentuale quando è indicata.
+- **Co-finanziamento da verificare**: il testo cita il co-finanziamento ma non è chiaro se sia obbligatorio.
+- **Non indicato**: il testo non ne parla.
 
 ## Indicatore di competitività
 
