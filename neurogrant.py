@@ -51,64 +51,102 @@ USER_AGENT = ("NeuroGrantBot/0.1 (monitoraggio bandi di ricerca sulla riabilitaz
               "rispetta robots.txt)")
 
 # ---------------------------------------------------------------------------
-# Filtro tematico (volutamente ampio: meglio un falso positivo che un bando perso)
-# Ogni voce: (gruppo, espressione regolare, specifica)
-# Le voci non specifiche contano solo se il testo ha anche un contesto sanitario.
+# Filtro tematico: ampio ma solo sanitario.
+# Ogni voce: (gruppo, espressione regolare, tipo)
+#   S = specifico: conta sempre
+#   N = generico: conta solo con un contesto sanitario nel testo
+#   C = malattia cronica non trasmissibile: conta solo con riabilitazione/cronicità
+#   R = "riabilitazione": conta solo se vicino c'è un contesto clinico
+#       (esclude riabilitazione di edifici, habitat, detenuti, infrastrutture)
+# Un bando entra se il punteggio totale è almeno 3: per esempio un termine
+# specifico nel titolo, oppure due termini specifici nel testo.
 # ---------------------------------------------------------------------------
 
 TERMINI = [
     # Ictus
-    ("Ictus", r"\bstrokes?\b(?!\s+(of|count|width|engine))", True),
-    ("Ictus", r"\bictus\b", True),
-    ("Ictus", r"cerebrovascula|cerebrovascolar", True),
-    ("Ictus", r"\baphasia|\bafasia", True),
-    ("Ictus", r"hemipare|emipare|hemipleg|emipleg", True),
-    ("Ictus", r"(acquired|traumatic) brain injur|cerebrolesion|grave cerebrolesione", True),
+    ("Ictus", r"\bstrokes?\b(?!\s+(of|count|width|engine|rate|volume))", "S"),
+    ("Ictus", r"\bictus\b", "S"),
+    ("Ictus", r"cerebrovascula|cerebrovascolar", "S"),
+    ("Ictus", r"\baphasia|\bafasia", "S"),
+    ("Ictus", r"hemipare|emipare|hemipleg|emipleg", "S"),
     # Parkinson
-    ("Parkinson", r"parkinson", True),
-    ("Parkinson", r"movement disorder|disturbi del movimento", True),
-    ("Parkinson", r"deep brain stimulation|stimolazione cerebrale profonda", True),
+    ("Parkinson", r"parkinson", "S"),
+    ("Parkinson", r"movement disorder|disturbi del movimento", "S"),
+    ("Parkinson", r"deep brain stimulation|stimolazione cerebrale profonda", "S"),
     # Invecchiamento
-    ("Invecchiamento", r"\bdementi|\bdemenz", True),
-    ("Invecchiamento", r"alzheimer", True),
-    ("Invecchiamento", r"cognitive (decline|impairment)|declino cognitivo|decadimento cognitivo", True),
-    ("Invecchiamento", r"healthy (ageing|aging)|active (and|&) assisted living|invecchiamento attivo", True),
-    ("Invecchiamento", r"older (adults|people|persons|population)|elderly|anzian|terza eta", True),
-    ("Invecchiamento", r"\bfrailty|fragilita", True),
-    ("Invecchiamento", r"geriatr|gerontolog", True),
-    ("Invecchiamento", r"\b(ageing|aging)\b|invecchiamento|longevit", False),
-    ("Invecchiamento", r"falls? prevention|prevenzione (delle )?cadute", True),
-    ("Invecchiamento", r"neurodegenerat", True),
-    # Riabilitazione (generale)
-    ("Riabilitazione", r"rehabilitat|riabilitaz|\brehab\b", True),
-    ("Riabilitazione", r"physiotherap|fisioterap|physical therap", True),
-    ("Riabilitazione", r"occupational therap|terapia occupazionale|ergoterap", True),
-    ("Riabilitazione", r"motor (recovery|function|learning)|recupero (motorio|funzionale)", True),
-    ("Riabilitazione", r"speech (and language )?therap|logoped", True),
-    ("Riabilitazione", r"\bdisabilit|disabled persons|persons with disabilities", False),
-    ("Riabilitazione", r"functional (recovery|independence)|autonomia funzionale", False),
-    # Tecnologie per la riabilitazione (contano solo con contesto sanitario)
-    ("Tecnologie riabilitazione", r"assistive (technolog|device)|tecnologie assistive|\bausili", True),
-    ("Tecnologie riabilitazione", r"exoskeleton|esoschelet", True),
-    ("Tecnologie riabilitazione", r"neuroprosthe|neuroprotes|\bprosthe|\bprotesi", False),
-    ("Tecnologie riabilitazione", r"brain[- ]computer interface|\bbci\b|brain[- ]machine interface", True),
-    ("Tecnologie riabilitazione", r"tele-?rehabilit|teleriabilit", True),
-    ("Tecnologie riabilitazione", r"\brobot", False),
-    ("Tecnologie riabilitazione", r"wearable|indossabil", False),
-    ("Tecnologie riabilitazione", r"virtual reality|realta virtuale|exergam|serious game", False),
-    ("Tecnologie riabilitazione", r"neuromodulat|neurostimulat|\btms\b|\btdcs\b|transcranial", False),
-    ("Tecnologie riabilitazione", r"functional electrical stimulation|elettrostimolazione funzionale", True),
-    ("Tecnologie riabilitazione", r"digital therapeut|terapie digitali", False),
-    ("Tecnologie riabilitazione", r"\bgait\b|mobility aid|\bdeambulaz", False),
-    ("Tecnologie riabilitazione", r"smart home|domotica|ambient assisted", False),
+    ("Invecchiamento", r"\bdementi|\bdemenz", "S"),
+    ("Invecchiamento", r"alzheimer", "S"),
+    ("Invecchiamento", r"cognitive (decline|impairment)|declino cognitivo|decadimento cognitivo", "S"),
+    ("Invecchiamento", r"healthy (ageing|aging)|active (and|&) assisted living|invecchiamento (attivo|in salute|sano)", "S"),
+    ("Invecchiamento", r"\bfrailty|fragilita", "S"),
+    ("Invecchiamento", r"geriatr|gerontolog", "S"),
+    ("Invecchiamento", r"falls? prevention|prevenzione (delle )?cadute", "S"),
+    ("Invecchiamento", r"older (adults|people|persons|population)|elderly|anzian|terza eta", "N"),
+    ("Invecchiamento", r"\b(ageing|aging)\b|invecchiamento|longevit", "N"),
+    # Tecnologie per la riabilitazione
+    ("Tecnologie riabilitazione", r"assistive (technolog|device)|tecnologie assistive|\bausili", "S"),
+    ("Tecnologie riabilitazione", r"exoskeleton|esoschelet", "S"),
+    ("Tecnologie riabilitazione", r"brain[- ]computer interface|brain[- ]machine interface", "S"),
+    ("Tecnologie riabilitazione", r"tele-?rehabilit|teleriabilit", "S"),
+    ("Tecnologie riabilitazione", r"rehabilitation (robot|technolog|engineering)|robotic rehabilit|riabilitazione robotica", "S"),
+    ("Tecnologie riabilitazione", r"digital therapeut|terapie digitali", "S"),
+    ("Tecnologie riabilitazione", r"functional electrical stimulation|elettrostimolazione funzionale", "S"),
+    ("Tecnologie riabilitazione", r"neuroprosthe|neuroprotes", "S"),
+    ("Tecnologie riabilitazione", r"\brobot", "N"),
+    ("Tecnologie riabilitazione", r"wearable|indossabil", "N"),
+    ("Tecnologie riabilitazione", r"virtual reality|realta virtuale|exergam|serious game", "N"),
+    ("Tecnologie riabilitazione", r"neuromodulat|neurostimulat|\btms\b|\btdcs\b|transcranial", "N"),
+    ("Tecnologie riabilitazione", r"\bprosthe|\bprotesi", "N"),
+    ("Tecnologie riabilitazione", r"\bgait\b|mobility aid|deambulaz", "N"),
+    # Altre malattie (neurologiche, croniche, disabilità) e riabilitazione
+    ("Altre malattie e riabilitazione", r"rehabilitat|riabilitaz|\brehab\b", "R"),
+    ("Altre malattie e riabilitazione", r"physiotherap|fisioterap|physical therap", "S"),
+    ("Altre malattie e riabilitazione", r"occupational therap|terapia occupazionale|ergoterap", "S"),
+    ("Altre malattie e riabilitazione", r"motor (recovery|function|learning)|recupero (motorio|funzionale)", "S"),
+    ("Altre malattie e riabilitazione", r"speech (and language )?therap|logoped", "S"),
+    ("Altre malattie e riabilitazione", r"multiple sclerosis|sclerosi multipla", "S"),
+    ("Altre malattie e riabilitazione", r"amyotrophic lateral sclerosis|sclerosi laterale amiotrofica|motor neuron disease", "S"),
+    ("Altre malattie e riabilitazione", r"neurodegenerat", "S"),
+    ("Altre malattie e riabilitazione", r"huntington|ataxia|atassia|neuromuscular|neuromuscolar|muscular dystroph|distrofia muscolare", "S"),
+    ("Altre malattie e riabilitazione", r"spinal cord injur|lesion[ei] (del )?midoll|mielolesion", "S"),
+    ("Altre malattie e riabilitazione", r"(acquired|traumatic) brain injur|cerebrolesion|trauma cranico", "S"),
+    ("Altre malattie e riabilitazione", r"cerebral palsy|paralisi cerebrale", "S"),
+    ("Altre malattie e riabilitazione", r"neurological (disorder|disease|condition)|malattie neurologiche|neurologic(al)? rehabil", "S"),
+    ("Altre malattie e riabilitazione", r"chronic pain|dolore cronico", "S"),
+    ("Altre malattie e riabilitazione", r"\bdisabilit|persons with disabilities|people with disabilities|disabled (people|persons)", "S"),
+    ("Altre malattie e riabilitazione", r"non-?communicable disease|malattie non trasmissibili|chronic (disease|condition)|malattie croniche|cronicita|multimorbid", "C"),
+    ("Altre malattie e riabilitazione", r"cardiovascular|heart failure|cardiac|cardiolog|cardiovascolar|scompenso cardiaco", "C"),
+    ("Altre malattie e riabilitazione", r"\bcopd\b|bpco|pulmonary|respiratory|polmonar|respiratori", "C"),
+    ("Altre malattie e riabilitazione", r"\bcancer|oncolog|tumou?r|tumore", "C"),
+    ("Altre malattie e riabilitazione", r"diabet|obesit", "C"),
 ]
-_TERMINI_C = [(g, re.compile(p, re.I), s) for g, p, s in TERMINI]
-CONTESTO_SANITARIO = re.compile(
-    r"\b(health|healthcare|clinical|clinic|patient|medical|medicine|disease|disorder|"
-    r"therap|hospital|neurolog|brain|salute|sanitari|pazient|medic|malatti|cura\b|care\b|"
-    r"ospedal|cervello|disabil|older|elderly|anzian|wellbeing|benessere)", re.I)
+_TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 
-GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione", "Riabilitazione"]
+CONTESTO_SANITARIO = re.compile(
+    r"\b(health|healthcare|clinical|clinic|patients?|medical|medicine|diseases?|disorders?|therap|"
+    r"hospital|neurolog|salute|sanitari|pazient|malatti|ospedal|clinic|rehabilit|riabilit|"
+    r"physiother|fisioter)", re.I)
+CONTESTO_CRONICITA = re.compile(
+    r"(rehabilit|riabilit|chronic care|long[- ]term (care|management|conditions?)|self[- ]management|"
+    r"autogestione|physical activity|attivita fisica|\bexercise|esercizio fisico|functional (capacity|status|recovery|decline)|"
+    r"quality of life|qualita della vita|telemonitor|disease management|presa in carico|cronicita|survivorship|"
+    r"disabilit)", re.I)
+VICINO_CLINICO = re.compile(
+    r"(patient|pazient|stroke|ictus|physical|fisic|motor|clinic|health|salute|sanit|disabilit|neurolog|"
+    r"cognit|therap|terap|medic|function|funzional|injur|lesion|disease|malatti|cardiac|cardi|pulmonary|"
+    r"cancer|oncolog|older|anzian|elderly|sclerosis|sclerosi|parkinson|dementi)", re.I)
+# frasi standard (diritti civili, non discriminazione) che citano disabilità o
+# "Rehabilitation Act" senza che il bando riguardi la sanità
+BOILERPLATE = re.compile(
+    r"(on the basis of (race|colou?r|national origin|sex|age|disability|religion)|section 50[48]\b|"
+    r"rehabilitation act|americans with disabilities act|civil rights|age discrimination act|"
+    r"non-?discriminat|equal (employment )?opportunit|reasonable accommodation|limited english proficiency|"
+    r"disadvantaged business|accessible to (individuals|persons|people) with disabilities|"
+    r"accessibility (requirements|standards)|non discriminazione|pari opportunita)", re.I)
+
+GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione",
+                 "Altre malattie e riabilitazione"]
+SOGLIA = 3
 
 
 def norm(t: str | None) -> str:
@@ -118,21 +156,50 @@ def norm(t: str | None) -> str:
     return "".join(c for c in t if not unicodedata.combining(c))
 
 
-def classifica(testo: str) -> tuple[list[str], list[str]]:
-    """Restituisce (macrogruppi, parole chiave trovate)."""
-    t = norm(testo)
-    contesto = bool(CONTESTO_SANITARIO.search(t))
-    gruppi, parole = set(), []
-    for gruppo, rx, specifica in _TERMINI_C:
-        m = rx.search(t)
-        if m and (specifica or contesto):
-            gruppi.add(gruppo)
-            parola = m.group(0).strip().lower()
-            if parola not in parole:
-                parole.append(parola)
-    # "Riabilitazione" generica solo se non c'e' gia' un gruppo piu' specifico
-    if len(gruppi) > 1 and "Riabilitazione" in gruppi:
-        gruppi.discard("Riabilitazione")
+def togli_boilerplate(testo: str) -> str:
+    frasi = re.split(r"(?<=[.;!?])\s+|\n+", testo)
+    return " ".join(f for f in frasi if not BOILERPLATE.search(f))
+
+
+def _riab_clinica(testo: str) -> bool:
+    for m in re.finditer(r"rehabilitat|riabilitaz|\brehab\b", testo, re.I):
+        finestra = testo[max(0, m.start() - 150):m.end() + 150]
+        if VICINO_CLINICO.search(finestra.replace(m.group(0), " ")):
+            return True
+    return False
+
+
+def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
+    """Restituisce (macrogruppi, parole chiave) se il bando supera la soglia, altrimenti ([], [])."""
+    tit = norm(togli_boilerplate(titolo or ""))
+    corpo = norm(togli_boilerplate(testo or ""))
+    tutto = f"{tit} {corpo}"
+    sanitario = bool(CONTESTO_SANITARIO.search(tutto))
+    cronicita = bool(CONTESTO_CRONICITA.search(tutto))
+    riab_ok = _riab_clinica(tutto)
+    punteggio, gruppi, parole = 0, {}, []
+    for gruppo, rx, tipo in _TERMINI_C:
+        nel_titolo = bool(rx.search(tit))
+        occorrenze = len(rx.findall(corpo))
+        if not (nel_titolo or occorrenze):
+            continue
+        if (tipo == "N" and not sanitario) or (tipo == "C" and not cronicita) or (tipo == "R" and not riab_ok):
+            continue
+        peso = 1 if tipo == "N" else 2
+        peso += 1 if nel_titolo else 0
+        peso += 1 if occorrenze >= 3 else 0
+        punteggio += peso
+        gruppi[gruppo] = gruppi.get(gruppo, 0) + peso
+        m = rx.search(tit) or rx.search(corpo)
+        parola = m.group(0).strip().lower()
+        if parola not in parole:
+            parole.append(parola)
+    if punteggio < SOGLIA:
+        return [], []
+    # il gruppo generico solo se non ci sono gruppi più specifici con peso comparabile
+    altri = [g for g in gruppi if g != "Altre malattie e riabilitazione"]
+    if altri and gruppi.get("Altre malattie e riabilitazione", 0) < max(gruppi[g] for g in altri):
+        gruppi.pop("Altre malattie e riabilitazione", None)
     return [g for g in GRUPPI_ORDINE if g in gruppi], parole[:12]
 
 
@@ -394,7 +461,7 @@ def converti_eu(v: dict) -> dict | None:
     descr = html_a_testo(_meta(m, "descriptionByte") or v.get("summary") or "")
     parole = " ".join(m.get("keywords") or []) + " " + " ".join(m.get("tags") or [])
     testo = f"{titolo}. {parole}. {descr}"
-    gruppi, chiavi = classifica(testo)
+    gruppi, chiavi = classifica(titolo, f"{parole}. {descr}")
     if not gruppi:
         return None
 
@@ -444,18 +511,44 @@ def converti_eu(v: dict) -> dict | None:
 def copertura_eu(ident: str, tipi: str) -> str | None:
     t, i = tipi.lower(), ident.upper()
     if "cofund" in t or "COFUND" in i:
-        return "Co-finanziamento richiesto (azione Cofund: quota UE parziale)"
+        return "Co-finanziamento richiesto (azione Cofund)"
     if i.startswith("EU4H"):
-        return "Co-finanziamento: di norma 60% UE (fino all'80% in casi di utilità eccezionale)"
+        return "Co-finanziamento richiesto (di norma 60% UE, fino all'80%)"
+    if "EIC" in i and "ACCELERATOR" in i:
+        return "Co-finanziamento richiesto (componente grant 70% UE)"
+    if "EIC" in i and ("PATHFINDER" in i or "TRANSITION" in i):
+        return "Interamente finanziato"
     if "research and innovation" in t or "-RIA" in i or "coordination and support" in t or "-CSA" in i:
-        return "100% – finanziato per intero"
+        return "Interamente finanziato"
     if "innovation action" in t or "-IA" in i:
-        return "70% per le imprese, 100% per gli enti non profit"
+        return "Co-finanziamento richiesto per le imprese (70% UE); interamente finanziato per gli enti non profit"
     if i.startswith(("ERC", "HORIZON-ERC", "HORIZON-MSCA", "MSCA")):
-        return "100% – finanziato per intero"
+        return "Interamente finanziato"
     if i.startswith("DIGITAL") and "simple grant" in t:
-        return "Co-finanziamento: di norma 50% UE"
+        return "Co-finanziamento richiesto (di norma 50% UE)"
     return None
+
+
+def normalizza_copertura(c: str | None) -> str:
+    """Converte anche le diciture delle versioni precedenti."""
+    if not c:
+        return "Non indicato"
+    cl = c.lower()
+    if cl.startswith("100%") or "nessun cost sharing" in cl:
+        return "Interamente finanziato"
+    if cl.startswith("possibile co-finanziamento"):
+        return "Co-finanziamento da verificare"
+    if cl.startswith("co-finanziamento:"):
+        if "60%" in cl:
+            return "Co-finanziamento richiesto (di norma 60% UE, fino all'80%)"
+        if "50%" in cl:
+            return "Co-finanziamento richiesto (di norma 50% UE)"
+        return "Co-finanziamento richiesto"
+    if cl.startswith("70% per le imprese"):
+        return "Co-finanziamento richiesto per le imprese (70% UE); interamente finanziato per gli enti non profit"
+    if cl == "co-finanziamento richiesto (cost sharing)":
+        return "Co-finanziamento richiesto"
+    return c
 
 
 def tipo_da_azione_eu(ident: str, tipi: str) -> str | None:
@@ -493,7 +586,14 @@ def partenariato_eu(ident: str, tipi: str) -> str | None:
 GG_SEARCH = "https://api.grants.gov/v1/api/search2"
 GG_FETCH = "https://api.grants.gov/v1/api/fetchOpportunity"
 GG_URL = "https://www.grants.gov/search-results-detail/{id}"
-GG_PAROLE = ["rehabilitation", "stroke", "Parkinson", "aging", "older adults", "dementia",
+# Agenzie federali senza bandi sanitari: escluse prima di scaricare i dettagli
+# (agricoltura, trasporti, interni, ambiente, giustizia, edilizia, energia, commercio,
+# sicurezza interna, esteri, tesoro, piccole imprese). Modificabile.
+GG_AGENZIE_ESCLUSE = {"USDA", "DOT", "DOI", "EPA", "DOJ", "HUD", "DOE", "DOC", "DHS", "DOS",
+                      "TREAS", "SBA", "NRC", "FCC", "USDOJ", "DOD-USACE"}
+GG_PAROLE = ["multiple sclerosis", "amyotrophic lateral sclerosis", "spinal cord injury",
+             "cardiac rehabilitation", "pulmonary rehabilitation", "chronic disease",
+             "neurological disorders", "digital therapeutics", "rehabilitation", "stroke", "Parkinson", "aging", "older adults", "dementia",
              "Alzheimer", "assistive technology", "disability", "neurorehabilitation",
              "physical therapy", "exoskeleton", "mobility", "falls", "neurodegenerative",
              "brain injury", "prosthetic", "telerehabilitation", "geriatric", "cognitive decline",
@@ -517,6 +617,9 @@ def scarica_grants_gov(http: Http) -> tuple[list[dict], int]:
             dati = (r.json() or {}).get("data") or {}
             hits = dati.get("oppHits") or []
             for h in hits:
+                agenzia = str(h.get("agencyCode") or "").upper()
+                if any(agenzia == a or agenzia.startswith(a + "-") for a in GG_AGENZIE_ESCLUSE):
+                    continue
                 if h.get("id"):
                     ids.setdefault(str(h["id"]), h)
             inizio += len(hits)
@@ -543,7 +646,7 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
     titolo = hit.get("title") or det.get("opportunityTitle")
     descr = html_a_testo(_primo(syn, "synopsisDesc", "forecastDesc", "description") or "")
     testo = f"{titolo}. {descr}"
-    gruppi, chiavi = classifica(testo)
+    gruppi, chiavi = classifica(titolo, descr)
     if not gruppi:
         return None
     stato = "In apertura" if (hit.get("oppStatus") or "").lower() == "forecasted" else "Aperto"
@@ -560,9 +663,9 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
         cost = cost.strip().lower() in ("true", "yes", "y")
     copertura = None
     if cost is True:
-        copertura = "Co-finanziamento richiesto (cost sharing)"
+        copertura = "Co-finanziamento richiesto"
     elif cost is False:
-        copertura = "100% – nessun cost sharing richiesto"
+        copertura = "Interamente finanziato"
     agenzia = hit.get("agency") or _primo(syn, "agencyName") or hit.get("agencyCode")
     progetti = numero(_primo(syn, "expectedNumberOfAwards", "numberOfAwards"))
 
@@ -690,7 +793,7 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
     if not (RX_PAGINA_BANDO.search(titolo) or RX_PAGINA_BANDO.search(url) or
             RX_PAGINA_BANDO.search(testo[:3000])):
         return None
-    gruppi, chiavi = classifica(f"{titolo}. {testo[:20000]}")
+    gruppi, chiavi = classifica(titolo, testo[:20000])
     if not gruppi:
         return None
     scad, solo_passate = scadenza_da_testo(testo[:30000])
@@ -707,7 +810,7 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
         valuta = "USD" if ("$" in frammento or "usd" in frammento) else "GBP" if ("£" in frammento or "gbp" in frammento) else "EUR"
     cof = None
     if re.search(r"co-?financ|co-?finanziament|cofinanziament|matching fund|cost[- ]shar|quota a carico", testo[:30000], re.I):
-        cof = "Possibile co-finanziamento: verificare"
+        cof = "Co-finanziamento da verificare"
     return nuovo_record(
         id="WEB-" + hashlib.sha1(url.encode()).hexdigest()[:12], fonte=fonte.get("nome"),
         programma=titolo[:200], ente=fonte.get("nome"), titolo=titolo[:300],
@@ -722,30 +825,40 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
 # LLM gratuito in locale (Ollama)
 # ---------------------------------------------------------------------------
 
-ISTRUZIONI_LLM = """Sei un esperto di bandi di ricerca. Leggi il testo di una call e rispondi
-SOLO con un oggetto JSON (nessun altro testo) con queste chiavi:
+PROMPT_VERSIONE = "2"
+ISTRUZIONI_LLM = """Sei un esperto italiano di bandi di ricerca sanitaria. Leggi il testo di una
+call e rispondi SOLO con un oggetto JSON (nessun altro testo), scritto in italiano corretto
+(mai spagnolo o altre lingue), con queste chiavi:
 {
  "rilevanza": "Alta" | "Media" | "Bassa",
- "motivo": "una frase in italiano: perche' e' (o non e') pertinente alla riabilitazione",
- "titolo_it": "titolo tradotto in italiano, max 15 parole",
- "sommario_it": "100-150 parole in italiano: obiettivi, chi puo' partecipare, cosa si finanzia",
+ "motivo": "una frase: perché è (o non è) pertinente",
+ "titolo_it": "traduzione italiana fedele del titolo, max 15 parole; sigle e nomi propri invariati",
+ "sommario_it": "100-150 parole: obiettivi, chi può partecipare, cosa si finanzia",
  "aperto": true | false | null,
  "scadenza": "AAAA-MM-GG" oppure null,
  "budget_totale": numero oppure null,
  "budget_progetto": numero oppure null,
  "valuta": "EUR" | "USD" | "GBP" | altro codice | null,
  "progetti_finanziabili": numero intero oppure null,
- "copertura": "100%" oppure "co-finanziamento X%" oppure null,
- "partenariato": "requisiti di consorzio in breve, in italiano" oppure null,
- "chi_puo": "tipi di enti o persone ammessi, in italiano" oppure null,
- "paesi": "paesi ammessi, in italiano" oppure null,
+ "copertura": "interamente" | "richiesto" | "non_indicato",
+ "cofinanziamento_percentuale": percentuale a carico del beneficiario oppure null,
+ "partenariato": "requisiti di consorzio in breve" oppure null,
+ "chi_puo": "tipi di enti o persone ammessi" oppure null,
+ "paesi": "paesi ammessi" oppure null,
  "durata_mesi": numero oppure null,
  "tipo_bando": "Ricerca" | "Innovazione" | "Dottorato / formazione / mobilità" | "Infrastruttura" | "Altro"
 }
-Pertinenza: Alta se il bando riguarda esplicitamente riabilitazione, ictus, Parkinson,
-invecchiamento/demenze o tecnologie per la riabilitazione; Media se il tema e' ammesso tra
-altri; Bassa se e' generico o non c'entra. Usa solo informazioni presenti nel testo:
-se un dato manca scrivi null. Non inventare importi o date."""
+Ambito di interesse: ictus, Parkinson, sclerosi multipla e altre malattie neurologiche e
+neurodegenerative, invecchiamento e demenze, disabilità e inclusione delle persone con
+disabilità, tecnologie per la riabilitazione (robotica, terapie digitali, teleriabilitazione,
+ausili), malattie croniche non trasmissibili quando riguardano riabilitazione o gestione
+a lungo termine.
+Rilevanza: Alta se il bando è dedicato a questi temi; Media se li ammette tra altri temi
+sanitari; Bassa se è fuori dalla sanità o li cita solo di passaggio.
+Copertura: "interamente" se il finanziamento copre tutti i costi ammissibili o se il testo
+dice che non serve co-finanziamento; "richiesto" se il beneficiario deve coprire una quota.
+Usa solo informazioni presenti nel testo: se un dato manca scrivi null. Non inventare
+importi o date."""
 
 
 class LLM:
@@ -763,11 +876,11 @@ class LLM:
 
     def analizza(self, rec: dict) -> dict | None:
         contenuto = json.dumps({"ente": rec.get("ente"), "programma": rec.get("programma"),
-                                "titolo": rec.get("titolo"), "testo": rec["_testo"][:6000]},
+                                "titolo": rec.get("titolo"), "testo": rec["_testo"][:5000]},
                                ensure_ascii=False)
         r = self.s.post(self.url + "/api/chat", timeout=400, json={
             "model": self.modello, "stream": False, "format": "json",
-            "options": {"temperature": 0.1, "num_ctx": 4096},
+            "options": {"temperature": 0.1, "num_ctx": 4096, "num_predict": 600},
             "messages": [{"role": "system", "content": ISTRUZIONI_LLM},
                          {"role": "user", "content": contenuto}]})
         r.raise_for_status()
@@ -795,7 +908,18 @@ def applica_llm(rec: dict, out: dict) -> None:
     if rec.get("progetti_finanziabili") is None:
         n = numero(out.get("progetti_finanziabili"))
         rec["progetti_finanziabili"] = int(n) if n else None
-    for campo, chiave in (("copertura", "copertura"), ("partenariato", "partenariato"),
+    # copertura: l'LLM decide solo se le regole non hanno già dato una risposta certa
+    attuale = normalizza_copertura(rec.get("copertura"))
+    if attuale in ("Non indicato", "Co-finanziamento da verificare"):
+        cop = norm(str(out.get("copertura") or "")).lower()
+        perc = numero(out.get("cofinanziamento_percentuale"))
+        if cop.startswith(("interamente", "non_richiesto", "100")):
+            rec["copertura"] = "Interamente finanziato"
+        elif cop.startswith("richiesto") or "co-finanz" in cop or "cofinanz" in cop:
+            m = re.search(r"(\d+(?:[.,]\d+)?)\s*%", cop)
+            perc = perc or (numero(m.group(1)) if m else None)
+            rec["copertura"] = "Co-finanziamento richiesto" + (f" ({perc:g}% a carico del beneficiario)" if perc and perc < 100 else "")
+    for campo, chiave in (("partenariato", "partenariato"),
                           ("chi_puo", "chi_puo"), ("tipo_bando", "tipo_bando")):
         if not rec.get(campo) and isinstance(out.get(chiave), str) and out[chiave].strip():
             rec[campo] = out[chiave].strip()[:300]
@@ -846,8 +970,7 @@ def calcola_indicatori(rec: dict, tassi) -> None:
         rec["competitivita"] = f"{livello} – {n} progetti finanziabili (stima: tasso storico non disponibile)"
     else:
         rec["competitivita"] = "Non stimabile – dati insufficienti"
-    if not rec.get("copertura"):
-        rec["copertura"] = "Non indicato"
+    rec["copertura"] = normalizza_copertura(rec.get("copertura"))
 
 
 def calcola_stato(rec: dict) -> None:
@@ -1028,7 +1151,8 @@ def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: 
         ril = f", pertinenza {b['rilevanza']}" if b.get("rilevanza") else ""
         return (("🆕 " if b["id"] in nuovi else "") + tit, b.get("ente") or b.get("fonte"),
                 _fmt_data(b.get("scadenza")), _fmt_soldi(b.get("budget_progetto") or b.get("budget_totale"), b.get("valuta")),
-                (b.get("copertura") or "").split("–")[0].strip(), (b.get("competitivita") or "").split("–")[0].strip() + ril,
+                (b.get("copertura") or "Non indicato").split(" (")[0].split(";")[0].strip(),
+                (b.get("competitivita") or "").split("–")[0].strip() + ril,
                 b.get("url"))
 
     testo = [oggetto, ""]
@@ -1089,7 +1213,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="NeuroGrant – bandi per la riabilitazione")
     ap.add_argument("--minuti-llm", type=float, default=180, help="tempo massimo per l'LLM (0 = disattivo)")
     ap.add_argument("--ollama-url", default=os.environ.get("OLLAMA_URL", "http://localhost:11434"))
-    ap.add_argument("--modello", default=os.environ.get("NEUROGRANT_MODEL", "qwen2.5:3b"))
+    ap.add_argument("--modello", default=os.environ.get("NEUROGRANT_MODEL", "qwen2.5:7b"))
     ap.add_argument("--fonti", default="eu,gg,web", help="sottoinsieme di eu,gg,web")
     ap.add_argument("--max-pagine-web", type=int, default=35)
     ap.add_argument("--no-email", action="store_true")
@@ -1103,6 +1227,7 @@ def main() -> None:
     ultima_esecuzione = stato["esecuzioni"][-1]["data"][:10] if stato["esecuzioni"] else None
     attivi_prima = {k for k, v in stato["bandi"].items() if v.get("_attivo")}
     http, errori, raccolti, esaminati_tot = Http(), [], [], 0
+    fonti_ok: set[str] = set()
     fonti = set(args.fonti.split(","))
 
     if "eu" in fonti:
@@ -1112,6 +1237,7 @@ def main() -> None:
             esaminati_tot += n
             registra_fonte(stato, "EU Funding & Tenders Portal", "API", "UE e paesi associati", "Pubblico",
                            "https://ec.europa.eu/info/funding-tenders/opportunities/portal", recs, n)
+            fonti_ok.add("EU Funding & Tenders Portal")
             log.info("EU: %d topic esaminati, %d pertinenti", n, len(recs))
         except Exception as e:
             errori.append(f"EU Funding & Tenders: {e}")
@@ -1126,6 +1252,7 @@ def main() -> None:
             esaminati_tot += n
             registra_fonte(stato, "Grants.gov (USA, incluso NIH)", "API", "USA (alcuni aperti a enti esteri)",
                            "Pubblico", "https://www.grants.gov", recs, n)
+            fonti_ok.add("Grants.gov")
             log.info("Grants.gov: %d opportunità esaminate, %d pertinenti", n, len(recs))
         except Exception as e:
             errori.append(f"Grants.gov: {e}")
@@ -1144,6 +1271,8 @@ def main() -> None:
             esaminati_tot += n
             if errore:
                 errori.append(f"{nome}: {errore}")
+            else:
+                fonti_ok.add(nome)
             registra_fonte(stato, nome, "Lettura pagine web", fonte.get("copertura"), fonte.get("tipo"),
                            fonte["url"], recs, n, errore)
             log.info("Web %s: %d pagine, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
@@ -1164,9 +1293,9 @@ def main() -> None:
         r["prima_vista"] = prec.get("prima_vista") or iso(OGGI)
         r["note"] = prec.get("note")
 
-    # fonti non raggiunte in questa esecuzione: si tengono i bandi visti negli ultimi 14 giorni
+    # fonti non raggiunte in questa esecuzione: si tengono i loro bandi visti negli ultimi 14 giorni
     for rid, prec in stato["bandi"].items():
-        if rid in unici:
+        if rid in unici or prec.get("fonte") in fonti_ok:
             continue
         ultima = da_iso(prec.get("_ultima_vista"))
         scad = da_iso(prec.get("scadenza"))
@@ -1183,16 +1312,20 @@ def main() -> None:
         log.warning("Ollama non disponibile: si prosegue senza LLM")
         llm = None
     scadenza_llm = time.time() + args.minuti_llm * 60
+    versione = f"{PROMPT_VERSIONE}:{args.modello}"
     da_analizzare = []
     for rid, r in unici.items():
         cache = stato["llm"].get(rid)
-        if r["_testo"] and cache and cache.get("hash") == impronta(r["_testo"]):
-            applica_llm(r, cache["risultato"])
-        elif r["_testo"]:
-            da_analizzare.append(r)
-        elif cache:
-            applica_llm(r, cache["risultato"])
-    da_analizzare.sort(key=lambda r: (r.get("scadenza") is None, r.get("scadenza") or ""))
+        if cache:
+            applica_llm(r, cache["risultato"])        # intanto vale il risultato precedente
+        aggiornata = cache and cache.get("versione") == versione and \
+            (not r["_testo"] or cache.get("hash") == impronta(r["_testo"]))
+        if r["_testo"] and not aggiornata:
+            da_analizzare.append((1 if cache else 0, r))
+    # prima i bandi mai analizzati, poi quelli analizzati con la versione precedente;
+    # a parità, le scadenze più vicine
+    da_analizzare = [r for _, r in sorted(da_analizzare, key=lambda x: (
+        x[0], x[1].get("scadenza") is None, x[1].get("scadenza") or ""))]
     analizzati = 0
     if llm:
         for r in da_analizzare:
@@ -1202,7 +1335,7 @@ def main() -> None:
                 break
             try:
                 out = llm.analizza(r)
-                stato["llm"][r["id"]] = {"hash": impronta(r["_testo"]), "risultato": out}
+                stato["llm"][r["id"]] = {"hash": impronta(r["_testo"]), "versione": versione, "risultato": out}
                 applica_llm(r, out)
                 analizzati += 1
                 if analizzati % 10 == 0:
@@ -1224,7 +1357,9 @@ def main() -> None:
         calcola_stato(r)
         attivi.append(r)
     ordine_stato = {"In scadenza (≤30 gg)": 0, "Aperto": 1, "In apertura": 2}
-    attivi.sort(key=lambda r: (ordine_stato.get(r["stato"], 3), r.get("scadenza") or "9999"))
+    ordine_ril = {"Alta": 0, "Media": 1, "Non analizzato": 2, "Bassa": 3}
+    attivi.sort(key=lambda r: (ordine_stato.get(r["stato"], 3), ordine_ril.get(r.get("rilevanza"), 2),
+                               r.get("scadenza") or "9999"))
 
     nuovi = {r["id"] for r in attivi if not ultima_esecuzione or (r["prima_vista"] or "") > ultima_esecuzione
              or r["id"] not in stato["bandi"]}
