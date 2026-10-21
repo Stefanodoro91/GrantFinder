@@ -432,7 +432,7 @@ def nuovo_record(**kw) -> dict:
                 scadenza=None, apertura=None, durata=None, tipo_bando=None, chi_puo=None,
                 partenariato=None, paesi=None, lingua=None, url=None, sommario=None,
                 stato=None, aggiornato=iso(OGGI), prima_vista=None, note=None,
-                italia=None, tipo_ricerca=None,
+                italia=None, italia_fonte=None, tipo_ricerca=None,
                 _testo="", _origine="api")
     base.update(kw)
     return base
@@ -682,6 +682,12 @@ def scarica_grants_gov(http: Http) -> tuple[list[dict], int]:
             dettaglio = {}
         rec = converti_grants_gov(hit, dettaglio)
         if rec:
+            # per i bandi NIH decide il testo completo della call, non la scheda di Grants.gov
+            valore, frase = italia_nih(http, str(hit.get("number") or ""))
+            if valore:
+                rec["italia"], rec["italia_fonte"] = valore, f"NIH Guide {hit.get('number')}: {frase}"
+                rec["paesi"] = {"Sì": "Ammessi anche enti non statunitensi (call NIH completa)",
+                                "No": "Enti esteri non ammessi (call NIH completa)"}[valore]
             risultati.append(rec)
         time.sleep(0.2)
     return risultati, len(ids)
@@ -728,8 +734,11 @@ def italia_grants_gov(syn: dict, tipi_ente: list[str]) -> str:
     t = _RX_COMPONENTI.sub(" ", t)
     if _RX_ESTERI_NO.search(t):
         return "No"
+    # Gli enti esteri citati nella scheda di Grants.gov NON bastano per dire «Sì»: la scheda è un riassunto
+    # e spesso li elenca anche quando il testo completo della call li esclude. Conferma solo dalla call
+    # completa (per il NIH: italia_nih) o da una frase citata dall'LLM e ritrovata nel testo.
     if _RX_ESTERI_SI.search(t) or any(re.search(r"foreign|non-?domestic", x, re.I) for x in tipi_ente):
-        return "Sì"
+        return "Da verificare"
     if any(re.search(r"unrestricted", x, re.I) for x in tipi_ente):
         return "Da verificare"
     # testo sull'ammissibilità (escluse le descrizioni dei tipi di ente)
@@ -737,6 +746,34 @@ def italia_grants_gov(syn: dict, tipi_ente: list[str]) -> str:
     if len(elig) < 40 or re.search(r"\bsee (section|the nofo|nofo|the (full )?(funding )?(opportunity|announcement))", elig, re.I):
         return "Da verificare"
     return "No"                         # elenco di enti ammessi senza enti esteri: riservato agli USA
+
+
+NIH_GUIDE = "https://grants.nih.gov/grants/guide/{cartella}/{numero}.html"
+_RX_NUMERO_NIH = re.compile(r"^(RFA|PAR|PAS|PA|NOT|OTA)-([A-Z]{2}-)?\d{2}-\d{3}$", re.I)
+_RX_NIH_ESTERI = re.compile(
+    r"non-?domestic\s*\(non-?u\.?s\.?\)\s*entities\s*\(foreign\s+(?:organi[sz]ations|institutions)\)\s*"
+    r"(?:are|is)\s+(not\s+)?(?:eligible|allowed|permitted)[^.]*\.", re.I)
+
+
+def italia_nih(http: "Http", numero_call: str) -> tuple[str | None, str | None]:
+    """Legge la sezione «Foreign Organizations» della call completa sul NIH Guide.
+    Restituisce ('Sì' | 'No', frase ufficiale) oppure (None, None) se la pagina o la frase non si trovano."""
+    numero_call = (numero_call or "").strip().upper()
+    if not _RX_NUMERO_NIH.match(numero_call):
+        return None, None
+    pref = numero_call.split("-")[0]
+    cartella = {"RFA": "rfa-files", "NOT": "notice-files", "OTA": "notice-files"}.get(pref, "pa-files")
+    try:
+        r = http.get(NIH_GUIDE.format(cartella=cartella, numero=numero_call), cortese=True, timeout=45)
+        if r.status_code != 200:
+            return None, None
+    except Exception as e:
+        log.debug("NIH Guide %s: %s", numero_call, e)
+        return None, None
+    m = _RX_NIH_ESTERI.search(html_a_testo(r.text))
+    if not m:
+        return None, None
+    return ("No" if m.group(1) else "Sì"), m.group(0).strip()
 
 
 def converti_grants_gov(hit: dict, det: dict) -> dict | None:
@@ -971,9 +1008,14 @@ corretto. Ogni oggetto ha queste chiavi:
                false se è una notizia, un elenco di progetti finanziati o di vincitori, un modulo,
                una pagina informativa generica,
  "aperto": true se la call è aperta o in apertura, false se è chiusa, null se non si capisce,
- "italia_ammessa": "si" se un ente o un ricercatore con sede in Italia può ricevere il finanziamento
-               come capofila o partner beneficiario (anche se il bando è limitato a una regione
-               italiana); "no" se il bando è riservato a enti di altri paesi; null se il testo non lo dice,
+ "italia_ammessa": "si" se il testo dice esplicitamente che un ente o un ricercatore con sede in Italia
+               (o in qualsiasi paese, o in un gruppo di paesi che comprende l'Italia, come l'UE) può
+               ricevere il finanziamento come capofila o partner beneficiario; "no" se il bando è
+               riservato a enti di altri paesi o esclude gli enti esteri; null se il testo non lo dice
+               chiaramente. Un semplice elenco di tipi di ente o le "foreign components" di enti USA
+               NON bastano per "si",
+ "italia_evidenza": la frase del testo, copiata parola per parola nella lingua originale, che giustifica
+               "si" o "no"; null se italia_ammessa è null,
  "tipo_ricerca": "clinica" | "tecnologia" | "formazione" | "preclinica" | "infrastruttura" | "servizi" | "altro",
  "rilevanza": "Alta" | "Media" | "Bassa",
  "motivo": "una frase: perché ha questa rilevanza",
@@ -1187,6 +1229,14 @@ def applica_llm(rec: dict, out: dict) -> None:
         rec["tipo_ricerca"] = TIPI_RICERCA[tr]
     it = norm(str(out.get("italia_ammessa") or "")).lower().strip()
     rec["_italia_llm"] = "Sì" if it in ("si", "yes", "true") else "No" if it in ("no", "false") else None
+    if rec["_italia_llm"] == "Sì":
+        # «Sì» solo se la frase citata dall'LLM compare davvero nel testo del bando
+        ev = str(out.get("italia_evidenza") or "").strip()
+        semplice = lambda x: re.sub(r"[^a-z0-9àèéìòù]+", " ", x.lower()).strip()
+        if len(ev) < 25 or semplice(ev) not in semplice(rec.get("_testo") or ""):
+            rec["_italia_llm"] = None
+        else:
+            rec["_italia_llm_frase"] = ev[:400]
     rec["_e_bando"] = out.get("e_un_bando") if isinstance(out.get("e_un_bando"), bool) else None
     rec["_aperto"] = out.get("aperto") if isinstance(out.get("aperto"), bool) else None
     som = out.get("sommario_it") or ""
@@ -1245,6 +1295,8 @@ def esclusione_finale(rec: dict) -> str | None:
     web = str(rec.get("_origine", "")).startswith("web")
     if llm_it and (rec.get("italia") in (None, "Da verificare") or (web and llm_it == "No")):
         rec["italia"] = llm_it
+        if llm_it == "Sì" and rec.get("_italia_llm_frase"):
+            rec["italia_fonte"] = f"Testo del bando: {rec['_italia_llm_frase']}"
     if rec.get("italia") == "No":
         return "Italia non ammessa"
     if web and rec.get("_e_bando") is False:

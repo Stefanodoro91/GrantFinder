@@ -28,17 +28,18 @@ Il bot parte dall’indirizzo, segue i link che sembrano bandi (fino a due livel
    - «riabilitazione» conta solo in senso clinico, non per edifici, habitat o detenuti;
    - le frasi standard sui diritti civili e la non discriminazione vengono ignorate;
    - su Grants.gov sono escluse le agenzie senza bandi sanitari (elenco `GG_AGENZIE_ESCLUSE`); sul portale UE i programmi e i cluster senza ricerca clinica (sicurezza, clima, cultura, Missions, infrastrutture…: elenco `EU_PREFISSI_ESCLUSI`).
-2. **Esclusioni per regola**, prima dell’LLM:
+2. **Italia ammessa solo con una prova esplicita.** Su Grants.gov l’elenco dei tipi di ente («Non-domestic (non-U.S.) Entities») non basta: è un riassunto e spesso contraddice la call. Per i bandi NIH il bot legge la call completa sul NIH Guide e usa la frase ufficiale della sezione «Foreign Organizations» (es. «…are not eligible to apply»). Senza una prova esplicita il bando resta «Da verificare». La frase usata è salvata nel campo `italia_fonte` di `dati/stato.json`.
+3. **Esclusioni per regola**, prima dell’LLM:
    - bandi a cui l’Italia non può partecipare (per Grants.gov il bot legge le condizioni di ammissibilità degli enti esteri);
    - titoli oncologici, di infrastruttura (centri di coordinamento, archivi dati, reti, NIH U24/P30…) o preclinici (modelli animali, in vitro).
-3. **LLM** (Gemini, API gratuita di Google): legge la call e stabilisce
+4. **LLM** (Gemini, API gratuita di Google): legge la call e stabilisce
    - la **pertinenza alla riabilitazione**: Alta se è dedicata alla riabilitazione o al recupero funzionale; Media se riguarda le stesse malattie ma non la riabilitazione (farmaci, diagnosi, biomarcatori); Bassa per oncologia, condizioni non legate alla riabilitazione o temi non sanitari;
    - il **tipo di ricerca**: clinica, tecnologia, formazione, preclinica, infrastruttura, servizi;
-   - se l’**Italia è ammessa**, quando le regole non bastano;
+   - se l’**Italia è ammessa**, quando le regole non bastano: vale solo se Gemini cita una frase del bando che lo dice esplicitamente e la frase si ritrova nel testo;
    - titolo e sommario in italiano, e i dati mancanti (partenariato, copertura, chi può candidarsi).
 
    Vengono **esclusi** i bandi con pertinenza Bassa, quelli preclinici, di infrastruttura o di servizi sociali, quelli non aperti all’Italia, le pagine che non sono bandi e le call chiuse. L’email riporta in fondo quanti bandi sono stati esclusi e perché.
-4. **Dati strutturati prima dell’LLM**: scadenze, budget, numero di progetti e copertura dei bandi UE e USA vengono dalle API ufficiali; l’LLM riempie solo i campi vuoti.
+5. **Dati strutturati prima dell’LLM**: scadenze, budget, numero di progetti e copertura dei bandi UE e USA vengono dalle API ufficiali; l’LLM riempie solo i campi vuoti.
 
 Ogni bando viene analizzato una sola volta (il bot ricorda l’esito in `dati/stato.json`, anche per i bandi esclusi). Gemini riceve sei bandi per richiesta, così un’esecuzione normale resta ampiamente nella quota gratuita. Se la quota finisce, i bandi rimasti compaiono come «Non ancora analizzati» e vengono analizzati la settimana successiva.
 
