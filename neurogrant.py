@@ -988,7 +988,7 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
         macrogruppi=gruppi, parole_chiave=chiavi, budget_totale=budget, valuta=valuta,
         scadenza=iso(scad), copertura=cof, lingua=lingua,
         paesi=fonte.get("copertura") or None, url=url,
-        italia="Sì" if (fonte.get("italia") or "").strip().lower() in ("si", "sì") else "Da verificare",
+        italia={"si": "Sì", "sì": "Sì", "no": "No"}.get((fonte.get("italia") or "").strip().lower(), "Da verificare"),
         stato="Aperto" if scad else "Scadenza da verificare",
         _testo=f"{titolo}. {testo}"[:8000], _origine="web" + ("-pdf" if pdf else ""))
 
@@ -1283,8 +1283,7 @@ def applica_llm(rec: dict, out: dict) -> None:
 # ---------------------------------------------------------------------------
 
 def esclusione_preliminare(rec: dict) -> str | None:
-    if rec.get("italia") == "No":
-        return "Italia non ammessa"
+    # i bandi non aperti all'Italia restano: il report copre tutti i Paesi (gruppo «Altri Paesi»)
     return esclusione_titolo(rec.get("titolo") or "")
 
 
@@ -1297,8 +1296,6 @@ def esclusione_finale(rec: dict) -> str | None:
         rec["italia"] = llm_it
         if llm_it == "Sì" and rec.get("_italia_llm_frase"):
             rec["italia_fonte"] = f"Testo del bando: {rec['_italia_llm_frase']}"
-    if rec.get("italia") == "No":
-        return "Italia non ammessa"
     if web and rec.get("_e_bando") is False:
         return "Pagina che non è un bando"
     if rec.get("_aperto") is False and not rec.get("scadenza"):
@@ -1527,7 +1524,8 @@ def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: 
     in_scadenza = sum(1 for b in bandi if b["stato"].startswith("In scadenza"))
     oggetto = (f"NeuroGrant – {len(bandi)} bandi per la riabilitazione ({len(nuovi)} "
                f"{'nuovo' if len(nuovi) == 1 else 'nuovi'}, {in_scadenza} in scadenza)")
-    blocchi = [("🇮🇹 Aperti a enti italiani", "Sì"), ("❔ Ammissibilità dell'Italia da verificare", "Da verificare")]
+    blocchi = [("🇮🇹 Aperti a enti italiani", "Sì"), ("❔ Ammissibilità dell'Italia da verificare", "Da verificare"),
+               ("🌍 Altri Paesi (enti italiani non ammessi)", "No")]
     livelli = [("Pertinenza alta", "Alta"), ("Pertinenza media", "Media"), ("Non ancora analizzati", "Non analizzato")]
     legenda = "⏰ scade entro 30 giorni · 🔜 in apertura · 🆕 nuovo"
 
@@ -1667,12 +1665,6 @@ def main() -> None:
     if "web" in fonti:
         for fonte in leggi_fonti_web(BASE / "fonti_web.csv"):
             nome = fonte.get("nome") or fonte["url"]
-            if (fonte.get("italia") or "").strip().lower() == "no":
-                f = stato["fonti"].setdefault(nome, {"trovati_tot": 0, "pertinenti": []})
-                f.update({"tipo": "Lettura pagine web", "copertura": fonte.get("copertura"),
-                          "finanziamenti": fonte.get("tipo"), "url": fonte["url"],
-                          "note": "Saltata: non aperta a enti italiani (colonna 'italia' di fonti_web.csv)"})
-                continue
             try:
                 recs, n, errore = esplora_fonte(http, fonte, args.max_pagine_web)
             except Exception as e:
@@ -1805,7 +1797,7 @@ def main() -> None:
         calcola_stato(r)
         attivi.append(r)
     # ordine: Italia ammessa -> pertinenza alla riabilitazione -> scadenza (senza data in fondo)
-    ordine_it = {"Sì": 0, "Da verificare": 1}
+    ordine_it = {"Sì": 0, "Da verificare": 1, "No": 2}
     ordine_ril = {"Alta": 0, "Media": 1, "Non analizzato": 2}
     attivi.sort(key=lambda r: (ordine_it.get(r["italia"], 1), ordine_ril.get(r.get("rilevanza"), 2),
                                r.get("scadenza") or "9999"))

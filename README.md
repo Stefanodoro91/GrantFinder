@@ -1,6 +1,6 @@
 # NeuroGrant
 
-Bot che ogni lunedì cerca i bandi di **ricerca clinica sulla riabilitazione** aperti a enti italiani: ictus, Parkinson, sclerosi multipla e altre malattie neurologiche, invecchiamento e demenze, disabilità, tecnologie per la riabilitazione e malattie croniche non oncologiche quando riguardano la riabilitazione. Invia per email un Excel con tutti i bandi.
+Bot che ogni lunedì cerca i bandi di **ricerca clinica sulla riabilitazione** di tutti i Paesi, mettendo in evidenza quelli aperti a enti italiani: ictus, Parkinson, sclerosi multipla e altre malattie neurologiche, invecchiamento e demenze, disabilità, tecnologie per la riabilitazione e malattie croniche non oncologiche quando riguardano la riabilitazione. Invia per email un Excel con tutti i bandi.
 
 Macrogruppi: Ictus · Parkinson · Invecchiamento · Tecnologie riabilitazione · Altre malattie e riabilitazione (SM, SLA, altre neurologiche, disabilità, croniche).
 
@@ -16,7 +16,7 @@ Per aggiungere una fonte basta una riga in `fonti_web.csv` (nome; indirizzo; cop
 
 - `si`: i bandi risultano aperti all’Italia;
 - `verificare`: l’LLM legge ogni call e decide;
-- `no`: la fonte non viene letta (per esempio le charity britanniche, canadesi o australiane che finanziano solo enti del proprio paese). Per riattivarla basta scrivere `verificare`.
+- `no`: la fonte finanzia solo enti del proprio Paese (per esempio le charity britanniche, canadesi o australiane): viene letta comunque e i suoi bandi finiscono nel gruppo «Altri Paesi».
 
 Il bot parte dall’indirizzo, segue i link che sembrano bandi (fino a due livelli, massimo 35 pagine per sito) e rispetta il file robots.txt di ogni sito. Salta notizie, elenchi di vincitori, portfolio, moduli e pagine con un anno passato nel titolo; senza una scadenza futura, una pagina entra solo se dice che la call è aperta.
 
@@ -30,7 +30,6 @@ Il bot parte dall’indirizzo, segue i link che sembrano bandi (fino a due livel
    - su Grants.gov sono escluse le agenzie senza bandi sanitari (elenco `GG_AGENZIE_ESCLUSE`); sul portale UE i programmi e i cluster senza ricerca clinica (sicurezza, clima, cultura, Missions, infrastrutture…: elenco `EU_PREFISSI_ESCLUSI`).
 2. **Italia ammessa solo con una prova esplicita.** Su Grants.gov l’elenco dei tipi di ente («Non-domestic (non-U.S.) Entities») non basta: è un riassunto e spesso contraddice la call. Per i bandi NIH il bot legge la call completa sul NIH Guide e usa la frase ufficiale della sezione «Foreign Organizations» (es. «…are not eligible to apply»). Senza una prova esplicita il bando resta «Da verificare». La frase usata è salvata nel campo `italia_fonte` di `dati/stato.json`.
 3. **Esclusioni per regola**, prima dell’LLM:
-   - bandi a cui l’Italia non può partecipare (per Grants.gov il bot legge le condizioni di ammissibilità degli enti esteri);
    - titoli oncologici, di infrastruttura (centri di coordinamento, archivi dati, reti, NIH U24/P30…) o preclinici (modelli animali, in vitro).
 4. **LLM** (Gemini, API gratuita di Google): legge la call e stabilisce
    - la **pertinenza alla riabilitazione**: Alta se è dedicata alla riabilitazione o al recupero funzionale; Media se riguarda le stesse malattie ma non la riabilitazione (farmaci, diagnosi, biomarcatori); Bassa per oncologia, condizioni non legate alla riabilitazione o temi non sanitari;
@@ -38,7 +37,7 @@ Il bot parte dall’indirizzo, segue i link che sembrano bandi (fino a due livel
    - se l’**Italia è ammessa**, quando le regole non bastano: vale solo se Gemini cita una frase del bando che lo dice esplicitamente e la frase si ritrova nel testo;
    - titolo e sommario in italiano, e i dati mancanti (partenariato, copertura, chi può candidarsi).
 
-   Vengono **esclusi** i bandi con pertinenza Bassa, quelli preclinici, di infrastruttura o di servizi sociali, quelli non aperti all’Italia, le pagine che non sono bandi e le call chiuse. L’email riporta in fondo quanti bandi sono stati esclusi e perché.
+   Vengono **esclusi** i bandi con pertinenza Bassa, quelli preclinici, di infrastruttura o di servizi sociali, le pagine che non sono bandi e le call chiuse. I bandi non aperti all’Italia restano, nel gruppo «Altri Paesi». L’email riporta in fondo quanti bandi sono stati esclusi e perché.
 5. **Dati strutturati prima dell’LLM**: scadenze, budget, numero di progetti e copertura dei bandi UE e USA vengono dalle API ufficiali; l’LLM riempie solo i campi vuoti.
 
 Ogni bando viene analizzato una sola volta (il bot ricorda l’esito in `dati/stato.json`, anche per i bandi esclusi). Gemini riceve sei bandi per richiesta, così un’esecuzione normale resta ampiamente nella quota gratuita. Se la quota finisce, i bandi rimasti compaiono come «Non ancora analizzati» e vengono analizzati la settimana successiva.
@@ -47,7 +46,7 @@ Ogni bando viene analizzato una sola volta (il bot ricorda l’esito in `dati/st
 
 Email ed Excel seguono lo stesso ordine:
 
-1. **Italia ammessa** («Sì»), poi i bandi in cui l’ammissibilità dell’Italia è **da verificare**;
+1. **Italia ammessa** («Sì»), poi i bandi in cui l’ammissibilità dell’Italia è **da verificare**, infine gli **altri Paesi** (enti italiani non ammessi);
 2. dentro ogni gruppo, **pertinenza alla riabilitazione**: Alta, Media, non ancora analizzati;
 3. dentro ogni livello, **scadenza** dalla più vicina; i bandi senza data vanno in fondo.
 
