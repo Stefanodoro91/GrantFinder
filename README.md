@@ -12,7 +12,7 @@ Macrogruppi: Ictus · Parkinson · Invecchiamento · Tecnologie riabilitazione �
 | Grants.gov | Tutte le agenzie federali USA, NIH compreso | API pubblica |
 | `fonti_web.csv` | Ministeri e regioni italiane, fondazioni bancarie, charity, fondazioni ed enti esteri | Lettura delle pagine web |
 
-Per aggiungere una fonte basta una riga in `fonti_web.csv` (nome; indirizzo; copertura; tipo; italia; note). La colonna `italia` dice se la fonte finanzia enti italiani:
+Per aggiungere una fonte basta una riga in `fonti_web.csv` (nome; indirizzo; copertura; tipo; italia; continente; note). La colonna `continente` (Europa, Nord America, America Latina, Asia, Africa, Oceania, Internazionale) serve a ordinare la pagina pubblica dei bandi. Le fonti coprono Italia, Europa, Nord e Sud America, Asia, Africa, Oceania e le principali fondazioni internazionali; il filtro riconosce anche termini in spagnolo, portoghese, francese e tedesco. La colonna `italia` dice se la fonte finanzia enti italiani:
 
 - `si`: i bandi risultano aperti all’Italia;
 - `verificare`: l’LLM legge ogni call e decide;

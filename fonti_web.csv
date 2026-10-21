@@ -1,37 +1,86 @@
-nome;url;copertura;tipo;italia;note
-Ministero della Salute – Ricerca sanitaria;https://www.salute.gov.it/;Italia;Pubblico nazionale;si;Ricerca finalizzata, Ricerca corrente
-Ministero dell'Università e della Ricerca;https://www.mur.gov.it/;Italia;Pubblico nazionale;si;PRIN, FIS, Synergy Grant
-INAIL – Ricerca;https://www.inail.it/;Italia;Pubblico nazionale;si;Bandi BRiC, protesi e riabilitazione
-Regione Lombardia – Bandi;https://www.bandi.regione.lombardia.it/;Lombardia;Pubblico regionale;si;
-Regione Toscana – Bandi;https://www.regione.toscana.it/;Toscana;Pubblico regionale;si;
-Lazio Innova – Bandi;https://www.lazioinnova.it/;Lazio;Pubblico regionale;si;
-Fondazione Cariplo;https://www.fondazionecariplo.it/;Italia (Lombardia);Fondazione bancaria;si;
-Compagnia di San Paolo;https://www.compagniadisanpaolo.it/;Italia (Piemonte, Liguria);Fondazione bancaria;si;
-Fondazione CRT;https://www.fondazionecrt.it/;Italia (Piemonte, Valle d'Aosta);Fondazione bancaria;si;
-Fondazione CR Firenze;https://www.fondazionecrfirenze.it/;Italia (Toscana);Fondazione bancaria;si;
-Fondazione Cariparo;https://www.fondazionecariparo.it/;Italia (Veneto);Fondazione bancaria;si;
-Fondazione Cariverona;https://www.fondazionecariverona.org/;Italia (Veneto, Lombardia);Fondazione bancaria;si;
-Fondazione Umberto Veronesi;https://www.fondazioneveronesi.it/;Italia;Fondazione privata;si;
-AIRAlzh – Associazione Italiana Ricerca Alzheimer;https://www.airalzh.it/;Italia;Charity;si;
-EIT Health;https://eithealth.eu/;Europa;Pubblico europeo;si;
-JPND – EU Joint Programme Neurodegenerative Disease;https://neurodegenerationresearch.eu/;Europa;Pubblico europeo;si;Partecipazione italiana tramite i finanziatori nazionali
-ERA4Health;https://era4health.eu/;Europa;Pubblico europeo;si;
-Transforming Health and Care Systems (THCS);https://www.thcspartnership.eu/;Europa;Pubblico europeo;si;
-UKRI – Funding opportunities;https://www.ukri.org/opportunity/;Regno Unito (alcuni aperti a enti esteri);Pubblico estero;verificare;
-NIHR;https://www.nihr.ac.uk/;Regno Unito;Pubblico estero;no;Enti con sede nel Regno Unito
-Wellcome;https://wellcome.org/research-funding;Mondiale;Fondazione privata;verificare;Ammissibilità diversa per ogni schema
-Stroke Association;https://www.stroke.org.uk/;Regno Unito;Charity;no;Enti con sede nel Regno Unito
-Parkinson's UK;https://www.parkinsons.org.uk/research;Regno Unito;Charity;no;Enti con sede nel Regno Unito
-Alzheimer's Society;https://www.alzheimers.org.uk/research;Regno Unito;Charity;no;Enti con sede nel Regno Unito
-Alzheimer's Research UK;https://www.alzheimersresearchuk.org/;Regno Unito;Charity;no;Enti con sede nel Regno Unito
-Dunhill Medical Trust;https://dunhillmedical.org.uk/;Regno Unito;Fondazione privata;no;Enti con sede nel Regno Unito
-Michael J. Fox Foundation;https://www.michaeljfox.org/;Mondiale;Fondazione privata;si;Parkinson
-Parkinson's Foundation;https://www.parkinson.org/research;Mondiale;Fondazione privata;verificare;
-Alzheimer's Association;https://www.alz.org/research;Mondiale;Charity;si;
-American Heart Association – Research;https://professional.heart.org/;USA;Charity;no;Ictus; enti con sede negli USA
-American Federation for Aging Research (AFAR);https://www.afar.org/;USA;Fondazione privata;no;Enti con sede negli USA
-PCORI;https://www.pcori.org/funding-opportunities;USA;Fondazione privata;verificare;
-Foundation for Physical Therapy Research;https://foundation4pt.org/;USA;Fondazione privata;no;Fisioterapisti negli USA
-Canadian Institutes of Health Research;https://cihr-irsc.gc.ca/;Canada;Pubblico estero;no;Enti canadesi
-Brain Canada;https://braincanada.ca/;Canada;Fondazione privata;no;Enti canadesi
-NHMRC;https://www.nhmrc.gov.au/funding;Australia;Pubblico estero;no;Enti australiani
+nome;url;copertura;tipo;italia;continente;note
+Ministero della Salute – Ricerca sanitaria;https://www.salute.gov.it/;Italia;Pubblico nazionale;si;Europa;Ricerca finalizzata, Ricerca corrente
+Ministero dell'Università e della Ricerca;https://www.mur.gov.it/;Italia;Pubblico nazionale;si;Europa;PRIN, FIS, Synergy Grant
+INAIL – Ricerca;https://www.inail.it/;Italia;Pubblico nazionale;si;Europa;Bandi BRiC, protesi e riabilitazione
+Regione Lombardia – Bandi;https://www.bandi.regione.lombardia.it/;Lombardia;Pubblico regionale;si;Europa;
+Regione Toscana – Bandi;https://www.regione.toscana.it/;Toscana;Pubblico regionale;si;Europa;
+Lazio Innova – Bandi;https://www.lazioinnova.it/;Lazio;Pubblico regionale;si;Europa;
+Fondazione Cariplo;https://www.fondazionecariplo.it/;Italia (Lombardia);Fondazione bancaria;si;Europa;
+Compagnia di San Paolo;https://www.compagniadisanpaolo.it/;Italia (Piemonte, Liguria);Fondazione bancaria;si;Europa;
+Fondazione CRT;https://www.fondazionecrt.it/;Italia (Piemonte, Valle d'Aosta);Fondazione bancaria;si;Europa;
+Fondazione CR Firenze;https://www.fondazionecrfirenze.it/;Italia (Toscana);Fondazione bancaria;si;Europa;
+Fondazione Cariparo;https://www.fondazionecariparo.it/;Italia (Veneto);Fondazione bancaria;si;Europa;
+Fondazione Cariverona;https://www.fondazionecariverona.org/;Italia (Veneto, Lombardia);Fondazione bancaria;si;Europa;
+Fondazione Umberto Veronesi;https://www.fondazioneveronesi.it/;Italia;Fondazione privata;si;Europa;
+AIRAlzh – Associazione Italiana Ricerca Alzheimer;https://www.airalzh.it/;Italia;Charity;si;Europa;
+EIT Health;https://eithealth.eu/;Europa;Pubblico europeo;si;Europa;
+JPND – EU Joint Programme Neurodegenerative Disease;https://neurodegenerationresearch.eu/;Europa;Pubblico europeo;si;Europa;Partecipazione italiana tramite i finanziatori nazionali
+ERA4Health;https://era4health.eu/;Europa;Pubblico europeo;si;Europa;
+Transforming Health and Care Systems (THCS);https://www.thcspartnership.eu/;Europa;Pubblico europeo;si;Europa;
+UKRI – Funding opportunities;https://www.ukri.org/opportunity/;Regno Unito (alcuni aperti a enti esteri);Pubblico estero;verificare;Europa;
+NIHR;https://www.nihr.ac.uk/;Regno Unito;Pubblico estero;no;Europa;Enti con sede nel Regno Unito
+Wellcome;https://wellcome.org/research-funding;Mondiale;Fondazione privata;verificare;Internazionale;Ammissibilità diversa per ogni schema
+Stroke Association;https://www.stroke.org.uk/;Regno Unito;Charity;no;Europa;Enti con sede nel Regno Unito
+Parkinson's UK;https://www.parkinsons.org.uk/research;Regno Unito;Charity;no;Europa;Enti con sede nel Regno Unito
+Alzheimer's Society;https://www.alzheimers.org.uk/research;Regno Unito;Charity;no;Europa;Enti con sede nel Regno Unito
+Alzheimer's Research UK;https://www.alzheimersresearchuk.org/;Regno Unito;Charity;no;Europa;Enti con sede nel Regno Unito
+Dunhill Medical Trust;https://dunhillmedical.org.uk/;Regno Unito;Fondazione privata;no;Europa;Enti con sede nel Regno Unito
+Michael J. Fox Foundation;https://www.michaeljfox.org/;Mondiale;Fondazione privata;si;Internazionale;Parkinson
+Parkinson's Foundation;https://www.parkinson.org/research;Mondiale;Fondazione privata;verificare;Nord America;
+Alzheimer's Association;https://www.alz.org/research;Mondiale;Charity;si;Internazionale;
+American Heart Association – Research;https://professional.heart.org/;USA;Charity;no;Nord America;Ictus
+American Federation for Aging Research (AFAR);https://www.afar.org/;USA;Fondazione privata;no;Nord America;Enti con sede negli USA
+PCORI;https://www.pcori.org/funding-opportunities;USA;Fondazione privata;verificare;Nord America;
+Foundation for Physical Therapy Research;https://foundation4pt.org/;USA;Fondazione privata;no;Nord America;Fisioterapisti negli USA
+Canadian Institutes of Health Research;https://cihr-irsc.gc.ca/;Canada;Pubblico estero;no;Nord America;Enti canadesi
+Brain Canada;https://braincanada.ca/;Canada;Fondazione privata;no;Nord America;Enti canadesi
+NHMRC;https://www.nhmrc.gov.au/funding;Australia;Pubblico estero;no;Oceania;Enti australiani
+DFG – Deutsche Forschungsgemeinschaft;https://www.dfg.de/en/research-funding/funding-opportunities;Germania;Pubblico estero;no;Europa;Enti con sede in Germania
+BMBF – Gesundheitsforschung (bandi);https://www.gesundheitsforschung-bmbf.de/de/bekanntmachungen.php;Germania;Pubblico estero;no;Europa;Pagina in tedesco
+ANR – Agence Nationale de la Recherche;https://anr.fr/en/open-calls-and-preannouncements/;Francia;Pubblico estero;verificare;Europa;Alcuni bandi bilaterali aperti a partner esteri
+ZonMw;https://www.zonmw.nl/en;Paesi Bassi;Pubblico estero;no;Europa;Enti con sede nei Paesi Bassi
+SNSF – Swiss National Science Foundation;https://www.snf.ch/en;Svizzera;Pubblico estero;no;Europa;
+FWF – Austrian Science Fund;https://www.fwf.ac.at/en/funding;Austria;Pubblico estero;no;Europa;
+FWO – Research Foundation Flanders;https://www.fwo.be/en/fellowships-funding/;Belgio;Pubblico estero;no;Europa;
+Research Council of Norway;https://www.forskningsradet.no/en/call-for-proposals/;Norvegia;Pubblico estero;no;Europa;
+Swedish Research Council;https://www.vr.se/english/applying-for-funding/calls.html;Svezia;Pubblico estero;no;Europa;
+Independent Research Fund Denmark;https://dff.dk/en;Danimarca;Pubblico estero;no;Europa;
+Research Council of Finland;https://www.aka.fi/en/research-funding/apply-for-funding/calls-for-applications/;Finlandia;Pubblico estero;no;Europa;
+Health Research Board Ireland;https://www.hrb.ie/funding/;Irlanda;Pubblico estero;no;Europa;
+ISCIII – Instituto de Salud Carlos III;https://www.isciii.es/financiacion;Spagna;Pubblico estero;no;Europa;Pagina in spagnolo
+FCT – Fundação para a Ciência e a Tecnologia;https://www.fct.pt/en/funding/;Portogallo;Pubblico estero;no;Europa;
+NCN – National Science Centre Poland;https://www.ncn.gov.pl/en;Polonia;Pubblico estero;no;Europa;
+Lundbeck Foundation;https://lundbeckfonden.com/en/research;Danimarca;Fondazione privata;verificare;Europa;Neuroscienze
+Novo Nordisk Foundation;https://novonordiskfonden.dk/en/grants/;Danimarca;Fondazione privata;verificare;Europa;Alcuni schemi internazionali
+Hertie Foundation;https://www.ghst.de/en/;Germania;Fondazione privata;verificare;Europa;Neuroscienze
+VolkswagenStiftung;https://www.volkswagenstiftung.de/en/funding;Germania;Fondazione privata;verificare;Europa;
+Wings for Life;https://www.wingsforlife.com/en/research/;Mondiale;Fondazione privata;verificare;Internazionale;Lesioni midollari
+Global Health EDCTP3;https://www.global-health-edctp3.europa.eu/funding-calls_en;Europa e Africa;Pubblico europeo;verificare;Internazionale;Partenariato Europa-Africa
+Human Frontier Science Program;https://www.hfsp.org/funding;Mondiale;Pubblico internazionale;verificare;Internazionale;Collaborazioni intercontinentali
+IBRO – International Brain Research Organization;https://ibro.org/grants/;Mondiale;Pubblico internazionale;verificare;Internazionale;
+Gates Foundation – Grand Challenges;https://gcgh.grandchallenges.org/challenges;Mondiale;Fondazione privata;verificare;Internazionale;
+Chan Zuckerberg Initiative;https://chanzuckerberg.com/rfa/;Mondiale;Fondazione privata;verificare;Internazionale;
+Alzheimer's Drug Discovery Foundation;https://www.alzdiscovery.org/research-and-grants/funding-opportunities;Mondiale;Fondazione privata;verificare;Internazionale;
+ALS Association;https://www.als.org/research/for-researchers;Mondiale;Charity;verificare;Internazionale;SLA
+MS International Federation;https://www.msif.org/research/;Mondiale;Charity;verificare;Internazionale;Sclerosi multipla
+National MS Society;https://www.nationalmssociety.org/research;Mondiale;Charity;verificare;Internazionale;Sclerosi multipla
+Cure Parkinson's;https://cureparkinsons.org.uk/research/;Mondiale;Charity;verificare;Internazionale;Parkinson
+International Spinal Research Trust;https://spinal-research.org/research/;Mondiale;Charity;verificare;Internazionale;Lesioni midollari
+Craig H. Neilsen Foundation;https://chnfoundation.org/grants/;USA e Canada;Fondazione privata;no;Nord America;Lesioni midollari
+American Occupational Therapy Foundation;https://www.aotf.org/;USA;Fondazione privata;no;Nord America;Terapia occupazionale
+AMED – Japan Agency for Medical Research and Development;https://www.amed.go.jp/en/koubo/;Giappone;Pubblico estero;verificare;Asia;
+JSPS – Japan Society for the Promotion of Science;https://www.jsps.go.jp/english/;Giappone;Pubblico estero;verificare;Asia;Alcuni programmi per ricercatori stranieri
+NSFC – National Natural Science Foundation of China;https://www.nsfc.gov.cn/english/site_1/index.html;Cina;Pubblico estero;no;Asia;
+ICMR – Indian Council of Medical Research;https://www.icmr.gov.in/;India;Pubblico estero;no;Asia;
+India Alliance (DBT/Wellcome);https://www.indiaalliance.org/;India;Fondazione privata;no;Asia;
+NMRC Singapore;https://www.nmrc.gov.sg/grants/;Singapore;Pubblico estero;no;Asia;
+FAPESP;https://fapesp.br/en/calls;Brasile;Pubblico estero;verificare;America Latina;Alcuni bandi con partner esteri
+CNPq;https://www.gov.br/cnpq/pt-br;Brasile;Pubblico estero;no;America Latina;Pagina in portoghese
+CONICET;https://convocatorias.conicet.gov.ar/;Argentina;Pubblico estero;no;America Latina;Pagina in spagnolo
+ANID Chile;https://anid.cl/concursos/;Cile;Pubblico estero;no;America Latina;Pagina in spagnolo
+Minciencias Colombia;https://minciencias.gov.co/convocatorias;Colombia;Pubblico estero;no;America Latina;Pagina in spagnolo
+SAMRC – South African Medical Research Council;https://www.samrc.ac.za/funding;Sudafrica;Pubblico estero;no;Africa;
+NRF South Africa;https://www.nrf.ac.za/funding/;Sudafrica;Pubblico estero;no;Africa;
+Science for Africa Foundation;https://scienceforafrica.foundation/funding;Africa;Fondazione privata;verificare;Africa;
+Health Research Council of New Zealand;https://www.hrc.govt.nz/funding-opportunities;Nuova Zelanda;Pubblico estero;no;Oceania;
+MRFF – Medical Research Future Fund;https://www.health.gov.au/our-work/medical-research-future-fund;Australia;Pubblico estero;no;Oceania;

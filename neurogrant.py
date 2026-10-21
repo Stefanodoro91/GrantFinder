@@ -124,6 +124,14 @@ TERMINI = [
     ("Altre malattie e riabilitazione", r"cardiovascular|heart failure|cardiac|cardiolog|cardiovascolar|scompenso cardiaco", "C"),
     ("Altre malattie e riabilitazione", r"\bcopd\b|bpco|pulmonary|respiratory|polmonar|respiratori", "C"),
     ("Altre malattie e riabilitazione", r"diabet|obesit", "C"),
+    # termini in spagnolo, portoghese, francese e tedesco (fonti estere senza pagina inglese)
+    ("Ictus", r"accidente cerebrovascular|accident vasculaire|\bavc\b|schlaganfall", "S"),
+    ("Invecchiamento", r"\bdemenc|\bdemence|envejecimiento saludable|vieillissement", "S"),
+    ("Altre malattie e riabilitazione", r"rehabilitaci|reabilitac|readaptation|reeducation", "R"),
+    ("Altre malattie e riabilitazione", r"fisioterapia|kinesitherap|physiotherapie", "S"),
+    ("Altre malattie e riabilitazione", r"esclerosis multiple|esclerose multipla|sclerose en plaques|multiple sklerose", "S"),
+    ("Altre malattie e riabilitazione", r"lesion medular|lesao medular|lesion de la moelle|querschnitt", "S"),
+    ("Altre malattie e riabilitazione", r"discapacidad|deficiencia fisica|handicap|behinderung", "D"),
 ]
 _TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 
@@ -132,7 +140,8 @@ _TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 CONTESTO_CLINICO = re.compile(
     r"\b(clinical|clinic[aoi]?|patients?|pazient[ei]|trials?|sperimentazion[ei] clinic\w*|therap\w*|terapi\w*|"
     r"rehabilit\w*|riabilit\w*|hospitals?|ospedal\w*|neurolog\w*|diagnos\w*|treatments?|"
-    r"physiother\w*|fisioterap\w*|medical|medic[oi]|disease|disorders?|malattia|malattie)\b", re.I)
+    r"physiother\w*|fisioterap\w*|medical|medic[oi]|disease|disorders?|malattia|malattie|"
+    r"pacientes?|patienten|clinico|clinique|klinisch\w*|ensayos?|essais?|ensaios?|enfermedad\w*|doenca\w*|maladie\w*|krankheit\w*)\b", re.I)
 # per le malattie croniche serve un contesto riabilitativo vero e proprio
 CONTESTO_CRONICITA = re.compile(
     r"(rehabilit|riabilit|physical therap|fisioterap|exercise (therapy|training|intervention|program)|"
@@ -141,7 +150,7 @@ CONTESTO_CRONICITA = re.compile(
 VICINO_CLINICO = re.compile(
     r"(patient|pazient|stroke|ictus|physical|fisic|motor|clinic|health|salute|sanit|disabilit|neurolog|"
     r"cognit|therap|terap|medic|function|funzional|injur|lesion|disease|malatti|cardiac|cardi|pulmonary|"
-    r"older|\banzian|elderly|sclerosis|sclerosi|parkinson|dementi)", re.I)
+    r"older|\banzian|elderly|sclerosis|sclerosi|parkinson|dementi|pacient|klinik|salud|saude|sante|gesundheit)", re.I)
 # frasi standard (diritti civili, non discriminazione) che citano disabilità o
 # "Rehabilitation Act" senza che il bando riguardi la sanità
 BOILERPLATE = re.compile(
@@ -826,10 +835,12 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
 
 RX_LINK_BANDO = re.compile(
     r"(bando|bandi|avvis|call|grant|funding|finanziament|opportunit|fellowship|award|"
-    r"research[-_ ]?(programme|program|fund)|ricerca|apply|contribut|premi|programm|scheme)", re.I)
+    r"research[-_ ]?(programme|program|fund)|ricerca|apply|contribut|premi|programm|scheme|"
+    r"convocatori|chamad|edita|appel|ausschreibung|forderung|foerder|financia|financement|subvenc|beca|bolsa)", re.I)
 RX_PAGINA_BANDO = re.compile(
     r"(bando|avviso|call for (proposals|applications)|grant|funding (opportunity|call|round)|"
-    r"fellowship|award|finanziament|application deadline|how to apply|come partecipare|scadenza)", re.I)
+    r"fellowship|award|finanziament|application deadline|how to apply|come partecipare|scadenza|"
+    r"convocatoria|chamada|edital|appel a projets|appel a candidatures|ausschreibung|bekanntmachung|financiacion|financiamento)", re.I)
 # pagine che non sono bandi: notizie, elenchi di vincitori, portfolio, moduli...
 RX_URL_NON_BANDO = re.compile(
     r"/(news|notizie|notizia|press|comunicati|blog|stories|story|events?|eventi|webinars?|podcasts?|faqs?|"
@@ -848,6 +859,7 @@ RX_APERTO = re.compile(
     r"apply (now|online|here|by)|call (is )?open|currently accepting|accepting (applications|proposals|submissions)|"
     r"candidature (aperte|entro)|domande (entro|possono essere presentate)|"
     r"presentazione delle (domande|proposte|candidature)|bando aperto|deadline|closing date|scadenza|"
+    r"plazo|prazo|date limite|einreichungsfrist|abierta|aberta|ouvert|"
     r"termine (per la presentazione|ultimo))", re.I)
 ESTENSIONI_SALTA = (".jpg", ".jpeg", ".png", ".gif", ".svg", ".zip", ".doc", ".docx", ".xls",
                     ".xlsx", ".ppt", ".pptx", ".mp4", ".mp3", ".ics")
