@@ -1531,6 +1531,18 @@ def _testo_esclusi(esclusi: dict[str, int]) -> str:
                      for m, n in sorted(esclusi.items(), key=lambda x: -x[1]))
 
 
+def oggetto_con_repo(oggetto: str) -> str:
+    """Mette il nome della repository in testa all'oggetto della mail.
+
+    Su GitHub Actions il nome arriva da GITHUB_REPOSITORY (owner/nome), cosi'
+    resta giusto anche se la repository viene rinominata; in locale si usa
+    quello attuale.
+    """
+    repo = os.environ.get("GITHUB_REPOSITORY", "").rsplit("/", 1)[-1] or "GrantFinder"
+    prefisso = f"[{repo}]"
+    return oggetto if oggetto.startswith(prefisso) else f"{prefisso} {oggetto}"
+
+
 def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: str, destinatario: str,
                   esclusi: dict[str, int] | None = None) -> EmailMessage:
     in_scadenza = sum(1 for b in bandi if b["stato"].startswith("In scadenza"))
@@ -1588,7 +1600,7 @@ def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: 
                  "ufficiale della call.</p>")
 
     msg = EmailMessage()
-    msg["Subject"], msg["From"], msg["To"] = oggetto, mittente, destinatario
+    msg["Subject"], msg["From"], msg["To"] = oggetto_con_repo(oggetto), mittente, destinatario
     msg.set_content("\n".join(testo))
     msg.add_alternative("".join(corpo), subtype="html")
     msg.add_attachment(allegato.read_bytes(), maintype="application",
