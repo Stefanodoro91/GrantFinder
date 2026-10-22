@@ -63,4 +63,7 @@ jobs:
           git config user.email "neurogrant-bot@users.noreply.github.com"
           git add dati report 2>/dev/null || true
           git diff --cached --quiet || git commit -m "NeuroGrant: aggiornamento $(date +%F)"
-          git push
+          for i in 1 2 3; do
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" && git push && break
+            sleep 10
+          done
