@@ -127,3 +127,6 @@ I segreti non sono visibili a nessuno, nemmeno nel repository pubblico.
 - Restano escluse le banche dati a pagamento o che vietano la lettura automatica (per esempio GrantWatch).
 - L’ammissibilità dell’Italia e il tipo di ricerca sono stime automatiche: un bando segnato «Sì» va comunque verificato nella call, e un bando escluso per errore non compare nel report. Le esclusioni sono conteggiate nel foglio LOG e in fondo all’email.
 - Copertura finanziaria e partenariato dei bandi UE seguono le regole standard del tipo di azione: le condizioni del singolo topic possono differire.
+
+### Bandi sanitari a tema libero
+Oltre ai bandi di riabilitazione (filtro a parole chiave), entrano i bandi e le fellowship di ricerca clinica o biomedica a **tema libero** solo se aperti a ricercatori o enti di altri Paesi (Italia ammessa con frase verificata). Hanno il macrogruppo «Ricerca sanitaria a tema libero» e pertinenza al massimo «Media».

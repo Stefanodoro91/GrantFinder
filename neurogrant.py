@@ -162,6 +162,24 @@ BOILERPLATE = re.compile(
 
 GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione",
                  "Altre malattie e riabilitazione"]
+TEMA_LIBERO = "Ricerca sanitaria a tema libero"
+# bando sanitario ampio: ricerca medica o clinica senza un tema imposto
+RX_SALUTE = re.compile(r"(health|medical|clinical|biomedical|life sciences?|neuroscien|sanitari|medic[aio]|clinic[aoi]|"
+                       r"salud|saude|sante|gesundheit)", re.I)
+RX_TEMA_LIBERO = re.compile(
+    r"(investigator[- ]initiated|investigator[- ]driven|researcher[- ]initiated|bottom[- ]up|responsive mode|"
+    r"open (topic|call|theme|competition)|any (area|field|topic|discipline)|all (areas|fields|disciplines|topics)|"
+    r"(regardless|irrespective) of (the )?(field|topic|discipline)|ideas? grants?|project grants?|"
+    r"postdoctoral fellowships?|research fellowships?|tema libero|qualsiasi (area|ambito)|"
+    r"tema abierto|cualquier (area|disciplina)|qualquer area|tous les domaines)", re.I)
+# apertura a ricercatori o enti di altri Paesi
+RX_ESTERO = re.compile(
+    r"(international (applicants|researchers|scientists|investigators|students)|foreign (researchers|nationals|"
+    r"applicants|scientists|institutions|organi[sz]ations)|researchers? from (abroad|other countries|any country|"
+    r"all countries|overseas)|from abroad|overseas researchers|(regardless|irrespective) of nationality|"
+    r"any nationality|all nationalities|non-?(japanese|korean|chinese|singaporean|australian|brazilian) (researchers|nationals)|"
+    r"open to (researchers|applicants|scientists) (from|of) (all|any)|any country|worldwide|"
+    r"investigadores extranjeros|pesquisadores estrangeiros|chercheurs etrangers)", re.I)
 SOGLIA = 3
 
 
@@ -909,7 +927,7 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
             log.debug("robots.txt non consente %s", url)
             continue
         try:
-            r = http.get(url, cortese=True, timeout=30)
+            r = http.get(url, cortese=True, timeout=60)
         except Exception as e:
             if prof == 0:
                 errore = f"irraggiungibile: {e}"
@@ -973,8 +991,13 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
             RX_PAGINA_BANDO.search(testo[:3000])):
         return None
     gruppi, chiavi = classifica(titolo, testo[:20000])
+    tema_libero = False
     if not gruppi:
-        return None
+        corpo = norm(f"{titolo} {testo[:20000]}")
+        if not (RX_SALUTE.search(corpo) and RX_TEMA_LIBERO.search(corpo) and RX_ESTERO.search(corpo)):
+            return None
+        gruppi, chiavi, tema_libero = [TEMA_LIBERO], [m.group(0).lower() for m in (RX_TEMA_LIBERO.search(corpo),
+                                                                                   RX_ESTERO.search(corpo))], True
     scad, solo_passate = scadenza_da_testo(testo[:30000])
     if solo_passate:
         return None                      # bando chiuso
@@ -1002,14 +1025,14 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
         paesi=fonte.get("copertura") or None, url=url,
         italia={"si": "Sì", "sì": "Sì", "no": "No"}.get((fonte.get("italia") or "").strip().lower(), "Da verificare"),
         stato="Aperto" if scad else "Scadenza da verificare",
-        _testo=f"{titolo}. {testo}"[:8000], _origine="web" + ("-pdf" if pdf else ""))
+        _testo=f"{titolo}. {testo}"[:8000], _origine="web" + ("-pdf" if pdf else ""), tema_libero=tema_libero)
 
 
 # ---------------------------------------------------------------------------
 # LLM: Gemini (API gratuita di Google) oppure, senza chiave, Ollama in locale
 # ---------------------------------------------------------------------------
 
-PROMPT_VERSIONE = "3"
+PROMPT_VERSIONE = "4"
 ISTRUZIONI_LLM = """Sei un esperto italiano di finanziamenti per la ricerca clinica in riabilitazione.
 Ricevi un elenco JSON di call (bandi), ciascuna con un "id". Rispondi SOLO con JSON nella forma
 {"bandi": [ ... ]}: un oggetto per ogni call ricevuta, con lo stesso "id", scritto in italiano
@@ -1066,7 +1089,8 @@ RILEVANZA (ambito: riabilitazione)
   non oncologiche; oppure alle tecnologie per la riabilitazione.
 - Media: riguarda queste condizioni ma non specificamente la riabilitazione (diagnosi, farmaci,
   biomarcatori, assistenza), oppure è un bando sanitario ampio che ammette esplicitamente
-  progetti di riabilitazione.
+  progetti di riabilitazione, oppure è un bando o una fellowship di ricerca clinica o biomedica a
+  tema libero (qualsiasi area della salute) in cui un progetto di riabilitazione sarebbe ammissibile.
 - Bassa: oncologia e tumori; condizioni non legate alla riabilitazione; temi non sanitari; bandi
   che citano questi temi solo di passaggio.
 
@@ -1316,6 +1340,11 @@ def esclusione_finale(rec: dict) -> str | None:
         return rec["tipo_ricerca"]
     if rec.get("rilevanza") == "Bassa":
         return "Non pertinente alla riabilitazione"
+    if rec.get("tema_libero"):
+        if rec.get("italia") != "Sì":
+            return "Tema libero non aperto all'estero"
+        if rec.get("rilevanza") == "Alta":
+            rec["rilevanza"] = "Media"       # tema libero: mai «Alta»
     return None
 
 
@@ -1589,7 +1618,7 @@ def componi_email(bandi: list[dict], nuovi: set[str], allegato: Path, mittente: 
                                           for d in dettagli) + "</li>")
             corpo.append("</ul>")
             testo.append("")
-    conteggio = {g: sum(1 for b in bandi if g in b.get("macrogruppi", [])) for g in GRUPPI_ORDINE}
+    conteggio = {g: sum(1 for b in bandi if g in b.get("macrogruppi", [])) for g in GRUPPI_ORDINE + [TEMA_LIBERO]}
     riepilogo = " | ".join(f"{g}: {n}" for g, n in conteggio.items())
     nota_esclusi = f"Esclusi automaticamente: {_testo_esclusi(esclusi)}." if esclusi else ""
     testo += ["Riepilogo per macrogruppo: " + riepilogo, nota_esclusi, f"In allegato: {allegato.name}"]
