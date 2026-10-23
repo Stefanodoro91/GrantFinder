@@ -132,6 +132,22 @@ TERMINI = [
     ("Altre malattie e riabilitazione", r"esclerosis multiple|esclerose multipla|sclerose en plaques|multiple sklerose", "S"),
     ("Altre malattie e riabilitazione", r"lesion medular|lesao medular|lesion de la moelle|querschnitt", "S"),
     ("Altre malattie e riabilitazione", r"discapacidad|deficiencia fisica|handicap|behinderung", "D"),
+    # Ricerca clinica in qualsiasi area medica (le diciture NIH «Clinical Trial Not Allowed/Optional/Required» non contano)
+    ("Ricerca clinica", r"randomi[sz]ed (controlled )?trials?|pragmatic (clinical )?trials?|efficacy trials?|effectiveness trials?|"
+                        r"phase (i{1,3}|[123])[ab]? (clinical )?trials?|clinical trials? (network|planning|implementation|readiness|site)|"
+                        r"comparative effectiveness|patient[- ]cent(er|re)d outcomes|health services research|"
+                        r"implementation (science|research)|outcomes research|real[- ]world (evidence|data)|"
+                        r"clinical (research|investigation|epidemiolog)|ricerca clinica|sperimentazion[ei] clinic|studi clinici|"
+                        r"ensayos? clinicos?|investigacion clinica|ensaios? clinicos?|pesquisa clinica|essais? cliniques?|"
+                        r"recherche clinique|klinische (studie|forschung)", "S"),
+    ("Ricerca clinica", r"\bclinical trials?\b(?!\s*\(?\s*(not allowed|optional|required))|\bpatients?\b|\bpazienti\b", "N"),
+    # Ingegneria clinica e biomedica, tecnologie per la salute
+    ("Ingegneria clinica", r"biomedical engineering|clinical engineering|bioengineering|rehabilitation engineering|"
+                           r"medical (devices?|technolog|imaging)|health(care)? technolog|digital health|\bmhealth\b|"
+                           r"\be-?health\b|telemedicine|telehealth|point[- ]of[- ]care|diagnostic (devices?|technolog)|"
+                           r"ingegneria (clinica|biomedica)|dispositivi medici|sanita digitale|tecnologie (sanitarie|biomediche)|"
+                           r"ingenieria biomedica|engenharia biomedica|genie biomedical|medizintechnik", "S"),
+    ("Ingegneria clinica", r"artificial intelligence|machine learning|deep learning|\bsensors?\b|intelligenza artificiale", "N"),
 ]
 _TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 
@@ -161,7 +177,7 @@ BOILERPLATE = re.compile(
     r"accessibility (requirements|standards)|non discriminazione|pari opportunita)", re.I)
 
 GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione",
-                 "Altre malattie e riabilitazione"]
+                 "Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica"]
 TEMA_LIBERO = "Ricerca sanitaria a tema libero"
 # bando sanitario ampio: ricerca medica o clinica senza un tema imposto
 RX_SALUTE = re.compile(r"(health|medical|clinical|biomedical|life sciences?|neuroscien|sanitari|medic[aio]|clinic[aoi]|"
@@ -231,7 +247,7 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
     if punteggio < SOGLIA:
         return [], []
     # il gruppo generico solo se non ci sono gruppi più specifici con peso comparabile
-    altri = [g for g in gruppi if g != "Altre malattie e riabilitazione"]
+    altri = [g for g in gruppi if g not in ("Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica")]
     if altri and gruppi.get("Altre malattie e riabilitazione", 0) < max(gruppi[g] for g in altri):
         gruppi.pop("Altre malattie e riabilitazione", None)
     return [g for g in GRUPPI_ORDINE if g in gruppi], parole[:12]
@@ -247,9 +263,6 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
 # ---------------------------------------------------------------------------
 
 ESCLUSIONI_TITOLO = [
-    ("Oncologia", re.compile(
-        r"\b(cancers?|oncolog\w*|tumou?rs?|tumore|tumori|carcinom\w*|leuk[a]?emi\w*|lymphom\w*|"
-        r"melanom\w*|sarcom\w*|cancro|neoplas\w*|chemotherap\w*|chemioterap\w*)\b|-CANCER-", re.I)),
     ("Infrastruttura", re.compile(
         r"(\binfrastructure\b|infrastruttur|coordinating cent(er|re)|coordination cent(er|re)|"
         r"data (management|coordinating|coordination|resource|sharing) (cent(er|re)|core)|\bdmcc\b|\bdcc\b|"
@@ -670,7 +683,11 @@ GG_PAROLE = ["multiple sclerosis", "amyotrophic lateral sclerosis", "spinal cord
              "Alzheimer", "assistive technology", "disability", "neurorehabilitation",
              "physical therapy", "exoskeleton", "mobility", "falls", "neurodegenerative",
              "brain injury", "prosthetic", "telerehabilitation", "geriatric", "cognitive decline",
-             "frailty", "robotics", "motor recovery", "aphasia", "wearable"]
+             "frailty", "robotics", "motor recovery", "aphasia", "wearable",
+             # ricerca clinica e ingegneria clinica (focus esteso)
+             "clinical trial", "clinical research", "randomized", "comparative effectiveness",
+             "implementation science", "health services research", "patient-centered outcomes",
+             "biomedical engineering", "bioengineering", "medical device", "digital health", "telehealth"]
 
 
 def _primo(d: dict, *chiavi):
@@ -994,10 +1011,9 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
     tema_libero = False
     if not gruppi:
         corpo = norm(f"{titolo} {testo[:20000]}")
-        if not (RX_SALUTE.search(corpo) and RX_TEMA_LIBERO.search(corpo) and RX_ESTERO.search(corpo)):
+        if not (RX_SALUTE.search(corpo) and RX_TEMA_LIBERO.search(corpo)):
             return None
-        gruppi, chiavi, tema_libero = [TEMA_LIBERO], [m.group(0).lower() for m in (RX_TEMA_LIBERO.search(corpo),
-                                                                                   RX_ESTERO.search(corpo))], True
+        gruppi, chiavi, tema_libero = [TEMA_LIBERO], [RX_TEMA_LIBERO.search(corpo).group(0).lower()], True
     scad, solo_passate = scadenza_da_testo(testo[:30000])
     if solo_passate:
         return None                      # bando chiuso
@@ -1032,8 +1048,8 @@ def valuta_pagina(fonte: dict, url: str, titolo: str, testo: str, pdf: bool = Fa
 # LLM: Gemini (API gratuita di Google) oppure, senza chiave, Ollama in locale
 # ---------------------------------------------------------------------------
 
-PROMPT_VERSIONE = "4"
-ISTRUZIONI_LLM = """Sei un esperto italiano di finanziamenti per la ricerca clinica in riabilitazione.
+PROMPT_VERSIONE = "5"
+ISTRUZIONI_LLM = """Sei un esperto italiano di finanziamenti per la ricerca clinica, l'ingegneria clinica e biomedica e la riabilitazione.
 Ricevi un elenco JSON di call (bandi), ciascuna con un "id". Rispondi SOLO con JSON nella forma
 {"bandi": [ ... ]}: un oggetto per ogni call ricevuta, con lo stesso "id", scritto in italiano
 corretto. Ogni oggetto ha queste chiavi:
@@ -1081,18 +1097,19 @@ TIPO DI RICERCA
 - servizi: erogazione di servizi sociali o assistenziali, programmi di salute pubblica, campagne
   di sensibilizzazione, inclusione lavorativa, attività per comunità, scuole o territorio.
 
-RILEVANZA (ambito: riabilitazione)
+RILEVANZA (ambito: riabilitazione, ricerca clinica, ingegneria clinica)
 - Alta: dedicata alla riabilitazione, al recupero funzionale o alla gestione a lungo termine della
   disabilità in ictus, Parkinson, sclerosi multipla, SLA, altre malattie neurologiche o
   neurodegenerative, demenze, invecchiamento (fragilità, cadute), lesioni midollari o cerebrali,
   dolore cronico; oppure alla riabilitazione cardiologica, respiratoria o di altre malattie croniche
   non oncologiche; oppure alle tecnologie per la riabilitazione.
-- Media: riguarda queste condizioni ma non specificamente la riabilitazione (diagnosi, farmaci,
-  biomarcatori, assistenza), oppure è un bando sanitario ampio che ammette esplicitamente
-  progetti di riabilitazione, oppure è un bando o una fellowship di ricerca clinica o biomedica a
-  tema libero (qualsiasi area della salute) in cui un progetto di riabilitazione sarebbe ammissibile.
-- Bassa: oncologia e tumori; condizioni non legate alla riabilitazione; temi non sanitari; bandi
-  che citano questi temi solo di passaggio.
+- Media: ricerca clinica in qualsiasi area medica, oncologia compresa (trial, studi su pazienti,
+  epidemiologia clinica, metodologia, servizi sanitari, implementazione); ingegneria clinica o biomedica
+  e tecnologie per la salute con validazione su pazienti (dispositivi, imaging, sanità digitale, IA
+  clinica); bandi sulle condizioni elencate sopra non specifici della riabilitazione; bandi o fellowship
+  sanitari a tema libero, anche riservati agli enti di un solo Paese.
+- Bassa: ricerca di base o preclinica senza pazienti; temi non sanitari; bandi che citano questi temi
+  solo di passaggio.
 
 TRADUZIONE
 titolo_it: italiano naturale e professionale, massimo 20 parole, come lo scriverebbe un ricercatore
@@ -1341,8 +1358,6 @@ def esclusione_finale(rec: dict) -> str | None:
     if rec.get("rilevanza") == "Bassa":
         return "Non pertinente alla riabilitazione"
     if rec.get("tema_libero"):
-        if rec.get("italia") != "Sì":
-            return "Tema libero non aperto all'estero"
         if rec.get("rilevanza") == "Alta":
             rec["rilevanza"] = "Media"       # tema libero: mai «Alta»
     return None

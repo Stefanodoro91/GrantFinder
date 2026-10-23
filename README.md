@@ -128,5 +128,5 @@ I segreti non sono visibili a nessuno, nemmeno nel repository pubblico.
 - L’ammissibilità dell’Italia e il tipo di ricerca sono stime automatiche: un bando segnato «Sì» va comunque verificato nella call, e un bando escluso per errore non compare nel report. Le esclusioni sono conteggiate nel foglio LOG e in fondo all’email.
 - Copertura finanziaria e partenariato dei bandi UE seguono le regole standard del tipo di azione: le condizioni del singolo topic possono differire.
 
-### Bandi sanitari a tema libero
-Oltre ai bandi di riabilitazione (filtro a parole chiave), entrano i bandi e le fellowship di ricerca clinica o biomedica a **tema libero** solo se aperti a ricercatori o enti di altri Paesi (Italia ammessa con frase verificata). Hanno il macrogruppo «Ricerca sanitaria a tema libero» e pertinenza al massimo «Media».
+### Ambito (dal 23 ottobre 2026)
+Riabilitazione (pertinenza «Alta»), più **ricerca clinica** in qualsiasi area medica, oncologia compresa, e **ingegneria clinica e biomedica** (pertinenza «Media»). Entrano anche i bandi e le fellowship sanitari a **tema libero**, compresi quelli riservati agli enti di un solo Paese (macrogruppo «Ricerca sanitaria a tema libero», pertinenza al massimo «Media»): chi legge sceglie con i filtri del sito. Restano escluse ricerca preclinica, infrastrutture e servizi sociali.
