@@ -148,8 +148,17 @@ TERMINI = [
                            r"ingegneria (clinica|biomedica)|dispositivi medici|sanita digitale|tecnologie (sanitarie|biomediche)|"
                            r"ingenieria biomedica|engenharia biomedica|genie biomedical|medizintechnik", "S"),
     ("Ingegneria clinica", r"artificial intelligence|machine learning|deep learning|\bsensors?\b|intelligenza artificiale", "N"),
+    # spagnolo e portoghese: ricerca clinica, salute, ingegneria
+    ("Ricerca clinica", r"estudios? clinicos?|investigacion en salud|pesquisa em saude|estudos? clinicos?|"
+                        r"investigacion biomedica|pesquisa biomedica|salud publica|saude publica", "S"),
+    ("Ingegneria clinica", r"dispositivos medicos|tecnologias? (en|em|para la|para a) salud|tecnologias? em saude|"
+                           r"salud digital|saude digital|telemedicina|telessaude", "S"),
+    # giapponese, coreano, cinese (fonti senza pagina inglese)
+    ("Altre malattie e riabilitazione", r"リハビリテーション|理学療法|作業療法|재활|물리치료|작업치료|康复|物理治疗|作业治疗", "S"),
+    ("Ictus", r"脳卒中|뇌졸중|脑卒中|卒中", "S"),
+    ("Ricerca clinica", r"臨床研究|臨床試験|治験|임상연구|임상시험|临床研究|临床试验", "S"),
+    ("Ingegneria clinica", r"医療機器|의료기기|医疗器械|生体医工学|의공학|生物医学工程", "S"),
 ]
-_TERMINI_C = [(g, re.compile(p, re.I), t) for g, p, t in TERMINI]
 
 # contesto clinico: servono almeno due espressioni diverse (una sola citazione
 # di "salute" o "pazienti" in un bando sociale o ambientale non basta)
@@ -204,6 +213,10 @@ def norm(t: str | None) -> str:
         return ""
     t = unicodedata.normalize("NFKD", t)
     return "".join(c for c in t if not unicodedata.combining(c))
+
+
+# parole chiave con la stessa normalizzazione del testo (accenti, hangul, kana)
+_TERMINI_C = [(g, re.compile(norm(p), re.I), t) for g, p, t in TERMINI]
 
 
 def togli_boilerplate(testo: str) -> str:
@@ -871,11 +884,13 @@ def converti_grants_gov(hit: dict, det: dict) -> dict | None:
 RX_LINK_BANDO = re.compile(
     r"(bando|bandi|avvis|call|grant|funding|finanziament|opportunit|fellowship|award|"
     r"research[-_ ]?(programme|program|fund)|ricerca|apply|contribut|premi|programm|scheme|"
-    r"convocatori|chamad|edita|appel|ausschreibung|forderung|foerder|financia|financement|subvenc|beca|bolsa)", re.I)
+    r"convocatori|chamad|edita|appel|ausschreibung|forderung|foerder|financia|financement|subvenc|beca|bolsa|"
+    r"公募|募集|研究費|공모|모집|과제|申报|指南|项目)", re.I)
 RX_PAGINA_BANDO = re.compile(
     r"(bando|avviso|call for (proposals|applications)|grant|funding (opportunity|call|round)|"
     r"fellowship|award|finanziament|application deadline|how to apply|come partecipare|scadenza|"
-    r"convocatoria|chamada|edital|appel a projets|appel a candidatures|ausschreibung|bekanntmachung|financiacion|financiamento)", re.I)
+    r"convocatoria|chamada|edital|appel a projets|appel a candidatures|ausschreibung|bekanntmachung|financiacion|financiamento|"
+    r"公募|募集要項|공모|공고|申报指南|项目指南|征集)", re.I)
 # pagine che non sono bandi: notizie, elenchi di vincitori, portfolio, moduli...
 RX_URL_NON_BANDO = re.compile(
     r"/(news|notizie|notizia|press|comunicati|blog|stories|story|events?|eventi|webinars?|podcasts?|faqs?|"
@@ -894,7 +909,7 @@ RX_APERTO = re.compile(
     r"apply (now|online|here|by)|call (is )?open|currently accepting|accepting (applications|proposals|submissions)|"
     r"candidature (aperte|entro)|domande (entro|possono essere presentate)|"
     r"presentazione delle (domande|proposte|candidature)|bando aperto|deadline|closing date|scadenza|"
-    r"plazo|prazo|date limite|einreichungsfrist|abierta|aberta|ouvert|"
+    r"plazo|prazo|date limite|einreichungsfrist|abierta|aberta|ouvert|締切|応募期間|마감|접수기간|截止|申报时间|"
     r"termine (per la presentazione|ultimo))", re.I)
 ESTENSIONI_SALTA = (".jpg", ".jpeg", ".png", ".gif", ".svg", ".zip", ".doc", ".docx", ".xls",
                     ".xlsx", ".ppt", ".pptx", ".mp4", ".mp3", ".ics")
