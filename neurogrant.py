@@ -1843,6 +1843,9 @@ def ricerca_guidata(http: Http, chiave: str, modelli: list[str]) -> list[tuple[d
         except Exception as e:
             errore = str(e)[:200]
         risultati.append((fonte, recs, n, errore))
+        if errore and "429" in errore:
+            log.warning("Ricerca guidata sospesa: quota Gemini esaurita, si riprende alla prossima esecuzione")
+            break
         log.info("Ricerca web %s: %d pagine trovate, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
     return risultati
 
