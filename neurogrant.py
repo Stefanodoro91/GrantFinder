@@ -1857,7 +1857,12 @@ def registra_fonte(stato, nome, tipo, copertura, finanz, url, recs, esaminati, e
     f["pertinenti"] = sorted(set(f.get("pertinenti", [])) | {r["id"] for r in recs})[-5000:]
     if errore:
         f["note"] = f"Ultimo errore {OGGI.strftime('%d/%m/%Y')}: {errore}"[:300]
+        f["errori_di_fila"] = int(f.get("errori_di_fila", 0)) + 1
+        if f["errori_di_fila"] >= 3:
+            f["pausa_fino"] = iso(OGGI + timedelta(days=14))
     else:
+        f["errori_di_fila"] = 0
+        f.pop("pausa_fino", None)
         f["ultimo_ok"] = datetime.now().strftime("%d/%m/%Y %H:%M")
         f["note"] = f"Ultima esecuzione: {esaminati} elementi esaminati, {len(recs)} pertinenti"
 
@@ -1921,6 +1926,10 @@ def main() -> None:
     if "web" in fonti:
         for fonte in leggi_fonti_web(BASE / "fonti_web.csv"):
             nome = fonte.get("nome") or fonte["url"]
+            pausa = da_iso((stato["fonti"].get(nome) or {}).get("pausa_fino"))
+            if pausa and pausa > OGGI:          # 3 errori di fila: si salta per 14 giorni, poi si riprova
+                log.info("Web %s: in pausa fino al %s", nome, pausa)
+                continue
             try:
                 recs, n, errore = esplora_fonte(http, fonte, args.max_pagine_web)
             except Exception as e:
