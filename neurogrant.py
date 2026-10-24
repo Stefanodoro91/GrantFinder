@@ -1719,17 +1719,25 @@ def _risolvi(http: Http, url: str) -> str:
         return url
 
 
-def cerca_call(http: Http, chiave: str, modello: str, zona: str, lingua: str) -> list[tuple[str, str]]:
-    """Indirizzi delle call trovate, con il nome del finanziatore quando Gemini lo indica."""
+def cerca_call(http: Http, chiave: str, modelli: list[str], zona: str, lingua: str) -> list[tuple[str, str]]:
+    """Indirizzi delle call trovate, con il nome del finanziatore quando Gemini lo indica.
+    Quando la quota di un modello finisce si passa al successivo (quote separate)."""
     corpo = {"contents": [{"role": "user", "parts": [{"text": PROMPT_RICERCA.format(oggi=OGGI.isoformat(), zona=zona, lingua=lingua)}]}],
              "tools": [{"google_search": {}}], "generationConfig": {"temperature": 0.2}}
-    for tentativo in range(3):
-        r = http.s.post(Gemini.URL.format(m=modello), json=corpo, timeout=180, headers={"x-goog-api-key": chiave})
-        if r.status_code == 429 and tentativo < 2:
+    r = None
+    for modello in list(modelli):
+        for tentativo in range(3):
+            r = http.s.post(Gemini.URL.format(m=modello), json=corpo, timeout=180, headers={"x-goog-api-key": chiave})
+            if r.status_code != 429:
+                break
+            if re.search(r"PerDay|per day|daily", r.text, re.I):
+                break                                   # quota giornaliera: si passa al modello successivo
             time.sleep(40)
+        if r.status_code == 429 and modello in modelli and len(modelli) > 1:
+            modelli.remove(modello)                     # per le zone successive non si riprova questo modello
             continue
-        r.raise_for_status()
         break
+    r.raise_for_status()
     cand = (r.json().get("candidates") or [{}])[0]
     testo = "".join(p.get("text", "") for p in (cand.get("content") or {}).get("parts") or [] if not p.get("thought"))
     urls = []
@@ -1780,14 +1788,14 @@ def leggi_pagina_call(http: Http, fonte: dict, url: str) -> list[dict]:
     return recs
 
 
-def ricerca_guidata(http: Http, chiave: str, modello: str) -> list[tuple[dict, list[dict], int, str | None]]:
+def ricerca_guidata(http: Http, chiave: str, modelli: list[str]) -> list[tuple[dict, list[dict], int, str | None]]:
     risultati = []
     for continente, nome, zona, lingua in RICERCHE_GUIDATE:
         fonte = {"nome": f"Ricerca web – {nome}", "copertura": zona.split(" (")[0], "tipo": "Ricerca guidata",
                  "italia": "verificare", "continente": continente}
         recs, errore, n = [], None, 0
         try:
-            for url, ente in cerca_call(http, chiave, modello, zona, lingua):
+            for url, ente in cerca_call(http, chiave, modelli, zona, lingua):
                 n += 1
                 try:
                     for rec in leggi_pagina_call(http, fonte, url):
@@ -1891,8 +1899,8 @@ def main() -> None:
 
     chiave_g = os.environ.get("GEMINI_API_KEY", "").strip()
     if "ricerca" in fonti and chiave_g:
-        modello_r = [m.strip() for m in args.modelli_gemini.split(",") if m.strip()][0]
-        for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modello_r):
+        modelli_r = [m.strip() for m in args.modelli_gemini.split(",") if m.strip()]
+        for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modelli_r):
             raccolti += recs
             esaminati_tot += n
             if errore:
