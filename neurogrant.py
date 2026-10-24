@@ -124,6 +124,28 @@ TERMINI = [
     ("Altre malattie e riabilitazione", r"cardiovascular|heart failure|cardiac|cardiolog|cardiovascolar|scompenso cardiaco", "C"),
     ("Altre malattie e riabilitazione", r"\bcopd\b|bpco|pulmonary|respiratory|polmonar|respiratori", "C"),
     ("Altre malattie e riabilitazione", r"diabet|obesit", "C"),
+    # Fisiatria, ortopedia e apparato muscolo-scheletrico
+    ("Fisiatria e ortopedia", r"physical (medicine|and rehabilitation medicine)|physiatr|fisiatri|medicina fisica|"
+                              r"orthop(a)?edic|ortoped|musculoskeletal|muscoloscheletric|osteoarthrit|\bartrosi|"
+                              r"osteoporo|hip fracture|fragility fracture|frattur[ae] (di femore|da fragilita)|"
+                              r"low back pain|lombalgia|neck pain|cervicalgia|tendinopath|tendinopatia|arthroplast|artroprotes|"
+                              r"sports? (medicine|injur)|medicina dello sport|anterior cruciate|crociato anteriore", "S"),
+    ("Fisiatria e ortopedia", r"rheumat|reumat|\bfractures?\b|fratture|\bjoints?\b|articolar", "N"),
+    # Neurologia clinica
+    ("Neurologia", r"epilep|seizure disorder|migrain|emicrania|headache disorder|cefalea|peripheral neuropath|neuropatia periferica|"
+                   r"myasthenia|miastenia|guillain|concussion|commozione cerebrale|neurodevelopmental|neurosviluppo|autism|autismo|"
+                   r"\badhd\b|dystonia|distonia|essential tremor|tremore essenziale|neuro-?oncolog", "S"),
+    ("Neurologia", r"\bneurolog|neuroscien|\bbrain\b|cervello|nervous system|sistema nervoso", "N"),
+    # Oncologia ed ematologia (clinica: la ricerca di base la esclude l'analisi)
+    ("Oncologia ed ematologia", r"cancer survivor|survivorship|cancer rehabilit|riabilitazione oncologica|psycho-?oncolog|psico-?oncolog|"
+                                r"sickle cell|anemia falciforme|thalassa?emi|talassemi|hemophilia|haemophilia|emofilia", "S"),
+    ("Oncologia ed ematologia", r"\bcancers?\b|\btumou?rs?\b|\btumori\b|oncolog|neoplas|onco-?hematolog|onco-?ematolog|"
+                                r"hematolog|haematolog|ematolog|leuka?emi|leucemi|lymphom|linfom|myeloma|mieloma", "N"),
+    # Genetica clinica e malattie rare
+    ("Genetica clinica e malattie rare", r"rare diseases?|malattie rare|orphan (disease|drug)|farmaci orfani|clinical genetic|genetica (clinica|medica)|"
+                                         r"genomic medicine|medicina genomica|newborn screening|screening neonatale|gene therap|terapia genica|"
+                                         r"inherited (disorders?|diseases?)|malattie (genetiche|ereditarie)|enfermedades raras|doencas raras|maladies rares", "S"),
+    ("Genetica clinica e malattie rare", r"genomic|genetic|genetica|precision medicine|medicina di precisione|personali[sz]ed medicine", "N"),
     # termini in spagnolo, portoghese, francese e tedesco (fonti estere senza pagina inglese)
     ("Ictus", r"accidente cerebrovascular|accident vasculaire|\bavc\b|schlaganfall", "S"),
     ("Invecchiamento", r"\bdemenc|\bdemence|envejecimiento saludable|vieillissement", "S"),
@@ -186,7 +208,8 @@ BOILERPLATE = re.compile(
     r"accessibility (requirements|standards)|non discriminazione|pari opportunita)", re.I)
 
 GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione",
-                 "Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica"]
+                 "Altre malattie e riabilitazione", "Fisiatria e ortopedia", "Neurologia", "Oncologia ed ematologia",
+                 "Genetica clinica e malattie rare", "Ricerca clinica", "Ingegneria clinica"]
 TEMA_LIBERO = "Ricerca sanitaria a tema libero"
 # bando sanitario ampio: ricerca medica o clinica senza un tema imposto
 RX_SALUTE = re.compile(r"(health|medical|clinical|biomedical|life sciences?|neuroscien|sanitari|medic[aio]|clinic[aoi]|"
@@ -260,7 +283,8 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
     if punteggio < SOGLIA:
         return [], []
     # il gruppo generico solo se non ci sono gruppi più specifici con peso comparabile
-    altri = [g for g in gruppi if g not in ("Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica")]
+    altri = [g for g in gruppi if g not in ("Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica",
+                                            "Neurologia", "Oncologia ed ematologia", "Genetica clinica e malattie rare")]
     if altri and gruppi.get("Altre malattie e riabilitazione", 0) < max(gruppi[g] for g in altri):
         gruppi.pop("Altre malattie e riabilitazione", None)
     return [g for g in GRUPPI_ORDINE if g in gruppi], parole[:12]
@@ -1118,12 +1142,17 @@ RILEVANZA (ambito: riabilitazione, ricerca clinica, ingegneria clinica)
   neurodegenerative, demenze, invecchiamento (fragilità, cadute), lesioni midollari o cerebrali,
   dolore cronico; oppure alla riabilitazione cardiologica, respiratoria o di altre malattie croniche
   non oncologiche; oppure alle tecnologie per la riabilitazione.
-- Media: ricerca clinica in qualsiasi area medica, oncologia compresa (trial, studi su pazienti,
-  epidemiologia clinica, metodologia, servizi sanitari, implementazione); ingegneria clinica o biomedica
+- Alta anche: medicina fisica e riabilitativa (fisiatria), riabilitazione ortopedica e muscolo-scheletrica,
+  medicina dello sport, riabilitazione oncologica e cancer survivorship, invecchiamento attivo e in salute
+  con interventi su persone.
+- Media: ricerca clinica in qualsiasi area medica (trial, studi su pazienti, epidemiologia clinica,
+  metodologia, servizi sanitari, implementazione), in particolare neurologia, ortopedia e reumatologia,
+  oncologia ed ematologia, genetica clinica e malattie rare, geriatria; ingegneria clinica o biomedica
   e tecnologie per la salute con validazione su pazienti (dispositivi, imaging, sanità digitale, IA
   clinica); bandi sulle condizioni elencate sopra non specifici della riabilitazione; bandi o fellowship
   sanitari a tema libero, anche riservati agli enti di un solo Paese.
-- Bassa: ricerca di base o preclinica senza pazienti; temi non sanitari; bandi che citano questi temi
+- Bassa: ricerca di base o preclinica senza pazienti (biologia molecolare e cellulare, genetica o
+  genomica di base, scoperta di bersagli o farmaci, modelli animali); temi non sanitari; bandi che citano questi temi
   solo di passaggio.
 
 TRADUZIONE
@@ -1693,15 +1722,21 @@ RICERCHE_GUIDATE = [
     ("Asia", "India", "India (ICMR, ANRF, DBT, DST, India Alliance, foundations)", "English"),
     ("Asia", "Southeast Asia", "Singapore, Malaysia, Thailand, Vietnam, Philippines, Indonesia", "English and local languages"),
     ("Asia", "Middle East", "Saudi Arabia, United Arab Emirates, Qatar, Israel, Turkey, Iran, Jordan", "English and local languages"),
+    ("Europa", "European national funders", "Spain, Portugal, France, Belgium, Netherlands, Germany, Austria, Switzerland, "
+     "Nordic countries, Poland, Czechia, Greece, Ireland (national agencies and medical charities)", "English and local languages"),
+    ("Africa", "Africa", "South Africa, Nigeria, Kenya, Ghana, Uganda, Ethiopia, Egypt, Morocco, Tunisia (and pan-African funders)",
+     "English, French, Arabic"),
     ("Oceania", "Australia and New Zealand", "Australia and New Zealand (NHMRC, MRFF, state funds, charities, HRC)", "English"),
     ("Internazionale", "Global South and international", "low- and middle-income countries, international funders "
      "(WHO/TDR, PAHO, TWAS, ICGEB, IDRC, Wellcome, Gates, bilateral programmes with Italy)", "English, Spanish, Portuguese, French"),
 ]
 PROMPT_RICERCA = """Search the web for research FUNDING CALLS that are OPEN today ({oggi}) or open soon, with a
 submission deadline after {oggi}, from funders in: {zona}. Search also in {lingua}.
-Topics: clinical research or clinical trials in any medical area, rehabilitation, physiotherapy, occupational or
-speech therapy, neurorehabilitation, disability, assistive technology, clinical or biomedical engineering,
-medical devices, digital health. Grants for researchers or research projects only: no scholarships for
+Topics: clinical research or clinical trials in any medical area (especially neurology, orthopaedics and
+musculoskeletal health, physical and rehabilitation medicine, oncology and haematology, clinical genetics and
+rare diseases, geriatrics and healthy ageing), rehabilitation, physiotherapy, occupational or speech therapy,
+neurorehabilitation, sports medicine, disability, assistive technology, clinical or biomedical engineering,
+medical devices, digital health. Not basic or preclinical research. Grants for researchers or research projects only: no scholarships for
 students, no prizes for published work, no tenders for services, no calls that are already closed.
 Give the OFFICIAL page of each call on the funder's own website (not news sites or aggregators).
 Answer ONLY with a JSON array, at most 15 items: [{{"title": "...", "funder": "...", "country": "...",
