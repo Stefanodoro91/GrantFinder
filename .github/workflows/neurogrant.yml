@@ -28,6 +28,7 @@ jobs:
     env:
       MINUTI_LLM: ${{ github.event.inputs.minuti_llm || '240' }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_SEARCH_API_KEY: ${{ secrets.GEMINI_SEARCH_API_KEY }}
       GEMINI_MODELS: ${{ vars.GEMINI_MODELS }}
     steps:
       - uses: actions/checkout@v4

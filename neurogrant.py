@@ -1935,7 +1935,10 @@ def main() -> None:
                            fonte["url"], recs, n, errore)
             log.info("Web %s: %d pagine, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
 
-    chiave_g = os.environ.get("GEMINI_API_KEY", "").strip()
+    # Google Search con Gemini non è nel piano gratuito: serve la chiave di un progetto con fatturazione
+    chiave_g = os.environ.get("GEMINI_SEARCH_API_KEY", "").strip()
+    if "ricerca" in fonti and not chiave_g:
+        log.info("Ricerca guidata non attiva: manca il segreto GEMINI_SEARCH_API_KEY")
     if "ricerca" in fonti and chiave_g:
         modelli_r = [m.strip() for m in args.modelli_gemini.split(",") if m.strip()]
         for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modelli_r):
