@@ -66,7 +66,7 @@ MS International Federation;https://www.msif.org/research/;Mondiale;Charity;veri
 National MS Society;https://www.nationalmssociety.org/research;Mondiale;Charity;verificare;Internazionale;Sclerosi multipla
 Cure Parkinson's;https://cureparkinsons.org.uk/research/;Mondiale;Charity;verificare;Internazionale;Parkinson
 International Spinal Research Trust;https://spinal-research.org/research/;Mondiale;Charity;verificare;Internazionale;Lesioni midollari
-Craig H. Neilsen Foundation;https://chnfoundation.org/grants/;USA e Canada;Fondazione privata;no;Nord America;Lesioni midollari
+Craig H. Neilsen Foundation;https://chnfoundation.org/funding-opportunities/;USA e Canada;Fondazione privata;no;Nord America;Lesioni midollari
 American Occupational Therapy Foundation;https://www.aotf.org/;USA;Fondazione privata;no;Nord America;Terapia occupazionale
 AMED – Japan Agency for Medical Research and Development;https://www.amed.go.jp/koubo/bunya_index.html;Giappone;Pubblico estero;verificare;Asia;Elenco bandi per area (pagina in giapponese)
 JSPS – Japan Society for the Promotion of Science;https://www.jsps.go.jp/english/;Giappone;Pubblico estero;verificare;Asia;Alcuni programmi per ricercatori stranieri
@@ -74,7 +74,7 @@ NSFC – National Natural Science Foundation of China;https://www.nsfc.gov.cn/en
 ICMR – Indian Council of Medical Research;https://www.icmr.gov.in/;India;Pubblico estero;no;Asia;
 India Alliance (DBT/Wellcome);https://www.indiaalliance.org/;India;Fondazione privata;no;Asia;
 FAPESP;https://fapesp.br/en/calls;Brasile;Pubblico estero;verificare;America Latina;Alcuni bandi con partner esteri
-CNPq;https://www.gov.br/cnpq/pt-br;Brasile;Pubblico estero;no;America Latina;Pagina in portoghese
+CNPq;https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao;Brasile;Pubblico estero;no;America Latina;Pagina in portoghese
 CONICET;https://convocatorias.conicet.gov.ar/;Argentina;Pubblico estero;no;America Latina;Pagina in spagnolo
 ANID Chile;https://anid.cl/concursos/;Cile;Pubblico estero;no;America Latina;Pagina in spagnolo
 Minciencias Colombia;https://minciencias.gov.co/convocatorias;Colombia;Pubblico estero;no;America Latina;Pagina in spagnolo
@@ -117,7 +117,7 @@ NSTC – National Science and Technology Council Taiwan;https://www.nstc.gov.tw/
 IDRC – International Development Research Centre;https://idrc-crdi.ca/en/funding;Paesi a basso e medio reddito;Pubblico internazionale;no;Internazionale;Ricerca in Asia, America Latina e Africa
 SECIHTI México – Convocatorias;https://secihti.mx/;Messico;Pubblico estero;no;America Latina;Pagina in spagnolo
 fundsforNGOs – Health;https://www2.fundsforngos.org/category/health/;Mondiale;Aggregatore;verificare;Internazionale;Bandi per Paesi a basso e medio reddito
-India Science & Technology – Calls for proposals;https://www.indiascienceandtechnology.gov.in/announcementsopportunity;India;Pubblico estero;no;Asia;Portale governativo che raccoglie i bandi di ANRF, DBT, ICMR e altri
+India Science & Technology – Calls for proposals;https://www.indiascienceandtechnology.gov.in/;India;Pubblico estero;no;Asia;Portale governativo che raccoglie i bandi di ANRF, DBT, ICMR e altri
 NRF – National Research Foundation of Korea;https://www.nrf.re.kr/eng;Corea del Sud;Pubblico estero;no;Asia;
 HSRI – Health Systems Research Institute Thailand;https://www.hsri.or.th/;Thailandia;Pubblico estero;no;Asia;Pagina in thailandese
 NAFOSTED Vietnam;https://nafosted.gov.vn/en/;Vietnam;Pubblico estero;no;Asia;
@@ -126,4 +126,13 @@ FINEP – Chamadas públicas;http://www.finep.gov.br/chamadas-publicas;Brasile;P
 Ministério da Saúde – DECIT;https://www.gov.br/saude/pt-br/composicao/sectics/decit;Brasile;Pubblico estero;no;America Latina;Ricerca sanitaria pubblica brasiliana
 Agencia I+D+i Argentina;https://www.argentina.gob.ar/ciencia/agencia;Argentina;Pubblico estero;no;America Latina;Pagina in spagnolo
 ProCiencia Perú;https://prociencia.gob.pe/;Perù;Pubblico estero;no;America Latina;Pagina in spagnolo
-ANII Uruguay – Convocatorias;https://www.anii.org.uy/convocatorias/;Uruguay;Pubblico estero;no;America Latina;Pagina in spagnolo
+ANRF – Anusandhan National Research Foundation (India);https://anrfonline.in/ANRF/HomePage;India;Pubblico estero;no;Asia;Ex SERB: Core Research Grant, Advanced Research Grant e altri
+ICMR – Novità e bandi;https://www.icmr.gov.in/whatsnew;India;Pubblico estero;no;Asia;Pagina delle novità con le call ICMR
+NHRI Taiwan – National Health Research Institutes;https://www.nhri.edu.tw/eng/;Taiwan;Pubblico estero;no;Asia;
+TÜBİTAK – Funds;https://www.tubitak.gov.tr/en/funds;Turchia;Pubblico estero;verificare;Asia;Alcuni programmi bilaterali aperti a partner esteri
+QNRF – Qatar National Research Fund;https://www.qnrf.org/en-us/;Qatar;Pubblico estero;verificare;Asia;
+FAPERJ – Editais;https://www.faperj.br/?id=28.5.7;Brasile (Rio de Janeiro);Pubblico estero;no;America Latina;Pagina in portoghese
+FAPEMIG – Chamadas abertas;https://fapemig.br/pt/chamadas_abertas_fapemig/;Brasile (Minas Gerais);Pubblico estero;no;America Latina;Pagina in portoghese
+SENACYT Panamá – Convocatorias abiertas;https://www.senacyt.gob.pa/convocatorias/;Panama;Pubblico estero;no;America Latina;Pagina in spagnolo
+FAPESP – Chamadas (portoghese);https://fapesp.br/chamadas/;Brasile (São Paulo);Pubblico estero;verificare;America Latina;Elenco completo in portoghese, comprese le call con partner esteri
+Diabetes Australia – Research grants;https://www.diabetesaustralia.com.au/research/;Australia;Charity;no;Oceania;
