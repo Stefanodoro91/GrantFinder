@@ -1677,6 +1677,133 @@ def invia_email(msg: EmailMessage, utente: str, password: str) -> None:
 # Main
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------- ricerca guidata (Gemini + Google Search)
+# Per le regioni dove i siti dei ministeri sono pochi, lenti o bloccano i bot: Gemini cerca su Google le call
+# aperte e restituisce gli indirizzi; ogni pagina poi si legge e si filtra come le altre fonti web
+# (parole chiave, call aperta, scadenza) e passa dall'analisi e dalla verifica sul testo ufficiale.
+RICERCHE_GUIDATE = [
+    ("America Latina", "Latin America", "Mexico, Colombia, Chile, Argentina, Peru, Uruguay, Ecuador, Costa Rica, Panama",
+     "Spanish (convocatoria, investigación clínica, rehabilitación, fisioterapia, ingeniería biomédica)"),
+    ("America Latina", "Brazil", "Brazil (federal agencies, state FAPs, Ministry of Health, foundations)",
+     "Portuguese (chamada pública, edital, pesquisa clínica, reabilitação, fisioterapia, engenharia biomédica)"),
+    ("Asia", "Japan", "Japan (AMED, JSPS, JST, foundations)", "Japanese (公募, 臨床研究, リハビリテーション, 医工学)"),
+    ("Asia", "South Korea", "South Korea (NRF, KHIDI, ministries, foundations)", "Korean (공모, 임상연구, 재활, 의공학)"),
+    ("Asia", "China, Taiwan and Hong Kong", "China, Taiwan, Hong Kong (NSFC, NSTC, HMRF, foundations)",
+     "Chinese (申请指南, 临床研究, 康复, 生物医学工程)"),
+    ("Asia", "India", "India (ICMR, ANRF, DBT, DST, India Alliance, foundations)", "English"),
+    ("Asia", "Southeast Asia", "Singapore, Malaysia, Thailand, Vietnam, Philippines, Indonesia", "English and local languages"),
+    ("Asia", "Middle East", "Saudi Arabia, United Arab Emirates, Qatar, Israel, Turkey, Iran, Jordan", "English and local languages"),
+    ("Oceania", "Australia and New Zealand", "Australia and New Zealand (NHMRC, MRFF, state funds, charities, HRC)", "English"),
+    ("Internazionale", "Global South and international", "low- and middle-income countries, international funders "
+     "(WHO/TDR, PAHO, TWAS, ICGEB, IDRC, Wellcome, Gates, bilateral programmes with Italy)", "English, Spanish, Portuguese, French"),
+]
+PROMPT_RICERCA = """Search the web for research FUNDING CALLS that are OPEN today ({oggi}) or open soon, with a
+submission deadline after {oggi}, from funders in: {zona}. Search also in {lingua}.
+Topics: clinical research or clinical trials in any medical area, rehabilitation, physiotherapy, occupational or
+speech therapy, neurorehabilitation, disability, assistive technology, clinical or biomedical engineering,
+medical devices, digital health. Grants for researchers or research projects only: no scholarships for
+students, no prizes for published work, no tenders for services, no calls that are already closed.
+Give the OFFICIAL page of each call on the funder's own website (not news sites or aggregators).
+Answer ONLY with a JSON array, at most 15 items: [{{"title": "...", "funder": "...", "country": "...",
+"deadline": "YYYY-MM-DD or empty", "url": "https://..."}}]"""
+
+
+def _risolvi(http: Http, url: str) -> str:
+    """Gli indirizzi delle fonti di Google passano da un redirect: si legge la destinazione senza seguirla."""
+    if "grounding-api-redirect" not in url:
+        return url
+    try:
+        r = http.s.get(url, allow_redirects=False, timeout=20)
+        return r.headers.get("location") or url
+    except requests.RequestException:
+        return url
+
+
+def cerca_call(http: Http, chiave: str, modello: str, zona: str, lingua: str) -> list[tuple[str, str]]:
+    """Indirizzi delle call trovate, con il nome del finanziatore quando Gemini lo indica."""
+    corpo = {"contents": [{"role": "user", "parts": [{"text": PROMPT_RICERCA.format(oggi=OGGI.isoformat(), zona=zona, lingua=lingua)}]}],
+             "tools": [{"google_search": {}}], "generationConfig": {"temperature": 0.2}}
+    for tentativo in range(3):
+        r = http.s.post(Gemini.URL.format(m=modello), json=corpo, timeout=180, headers={"x-goog-api-key": chiave})
+        if r.status_code == 429 and tentativo < 2:
+            time.sleep(40)
+            continue
+        r.raise_for_status()
+        break
+    cand = (r.json().get("candidates") or [{}])[0]
+    testo = "".join(p.get("text", "") for p in (cand.get("content") or {}).get("parts") or [] if not p.get("thought"))
+    urls = []
+    m = re.search(r"\[.*\]", testo, re.S)
+    if m:
+        try:
+            urls += [(x.get("url", ""), x.get("funder", "")) for x in json.loads(m.group(0)) if isinstance(x, dict)]
+        except ValueError:
+            pass
+    for ch in (cand.get("groundingMetadata") or {}).get("groundingChunks") or []:
+        urls.append(((ch.get("web") or {}).get("uri", ""), ""))
+    out, visti = [], set()
+    for u, ente in urls:
+        u = _risolvi(http, (u or "").strip())
+        if u.startswith("http") and u not in visti and not re.search(
+                r"fundsforngos|grantforward|instrumentl|linkedin|facebook|twitter|x\.com|youtube|wikipedia", u, re.I):
+            visti.add(u)
+            out.append((u, str(ente or "")[:150]))
+    return out[:25]
+
+
+def leggi_pagina_call(http: Http, fonte: dict, url: str) -> list[dict]:
+    """Una pagina trovata dalla ricerca: si valuta direttamente; se è un elenco, si seguono i suoi link ai bandi."""
+    from bs4 import BeautifulSoup
+    if not http.consentito(url):
+        return []
+    r = http.get(url, cortese=True, timeout=60)
+    if r.status_code >= 400:
+        return []
+    tipo = r.headers.get("content-type", "").lower()
+    if "pdf" in tipo or url.lower().endswith(".pdf"):
+        if len(r.content) > 8_000_000:
+            return []
+        titolo = unquote(Path(urlparse(url).path).stem).replace("_", " ").replace("-", " ").strip()
+        rec = valuta_pagina(fonte, url, titolo, _testo_pdf(r.content), pdf=True)
+        return [rec] if rec else []
+    if "html" not in tipo:
+        return []
+    soup = BeautifulSoup(r.text, "lxml")
+    titolo = (soup.find("h1").get_text(" ", strip=True) if soup.find("h1") else "") or \
+             (soup.title.get_text(" ", strip=True) if soup.title else url)
+    for tag in soup(["script", "style", "noscript", "nav", "footer", "header", "form"]):
+        tag.decompose()
+    rec = valuta_pagina(fonte, url, titolo, re.sub(r"\s+", " ", soup.get_text(" ")).strip())
+    if rec:
+        return [rec]
+    recs, _, _ = esplora_fonte(http, dict(fonte, url=url), 6)
+    return recs
+
+
+def ricerca_guidata(http: Http, chiave: str, modello: str) -> list[tuple[dict, list[dict], int, str | None]]:
+    risultati = []
+    for continente, nome, zona, lingua in RICERCHE_GUIDATE:
+        fonte = {"nome": f"Ricerca web – {nome}", "copertura": zona.split(" (")[0], "tipo": "Ricerca guidata",
+                 "italia": "verificare", "continente": continente}
+        recs, errore, n = [], None, 0
+        try:
+            for url, ente in cerca_call(http, chiave, modello, zona, lingua):
+                n += 1
+                try:
+                    for rec in leggi_pagina_call(http, fonte, url):
+                        if ente:
+                            rec["ente"] = ente
+                        recs.append(rec)
+                except Exception as e:
+                    log.debug("Ricerca %s: %s non letto (%s)", nome, url, e)
+            time.sleep(8)
+        except Exception as e:
+            errore = str(e)[:200]
+        risultati.append((fonte, recs, n, errore))
+        log.info("Ricerca web %s: %d pagine trovate, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
+    return risultati
+
+
 def registra_fonte(stato, nome, tipo, copertura, finanz, url, recs, esaminati, errore=None):
     f = stato["fonti"].setdefault(nome, {"trovati_tot": 0, "pertinenti": []})
     f.update({"tipo": tipo, "copertura": copertura, "finanziamenti": finanz, "url": url})
@@ -1699,7 +1826,7 @@ def main() -> None:
                     "gemini-flash-latest,gemini-flash-lite-latest",
                     help="modelli Gemini in ordine di preferenza: si passa al successivo quando la quota finisce")
     ap.add_argument("--lotto", type=int, default=6, help="bandi per richiesta a Gemini")
-    ap.add_argument("--fonti", default="eu,gg,web", help="sottoinsieme di eu,gg,web")
+    ap.add_argument("--fonti", default="eu,gg,web,ricerca", help="sottoinsieme di eu,gg,web,ricerca")
     ap.add_argument("--max-pagine-web", type=int, default=35)
     ap.add_argument("--no-email", action="store_true")
     ap.add_argument("-v", "--verbose", action="store_true")
@@ -1761,6 +1888,19 @@ def main() -> None:
             registra_fonte(stato, nome, "Lettura pagine web", fonte.get("copertura"), fonte.get("tipo"),
                            fonte["url"], recs, n, errore)
             log.info("Web %s: %d pagine, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
+
+    chiave_g = os.environ.get("GEMINI_API_KEY", "").strip()
+    if "ricerca" in fonti and chiave_g:
+        modello_r = [m.strip() for m in args.modelli_gemini.split(",") if m.strip()][0]
+        for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modello_r):
+            raccolti += recs
+            esaminati_tot += n
+            if errore:
+                errori.append(f"{fonte['nome']}: {errore}")
+            else:
+                fonti_ok.add(fonte["nome"])
+            registra_fonte(stato, fonte["nome"], "Ricerca guidata (Gemini + Google Search)", fonte["copertura"],
+                           "Vari", "https://www.google.com", recs, n, errore)
 
     # deduplica (stesso id o stesso titolo normalizzato e scadenza)
     unici: dict[str, dict] = {}

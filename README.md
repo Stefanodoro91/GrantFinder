@@ -14,6 +14,8 @@ Macrogruppi: Ictus · Parkinson · Invecchiamento · Tecnologie riabilitazione �
 
 Per aggiungere una fonte basta una riga in `fonti_web.csv` (nome; indirizzo; copertura; tipo; italia; continente; note). La colonna `continente` (Europa, Nord America, America Latina, Asia, Africa, Oceania, Internazionale) serve a ordinare la pagina pubblica dei bandi. Le fonti coprono Italia, Europa, Nord e Sud America, Asia, Africa, Oceania e le principali fondazioni internazionali; il filtro riconosce anche termini in spagnolo, portoghese, francese e tedesco. La colonna `italia` dice se la fonte finanzia enti italiani:
 
+**Ricerca guidata (Gemini + Google Search).** Per America Latina, Asia, Medio Oriente, Oceania e Sud globale, dove i siti dei ministeri sono pochi o bloccano i programmi, a ogni esecuzione Gemini cerca su Google le call aperte (anche in spagnolo, portoghese, giapponese, coreano e cinese) e restituisce gli indirizzi delle pagine ufficiali. Ogni pagina viene poi letta e filtrata come le altre fonti web e passa dall'analisi e dalla verifica sul testo ufficiale: la ricerca propone solo indirizzi, non inserisce dati. Le zone sono nell'elenco `RICERCHE_GUIDATE` in `neurogrant.py`; si disattiva con `--fonti eu,gg,web`.
+
 - `si`: i bandi risultano aperti all’Italia;
 - `verificare`: l’LLM legge ogni call e decide;
 - `no`: la fonte finanzia solo enti del proprio Paese (per esempio le charity britanniche, canadesi o australiane): viene letta comunque e i suoi bandi finiscono nel gruppo «Altri Paesi».
