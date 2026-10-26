@@ -130,7 +130,24 @@ TERMINI = [
                               r"osteoporo|hip fracture|fragility fracture|frattur[ae] (di femore|da fragilita)|"
                               r"low back pain|lombalgia|neck pain|cervicalgia|tendinopath|tendinopatia|arthroplast|artroprotes|"
                               r"sports? (medicine|injur)|medicina dello sport|anterior cruciate|crociato anteriore", "S"),
-    ("Fisiatria e ortopedia", r"rheumat|reumat|\bfractures?\b|fratture|\bjoints?\b|articolar", "N"),
+    ("Fisiatria e ortopedia", r"physical and rehabilitation medicine|spasticity|spasticita|botulinum toxin|tossina botulinica|"
+                              r"amputee|amputat|amputazion|orthos[ie]s|ortesi|lymph(o)?edema|linfedema|pelvic floor|pavimento pelvico|"
+                              r"sarcopeni|cardiac rehabilit|pulmonary rehabilit|riabilitazione (cardiologica|respiratoria)", "S"),
+    ("Fisiatria e ortopedia", r"\bfractures?\b|fratture|\bjoints?\b|articolar", "N"),
+    # Reumatologia e malattie autoimmuni
+    ("Reumatologia", r"rheumatolog|reumatolog|rheumatoid|reumatoide|rheumatic (disease|disorder|condition)|malattie reumatiche|"
+                     r"\barthritis|\bartrite|\blupus\b|systemic sclerosis|sclerosi sistemica|scleroderm|sclerodermi|spondyloarthrit|"
+                     r"spondiloartrit|ankylosing spondylitis|spondilite anchilosante|vasculitis|vasculit|\bgout\b|\bgotta\b|"
+                     r"sj[oö]gren|fibromyalg|fibromialg|polymyalgia|polimialgia|myositis|miosite|autoimmune (diseases?|disorders?|conditions?)|"
+                     r"malattie autoimmuni|connective tissue diseases?|connettivit|artritis|artrite reumat|polyarthrite|rheuma", "S"),
+    ("Reumatologia", r"rheumat|reumat|autoimmun|autoimmunit", "N"),
+    # Neuropsicologia e riabilitazione cognitiva
+    ("Neuropsicologia", r"neuropsycholog|neuropsicolog|neuropsicol|cognitive (rehabilitation|training|remediation|stimulation|assessment|reserve)|"
+                        r"riabilitazione cognitiva|stimolazione cognitiva|training cognitivo|executive (function|dysfunction)|funzioni esecutive|"
+                        r"memory (impairment|disorders?|rehabilitation|deficits?)|disturbi (della memoria|cognitivi)|deficit cognitiv|"
+                        r"spatial neglect|\bneglect\b(?= (syndrome|patients|rehabilitation))|aprassia|apraxia|neurocognitiv|"
+                        r"post-?stroke cognitive|cognitive (deficits?|dysfunction|outcomes?)|neuropsiquiatr|neuropsychiatr|neuropsichiatr", "S"),
+    ("Neuropsicologia", r"\bcognit|cognizion|psycholog|psicolog|mental health|salute mentale", "N"),
     # Neurologia clinica
     ("Neurologia", r"epilep|seizure disorder|migrain|emicrania|headache disorder|cefalea|peripheral neuropath|neuropatia periferica|"
                    r"myasthenia|miastenia|guillain|concussion|commozione cerebrale|neurodevelopmental|neurosviluppo|autism|autismo|"
@@ -141,10 +158,29 @@ TERMINI = [
                                 r"sickle cell|anemia falciforme|thalassa?emi|talassemi|hemophilia|haemophilia|emofilia", "S"),
     ("Oncologia ed ematologia", r"\bcancers?\b|\btumou?rs?\b|\btumori\b|oncolog|neoplas|onco-?hematolog|onco-?ematolog|"
                                 r"hematolog|haematolog|ematolog|leuka?emi|leucemi|lymphom|linfom|myeloma|mieloma", "N"),
+    # Pediatria e neonatologia
+    ("Pediatria", r"p(a)?ediatric|\bpediatri|\bpaediatri|neonat|newborns?|preterm|prematur|\binfants?\b|\binfant (health|mortality)|"
+                  r"child health|children'?s health|salute (infantile|del bambino|dei bambini)|adolescent health|childhood (diseases?|cancers?|"
+                  r"disabilit|obesity|onset)|congenital|congenit|developmental (delay|disorders?|disabilit|coordination)|ritardo (dello|di) sviluppo|"
+                  r"neuropsichiatria infantile|child neurolog|neurologia pediatrica|salud infantil|saude infantil|kinderheilkunde|"
+                  r"perinatal|perinatale|neonatolog", "S"),
+    ("Pediatria", r"\bchild(ren)?\b|bambin|adolescen|\byouth\b|\bminori\b|kinder|enfants?|\bninos\b|criancas|young people", "N"),
+    # Radiologia, imaging e radioterapia
+    ("Radiologia e imaging", r"radiolog|diagnostic imaging|medical imaging|imaging biomarkers?|magnetic resonance|risonanza magnetica|\bmri\b|\bfmri\b|"
+                             r"computed tomography|tomografia computerizzata|\bct (scan|imaging)|positron emission|\bpet[- /](ct|mri|imaging|scan)|"
+                             r"ultrasound imaging|ecografi|ultrasonograph|mammograph|mammografi|interventional radiolog|radiologia interventistica|"
+                             r"nuclear medicine|medicina nucleare|radiotherap|radioterapi|radiation oncology|radiation therapy|radiomic|radiomica|"
+                             r"neuroimaging|neuroradiolog|image[- ]guided|theranostic|teranostic|radiologia|radiologie|imagerie medicale|bildgebung", "S"),
+    ("Radiologia e imaging", r"\bimaging\b|tomograph|tomograf|x-ray|raggi x|radiograph|radiografi|ultrasound", "N"),
     # Genetica clinica e malattie rare
     ("Genetica clinica e malattie rare", r"rare diseases?|malattie rare|orphan (disease|drug)|farmaci orfani|clinical genetic|genetica (clinica|medica)|"
                                          r"genomic medicine|medicina genomica|newborn screening|screening neonatale|gene therap|terapia genica|"
-                                         r"inherited (disorders?|diseases?)|malattie (genetiche|ereditarie)|enfermedades raras|doencas raras|maladies rares", "S"),
+                                         r"inherited (disorders?|diseases?)|malattie (genetiche|ereditarie)|enfermedades raras|doencas raras|maladies rares|"
+                                         r"genetic (counsel|testing|diagnos|disorders?|diseases?)|consulenza genetica|test genetic|diagnosi genetica|"
+                                         r"pharmacogenom|pharmacogenet|farmacogenom|farmacogenet|whole[- ](exome|genome) sequencing|exome sequencing|"
+                                         r"sequenziamento (dell'esoma|del genoma)|hereditary (cancer|disorders?|diseases?)|cytogenet|citogenet|"
+                                         r"chromosom(al|e) (abnormalit|disorder)|anomalie cromosomiche|polygenic risk|rischio poligenico|"
+                                         r"genome[- ]wide association|\bgwas\b|human genetics|genetica umana|medical genomics", "S"),
     ("Genetica clinica e malattie rare", r"genomic|genetic|genetica|precision medicine|medicina di precisione|personali[sz]ed medicine", "N"),
     # termini in spagnolo, portoghese, francese e tedesco (fonti estere senza pagina inglese)
     ("Ictus", r"accidente cerebrovascular|accident vasculaire|\bavc\b|schlaganfall", "S"),
@@ -208,8 +244,9 @@ BOILERPLATE = re.compile(
     r"accessibility (requirements|standards)|non discriminazione|pari opportunita)", re.I)
 
 GRUPPI_ORDINE = ["Ictus", "Parkinson", "Invecchiamento", "Tecnologie riabilitazione",
-                 "Altre malattie e riabilitazione", "Fisiatria e ortopedia", "Neurologia", "Oncologia ed ematologia",
-                 "Genetica clinica e malattie rare", "Ricerca clinica", "Ingegneria clinica"]
+                 "Altre malattie e riabilitazione", "Fisiatria e ortopedia", "Reumatologia", "Neurologia", "Neuropsicologia",
+                 "Pediatria", "Radiologia e imaging", "Oncologia ed ematologia", "Genetica clinica e malattie rare",
+                 "Ricerca clinica", "Ingegneria clinica"]
 TEMA_LIBERO = "Ricerca sanitaria a tema libero"
 # bando sanitario ampio: ricerca medica o clinica senza un tema imposto
 RX_SALUTE = re.compile(r"(health|medical|clinical|biomedical|life sciences?|neuroscien|sanitari|medic[aio]|clinic[aoi]|"
@@ -284,7 +321,8 @@ def classifica(titolo: str, testo: str = "") -> tuple[list[str], list[str]]:
         return [], []
     # il gruppo generico solo se non ci sono gruppi più specifici con peso comparabile
     altri = [g for g in gruppi if g not in ("Altre malattie e riabilitazione", "Ricerca clinica", "Ingegneria clinica",
-                                            "Neurologia", "Oncologia ed ematologia", "Genetica clinica e malattie rare")]
+                                            "Neurologia", "Oncologia ed ematologia", "Genetica clinica e malattie rare",
+                                            "Reumatologia", "Neuropsicologia", "Pediatria", "Radiologia e imaging")]
     if altri and gruppi.get("Altre malattie e riabilitazione", 0) < max(gruppi[g] for g in altri):
         gruppi.pop("Altre malattie e riabilitazione", None)
     return [g for g in GRUPPI_ORDINE if g in gruppi], parole[:12]
@@ -536,7 +574,7 @@ EU_PROGRAMMI = {
 # ambiente, Missions (compresa quella sul cancro), infrastrutture, Euratom. Modificabile.
 EU_PREFISSI_ESCLUSI = re.compile(
     r"^(CERV|JUST|LIFE|AGRIP|EMFAF|RFCS|EDF|CEF|UCPM|CREA|EUAF|SOCPL|ERASMUS|ESF|SMP|I3|EIE|"
-    r"HORIZON-CL[2356]|HORIZON-MISS|HORIZON-INFRA|HORIZON-EURATOM|EURATOM|HORIZON-WIDERA|HORIZON-EIE)\b", re.I)
+    r"HORIZON-CL[2356]|HORIZON-MISS(?![\w-]*CANCER)|HORIZON-INFRA|HORIZON-EURATOM|EURATOM|HORIZON-WIDERA|HORIZON-EIE)\b", re.I)
 
 
 def _meta(m: dict, k: str):
@@ -575,6 +613,12 @@ def scarica_eu(http: Http) -> tuple[list[dict], int]:
     return risultati, esaminati
 
 
+# programmi europei aperti a qualsiasi disciplina (anche la ricerca medica): ERC, MSCA, EIC «open»
+EU_TEMA_LIBERO = re.compile(
+    r"^(HORIZON-)?(ERC-\d{4}-(STG|COG|ADG|SYG|POC)|MSCA-\d{4}-(PF|DN|SE|COFUND)|"
+    r"EIC-\d{4}-(PATHFINDEROPEN|TRANSITIONOPEN|TRANSITION|ACCELERATOR))", re.I)
+
+
 def converti_eu(v: dict) -> dict | None:
     m = v.get("metadata") or {}
     ident = _meta(m, "identifier") or v.get("reference")
@@ -585,6 +629,9 @@ def converti_eu(v: dict) -> dict | None:
     parole = " ".join(m.get("keywords") or []) + " " + " ".join(m.get("tags") or [])
     testo = f"{titolo}. {parole}. {descr}"
     gruppi, chiavi = classifica(titolo, f"{parole}. {descr}")
+    tema_libero = False
+    if not gruppi and EU_TEMA_LIBERO.search(str(ident)):
+        gruppi, chiavi, tema_libero = [TEMA_LIBERO], ["open topic (ERC/MSCA/EIC)"], True
     if not gruppi:
         return None
 
@@ -628,7 +675,7 @@ def converti_eu(v: dict) -> dict | None:
         tipo_bando=tipo_da_azione_eu(ident, tipi), copertura=copertura_eu(ident, tipi),
         partenariato=partenariato_eu(ident, tipi),
         paesi="Stati membri UE e paesi associati (altri paesi secondo le condizioni del topic)",
-        italia="Sì", lingua="Inglese", url=url, stato=stato, _testo=testo[:8000])
+        italia="Sì", lingua="Inglese", url=url, stato=stato, _testo=testo[:8000], tema_libero=tema_libero)
 
 
 def copertura_eu(ident: str, tipi: str) -> str | None:
@@ -1144,13 +1191,17 @@ RILEVANZA (ambito: riabilitazione, ricerca clinica, ingegneria clinica)
   non oncologiche; oppure alle tecnologie per la riabilitazione.
 - Alta anche: medicina fisica e riabilitativa (fisiatria), riabilitazione ortopedica e muscolo-scheletrica,
   medicina dello sport, riabilitazione oncologica e cancer survivorship, invecchiamento attivo e in salute
-  con interventi su persone.
+  con interventi su persone; neuropsicologia e riabilitazione cognitiva; riabilitazione pediatrica e
+  dei disturbi del neurosviluppo.
 - Media: ricerca clinica in qualsiasi area medica (trial, studi su pazienti, epidemiologia clinica,
-  metodologia, servizi sanitari, implementazione), in particolare neurologia, ortopedia e reumatologia,
-  oncologia ed ematologia, genetica clinica e malattie rare, geriatria; ingegneria clinica o biomedica
+  metodologia, servizi sanitari, implementazione), in particolare neurologia, neuropsicologia, ortopedia,
+  reumatologia e malattie autoimmuni, pediatria e neonatologia, radiologia, imaging e radioterapia,
+  oncologia ed ematologia, genetica clinica e umana, malattie rare, geriatria; ingegneria clinica o biomedica
   e tecnologie per la salute con validazione su pazienti (dispositivi, imaging, sanità digitale, IA
   clinica); bandi sulle condizioni elencate sopra non specifici della riabilitazione; bandi o fellowship
-  sanitari a tema libero, anche riservati agli enti di un solo Paese.
+  sanitari a tema libero, anche riservati agli enti di un solo Paese;
+  programmi europei aperti a qualsiasi disciplina e quindi anche alla ricerca medica (ERC, Marie
+  Skłodowska-Curie, EIC Pathfinder, Transition e Accelerator).
 - Bassa: ricerca di base o preclinica senza pazienti (biologia molecolare e cellulare, genetica o
   genomica di base, scoperta di bersagli o farmaci, modelli animali); temi non sanitari; bandi che citano questi temi
   solo di passaggio.
