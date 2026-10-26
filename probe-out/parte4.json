@@ -1,0 +1,326 @@
+[
+ {
+  "nome": "Ministerio de Salud Argentina – Salud Investiga",
+  "url": "https://www.argentina.gob.ar/salud/investiga",
+  "status": 403,
+  "final_url": "https://www.argentina.gob.ar/salud/investiga",
+  "len": 56270,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 4
+ },
+ {
+  "nome": "Fundación Bunge y Born",
+  "url": "https://www.fundacionbyb.org/",
+  "status": 200,
+  "final_url": "https://fundacionbyb.org/",
+  "len": 207512,
+  "robots_ok": true,
+  "pagine": 8,
+  "errore": null,
+  "candidati": [],
+  "sec": 7
+ },
+ {
+  "nome": "Fundación Mundo Sano",
+  "url": "https://www.mundosano.org/",
+  "status": 200,
+  "final_url": "https://mundosano.org/es/",
+  "len": 184862,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 8
+ },
+ {
+  "nome": "Fiocruz – Editais e chamadas",
+  "url": "https://portal.fiocruz.br/editais",
+  "status": 403,
+  "final_url": "https://fiocruz.br/editais",
+  "len": 217187,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 13
+ },
+ {
+  "nome": "FAPESB – Editais",
+  "url": "https://www.fapesb.ba.gov.br/category/edital/",
+  "status": 200,
+  "final_url": "https://www.fapesb.ba.gov.br/category/edital/",
+  "len": 118190,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 111
+ },
+ {
+  "nome": "FACEPE – Editais",
+  "url": "https://www.facepe.br/editais/todos/",
+  "status": "ERR HTTPSConnectionPool(host='www.facepe.br', port=443): Max retries exceeded with url: /editais/todos/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.facepe.br', port=443) at 0x7fbd5f15a84",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.facepe.br', port=443): Max retries exceeded with url: /editais/todos/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.facepe.br', port=443) at 0x7fbd5f1597f0>, 'Connection to www.facepe.br timed out. (connect timeout=45)'))",
+  "candidati": [],
+  "sec": 217
+ },
+ {
+  "nome": "Fundação Araucária – Chamadas",
+  "url": "https://www.fappr.pr.gov.br/Pagina/Chamadas-Publicas",
+  "status": 404,
+  "final_url": "https://www.fappr.pr.gov.br/Pagina/Chamadas-Publicas",
+  "len": 66357,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "FAPEG – Chamadas",
+  "url": "https://goias.gov.br/fapeg/",
+  "status": 200,
+  "final_url": "https://goias.gov.br/fapeg/",
+  "len": 211512,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 92
+ },
+ {
+  "nome": "FAPEAM – Editais",
+  "url": "https://www.fapeam.am.gov.br/editais/",
+  "status": "ERR ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+  "candidati": [],
+  "sec": 14
+ },
+ {
+  "nome": "FAPES – Editais",
+  "url": "https://fapes.es.gov.br/editais-abertos",
+  "status": 200,
+  "final_url": "https://fapes.es.gov.br/editais-abertos",
+  "len": 199516,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 89
+ },
+ {
+  "nome": "FAPEPB – Editais",
+  "url": "https://fapesq.rpp.br/editais",
+  "status": "ERR HTTPSConnectionPool(host='fapesq.rpp.br', port=443): Max retries exceeded with url: /editais (Caused by ConnectTimeoutError(<HTTPSConnection(host='fapesq.rpp.br', port=443) at 0x7fbd5f1d82f0>, 'Co",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='fapesq.rpp.br', port=443): Max retries exceeded with url: /editais (Caused by ConnectTimeoutError(<HTTPSConnection(host='fapesq.rpp.br', port=443) at 0x7fbd5b202ea0>, 'Connection to fapesq.rpp.br timed out. (connect timeout=45)'))",
+  "candidati": [],
+  "sec": 223
+ },
+ {
+  "nome": "FAPEMAT – Editais",
+  "url": "https://www.fapemat.mt.gov.br/editais",
+  "status": 200,
+  "final_url": "https://www.fapemat.mt.gov.br/pt/aberto_old",
+  "len": 77674,
+  "robots_ok": false,
+  "pagine": 0,
+  "errore": null,
+  "candidati": [],
+  "sec": 4
+ },
+ {
+  "nome": "FAPESPA – Editais",
+  "url": "https://www.fapespa.pa.gov.br/editais",
+  "status": 404,
+  "final_url": "https://www.fapespa.pa.gov.br/editais",
+  "len": 79432,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 8
+ },
+ {
+  "nome": "Instituto Serrapilheira – Chamadas",
+  "url": "https://serrapilheira.org/",
+  "status": 200,
+  "final_url": "https://serrapilheira.org/",
+  "len": 99585,
+  "robots_ok": true,
+  "pagine": 19,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Ciência",
+    "url": "https://serrapilheira.org/ano/chamada-publica-de-apoio-a-jovens-cientistas-no-9-2025/",
+    "scadenza": null,
+    "gruppi": [
+     "Neurologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ]
+   },
+   {
+    "titolo": "Ciência",
+    "url": "https://serrapilheira.org/ano/chamada-doencas-raras/",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Pediatria",
+     "Genetica clinica e malattie rare"
+    ]
+   },
+   {
+    "titolo": "Ciência",
+    "url": "https://serrapilheira.org/ano/chamada-publica-n-4-2020-ciencia/",
+    "scadenza": null,
+    "gruppi": [
+     "Neurologia",
+     "Ricerca clinica"
+    ]
+   }
+  ],
+  "sec": 19
+ },
+ {
+  "nome": "ANID Chile – Concursos (indirizzo alternativo)",
+  "url": "https://anid.cl/concursos-abiertos/",
+  "status": 403,
+  "final_url": "https://anid.cl/concursos-abiertos/",
+  "len": 919,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 0
+ },
+ {
+  "nome": "Instituto Nacional de Salud Colombia – Convocatorias",
+  "url": "https://www.ins.gov.co/",
+  "status": 200,
+  "final_url": "https://www.ins.gov.co/Paginas/Inicio.aspx",
+  "len": 135108,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Instituto Nacional de Salud Perú – Investigación",
+  "url": "https://web.ins.gob.pe/",
+  "status": "ERR HTTPSConnectionPool(host='web.ins.gob.pe', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='web.ins.gob.pe', port=443) at 0x7fbd5e37fd10>, 'Connect",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='web.ins.gob.pe', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='web.ins.gob.pe', port=443) at 0x7fbd5e4aec60>, 'Connection to web.ins.gob.pe timed out. (connect timeout=45)'))",
+  "candidati": [],
+  "sec": 219
+ },
+ {
+  "nome": "ANII – Llamados abiertos",
+  "url": "https://www.anii.org.uy/apoyos/investigacion/",
+  "status": 200,
+  "final_url": "https://anii.org.uy:443/apoyos/investigacion/",
+  "len": 129273,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "informe cierre postulaci n fondo mar a vi as 2026 vf",
+    "url": "https://anii.org.uy/upcms/files/llamados/informecierre/informe-cierre-postulaci-n-fondo-mar-a-vi-as-2026-vf.pdf",
+    "scadenza": null,
+    "gruppi": [
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare"
+    ]
+   },
+   {
+    "titolo": "informe cierre postulaci n fce 2026",
+    "url": "https://anii.org.uy/upcms/files/llamados/informecierre/informe-cierre-postulaci-n-fce-2026.pdf",
+    "scadenza": null,
+    "gruppi": [
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare"
+    ]
+   }
+  ],
+  "sec": 20
+ },
+ {
+  "nome": "SENESCYT Ecuador – Convocatorias",
+  "url": "https://www.educacionsuperior.gob.ec/",
+  "status": "ERR HTTPSConnectionPool(host='educacion.gob.ec', port=443): Max retries exceeded with url: /edusuperior/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='educacion.gob.ec', port=443) at 0x7fbd5e5",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='educacion.gob.ec', port=443): Max retries exceeded with url: /edusuperior/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='educacion.gob.ec', port=443) at 0x7fbd5e573260>, 'Connection to educacion.gob.ec timed out. (connect timeout=45)'))",
+  "candidati": [],
+  "sec": 220
+ },
+ {
+  "nome": "FONACIT Venezuela",
+  "url": "https://www.fonacit.gob.ve/",
+  "status": "ERR HTTPSConnectionPool(host='www.fonacit.gob.ve', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1010)')))",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.fonacit.gob.ve', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1010)')))",
+  "candidati": [],
+  "sec": 9
+ },
+ {
+  "nome": "TDR (OMS) – Grants",
+  "url": "https://tdr.who.int/grants",
+  "status": 200,
+  "final_url": "https://tdr.who.int/grants",
+  "len": 63937,
+  "robots_ok": true,
+  "pagine": 11,
+  "errore": null,
+  "candidati": [],
+  "sec": 19
+ },
+ {
+  "nome": "CAF – Banco de Desarrollo de América Latina – Convocatorias",
+  "url": "https://www.caf.com/es/convocatorias/",
+  "status": "ERR HTTPSConnectionPool(host='www.caf.com', port=443): Max retries exceeded with url: /es/convocatorias/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate v",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.caf.com', port=443): Max retries exceeded with url: /es/convocatorias/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+  "candidati": [],
+  "sec": 6
+ },
+ {
+  "nome": "Fundación Carolina – Becas",
+  "url": "https://www.fundacioncarolina.es/",
+  "status": 200,
+  "final_url": "https://www.fundacioncarolina.es/",
+  "len": 359987,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 26
+ },
+ {
+  "nome": "Grand Challenges Brasil",
+  "url": "https://gcgh.grandchallenges.org/",
+  "status": 200,
+  "final_url": "https://gcgh.grandchallenges.org/",
+  "len": 143623,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 19
+ }
+]
