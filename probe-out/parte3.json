@@ -1,0 +1,297 @@
+[
+ {
+  "nome": "CONICET – Oportunidades y becas (bandi di altri enti)",
+  "url": "https://www.conicet.gov.ar/oportunidades-y-becas/",
+  "status": 200,
+  "final_url": "https://www.conicet.gov.ar/oportunidades-y-becas/",
+  "len": 41602,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 52
+ },
+ {
+  "nome": "Instituto Nacional del Cáncer Argentina – Convocatorias",
+  "url": "https://www.argentina.gob.ar/salud/inc/convocatorias",
+  "status": 404,
+  "final_url": "https://www.argentina.gob.ar/salud/inc/convocatorias",
+  "len": 18805,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Fundación Florencio Fiorini",
+  "url": "https://www.fundacionfiorini.org.ar/",
+  "status": "ERR HTTPSConnectionPool(host='www.fundacionfiorini.org.ar', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.fundacionfiorini.org.ar', port=443) at",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.fundacionfiorini.org.ar', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.fundacionfiorini.org.ar', port=443) at 0x7fd42c1a1f10>, 'Connection to www.fundacionfiorini.org.ar timed out. (connect timeout=45)'))",
+  "candidati": [],
+  "sec": 219
+ },
+ {
+  "nome": "CAPES – Editais",
+  "url": "https://www.gov.br/capes/pt-br/assuntos/editais",
+  "status": 404,
+  "final_url": "https://www.gov.br/capes/pt-br/assuntos/editais",
+  "len": 147623,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Ministério da Saúde – Chamadas públicas de pesquisa",
+  "url": "https://www.gov.br/saude/pt-br/composicao/sectics/decit/chamadas-publicas",
+  "status": 404,
+  "final_url": "https://www.gov.br/saude/pt-br/composicao/sectics/decit/chamadas-publicas",
+  "len": 26,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 1
+ },
+ {
+  "nome": "FAPERGS – Editais",
+  "url": "https://fapergs.rs.gov.br/editais",
+  "status": 404,
+  "final_url": "https://fapergs.rs.gov.br/editais",
+  "len": 62571,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "FAPESC – Chamadas",
+  "url": "https://fapesc.sc.gov.br/category/chamadas-abertas/",
+  "status": 200,
+  "final_url": "https://fapesc.sc.gov.br/category/chamadas-abertas/",
+  "len": 116501,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 24
+ },
+ {
+  "nome": "FAPDF – Editais",
+  "url": "https://www.fap.df.gov.br/editais/",
+  "status": "ERR HTTPSConnectionPool(host='www.fap.df.gov.br', port=443): Read timed out. (read timeout=40)",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.fap.df.gov.br', port=443): Read timed out. (read timeout=45)",
+  "candidati": [],
+  "sec": 219
+ },
+ {
+  "nome": "FUNCAP – Editais",
+  "url": "https://www.funcap.ce.gov.br/editais/",
+  "status": "ERR HTTPSConnectionPool(host='www.ce.gov.br', port=443): Max retries exceeded with url: /funcap/editais/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate v",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='www.ce.gov.br', port=443): Max retries exceeded with url: /funcap/editais/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)')))",
+  "candidati": [],
+  "sec": 12
+ },
+ {
+  "nome": "FAPEMA – Editais",
+  "url": "https://www.fapema.br/editais/",
+  "status": "ERR HTTPSConnectionPool(host='www.fapema.br', port=443): Max retries exceeded with url: /editais/ (Caused by NameResolutionError(\"HTTPSConnection(host='www.fapema.br', port=443): Failed to resolve 'ww",
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 77
+ },
+ {
+  "nome": "FAPEPI – Editais",
+  "url": "https://www.fapepi.pi.gov.br/editais",
+  "status": 200,
+  "final_url": "https://www.fapepi.pi.gov.br/editais/",
+  "len": 90891,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 44
+ },
+ {
+  "nome": "FAPERN – Editais",
+  "url": "https://fapern.rn.gov.br/editais/",
+  "status": "ERR HTTPSConnectionPool(host='fapern.rn.gov.br', port=443): Max retries exceeded with url: /editais/ (Caused by NewConnectionError(\"HTTPSConnection(host='fapern.rn.gov.br', port=443): Failed to establ",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTPSConnectionPool(host='fapern.rn.gov.br', port=443): Max retries exceeded with url: /editais/ (Caused by NewConnectionError(\"HTTPSConnection(host='fapern.rn.gov.br', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))",
+  "candidati": [],
+  "sec": 217
+ },
+ {
+  "nome": "FUNDECT – Chamadas",
+  "url": "https://www.fundect.ms.gov.br/chamadas-abertas/",
+  "status": 404,
+  "final_url": "https://www.fundect.ms.gov.br/chamadas-abertas/",
+  "len": 6585,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "EMBRAPII – Chamadas",
+  "url": "https://embrapii.org.br/",
+  "status": 200,
+  "final_url": "https://embrapii.org.br/",
+  "len": 306015,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 22
+ },
+ {
+  "nome": "CORFO – Convocatorias",
+  "url": "https://www.corfo.cl/sites/cpp/convocatorias",
+  "status": 404,
+  "final_url": "https://www.corfo.gob.cl/sites/cpp/convocatorias",
+  "len": 0,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Ministerio de Salud Chile – Investigación",
+  "url": "https://www.minsal.cl/",
+  "status": "ERR HTTP 504",
+  "robots_ok": true,
+  "pagine": 0,
+  "errore": "irraggiungibile: HTTP 503",
+  "candidati": [],
+  "sec": 123
+ },
+ {
+  "nome": "Colfuturo",
+  "url": "https://www.colfuturo.org/",
+  "status": 200,
+  "final_url": "https://www.colfuturo.org/",
+  "len": 105698,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Embajada Becas Suiza :: Home",
+    "url": "https://servicios.colfuturo.org/apps/becasuiza/index.html",
+    "scadenza": "2026-11-30",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ]
+   }
+  ],
+  "sec": 24
+ },
+ {
+  "nome": "CONCYTEC – Convocatorias",
+  "url": "https://www.gob.pe/concytec",
+  "status": 200,
+  "final_url": "https://www.gob.pe/concytec",
+  "len": 265152,
+  "robots_ok": true,
+  "pagine": 15,
+  "errore": null,
+  "candidati": [],
+  "sec": 42
+ },
+ {
+  "nome": "CSIC Udelar – Llamados",
+  "url": "https://www.csic.edu.uy/",
+  "status": 200,
+  "final_url": "https://investigacion.udelar.edu.uy/",
+  "len": 258220,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 45
+ },
+ {
+  "nome": "CONACYT Paraguay – Convocatorias",
+  "url": "https://www.conacyt.gov.py/",
+  "status": 403,
+  "final_url": "https://www.conacyt.gov.py/",
+  "len": 199,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 7
+ },
+ {
+  "nome": "OPS/PAHO – Research",
+  "url": "https://www.paho.org/en/topics/research-health",
+  "status": 404,
+  "final_url": "https://www.paho.org/en/topics/research-health",
+  "len": 14798,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 0
+ },
+ {
+  "nome": "BID Lab – Convocatorias",
+  "url": "https://bidlab.org/en/calls-for-proposals",
+  "status": 403,
+  "final_url": "https://bidlab.org/en/calls-for-proposals",
+  "len": 4545,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 0
+ },
+ {
+  "nome": "Fundación MAPFRE – Premios y ayudas",
+  "url": "https://www.fundacionmapfre.org/premios-ayudas/",
+  "status": 200,
+  "final_url": "https://www.fundacionmapfre.org/premios-ayudas/",
+  "len": 164609,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Convocatorias de ayudas",
+    "url": "https://www.fundacionmapfre.org/premios-ayudas/convocatorias/",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Genetica clinica e malattie rare"
+    ]
+   }
+  ],
+  "sec": 19
+ },
+ {
+  "nome": "PANLAR – Awards and grants",
+  "url": "https://www.panlar.org/en/premios",
+  "status": 200,
+  "final_url": "https://www.panlar.org/en/premios",
+  "len": 3438,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 1
+ }
+]
