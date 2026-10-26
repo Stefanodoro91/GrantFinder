@@ -1837,15 +1837,43 @@ RICERCHE_GUIDATE = [
 ]
 PROMPT_RICERCA = """Search the web for research FUNDING CALLS that are OPEN today ({oggi}) or open soon, with a
 submission deadline after {oggi}, from funders in: {zona}. Search also in {lingua}.
-Topics: clinical research or clinical trials in any medical area (especially neurology, orthopaedics and
-musculoskeletal health, physical and rehabilitation medicine, oncology and haematology, clinical genetics and
-rare diseases, geriatrics and healthy ageing), rehabilitation, physiotherapy, occupational or speech therapy,
+Topics: clinical research or clinical trials in any medical area (especially neurology, neuropsychology,
+orthopaedics and musculoskeletal health, rheumatology, physical and rehabilitation medicine, paediatrics, radiology
+and medical imaging, oncology and haematology, clinical genetics and rare diseases, geriatrics and healthy ageing), rehabilitation, physiotherapy, occupational or speech therapy,
 neurorehabilitation, sports medicine, disability, assistive technology, clinical or biomedical engineering,
 medical devices, digital health. Not basic or preclinical research. Grants for researchers or research projects only: no scholarships for
 students, no prizes for published work, no tenders for services, no calls that are already closed.
 Give the OFFICIAL page of each call on the funder's own website (not news sites or aggregators).
 Answer ONLY with a JSON array, at most 15 items: [{{"title": "...", "funder": "...", "country": "...",
 "deadline": "YYYY-MM-DD or empty", "url": "https://..."}}]"""
+
+
+# Finanziatori che bloccano la lettura automatica del loro sito (HTTP 403): non si aggirano, ma i loro bandi
+# vengono spesso ripresi da pagine leggibili (uffici ricerca delle università, portali nazionali, società scientifiche).
+PROMPT_RIPRESE = """Search the web for research FUNDING CALLS that are OPEN today ({oggi}) or open soon, with a
+submission deadline after {oggi}, issued by these funders: {enti}.
+Topics: clinical or health research in any medical area, rehabilitation, clinical or biomedical engineering
+(not basic or preclinical research). Grants for researchers or research projects only.
+These funders' own websites cannot be read by our program, so give pages that DESCRIBE each call on OTHER readable
+websites: university or hospital research offices, national research portals, professional societies, funder
+partners. Prefer pages that state the call title, the deadline and the eligibility. Give also the official URL.
+Answer ONLY with a JSON array, at most 15 items: [{{"title": "...", "funder": "...", "deadline": "YYYY-MM-DD or empty",
+"url": "https://... (the readable page)", "official_url": "https://..."}}]"""
+
+
+# bloccati alla prova del 26/10/2026 e quindi non inseriti tra le fonti web
+ENTI_BLOCCATI_NOTI = ["Fundación \"la Caixa\"", "NWO", "Swiss Heart Foundation", "FFG Austria", "MND Association",
+                      "Muscular Dystrophy UK", "Academy of Medical Sciences", "Epilepsy Research Institute UK", "Fiocruz",
+                      "CONACYT Paraguay", "Ministerio de Salud Argentina (Salud Investiga)"]
+
+
+def enti_bloccati(stato: dict) -> list[str]:
+    """Fonti web che rispondono «accesso negato» (HTTP 403) all'ultima esecuzione, più quelli già noti: nome dell'ente."""
+    out = list(ENTI_BLOCCATI_NOTI)
+    for nome, f in (stato.get("fonti") or {}).items():
+        if "HTTP 403" in str(f.get("note", "")) and not nome.startswith(("Ricerca web", "Riprese", "fundsforNGOs")):
+            out.append(re.sub(r"\s*[–-]\s*.*$", "", nome).strip() or nome)
+    return sorted(set(out))
 
 
 def _risolvi(http: Http, url: str) -> str:
@@ -1859,10 +1887,11 @@ def _risolvi(http: Http, url: str) -> str:
         return url
 
 
-def cerca_call(http: Http, chiave: str, modelli: list[str], zona: str, lingua: str) -> list[tuple[str, str]]:
+def cerca_call(http: Http, chiave: str, modelli: list[str], zona: str, lingua: str, prompt: str | None = None) -> list[tuple[str, str]]:
     """Indirizzi delle call trovate, con il nome del finanziatore quando Gemini lo indica.
     Quando la quota di un modello finisce si passa al successivo (quote separate)."""
-    corpo = {"contents": [{"role": "user", "parts": [{"text": PROMPT_RICERCA.format(oggi=OGGI.isoformat(), zona=zona, lingua=lingua)}]}],
+    testo_prompt = prompt or PROMPT_RICERCA.format(oggi=OGGI.isoformat(), zona=zona, lingua=lingua)
+    corpo = {"contents": [{"role": "user", "parts": [{"text": testo_prompt}]}],
              "tools": [{"google_search": {}}], "generationConfig": {"temperature": 0.2}}
     r = None
     for modello in list(modelli):
@@ -1928,14 +1957,21 @@ def leggi_pagina_call(http: Http, fonte: dict, url: str) -> list[dict]:
     return recs
 
 
-def ricerca_guidata(http: Http, chiave: str, modelli: list[str]) -> list[tuple[dict, list[dict], int, str | None]]:
+def ricerca_guidata(http: Http, chiave: str, modelli: list[str], stato: dict | None = None) -> list[tuple[dict, list[dict], int, str | None]]:
     risultati = []
-    for continente, nome, zona, lingua in RICERCHE_GUIDATE:
-        fonte = {"nome": f"Ricerca web – {nome}", "copertura": zona.split(" (")[0], "tipo": "Ricerca guidata",
-                 "italia": "verificare", "continente": continente}
+    giri = [(c, f"Ricerca web – {n}", z, l, None) for c, n, z, l in RICERCHE_GUIDATE]
+    bloccati = enti_bloccati(stato or {})
+    for i in range(0, len(bloccati), 10):                 # bandi degli enti che bloccano, ripresi da pagine leggibili
+        gruppo = bloccati[i:i + 10]
+        giri.append(("Internazionale", f"Riprese – enti che bloccano ({i // 10 + 1})", ", ".join(gruppo), "English",
+                     PROMPT_RIPRESE.format(oggi=OGGI.isoformat(), enti="; ".join(gruppo))))
+    for continente, nome_fonte, zona, lingua, prompt in giri:
+        nome = nome_fonte.split("– ", 1)[1]
+        fonte = {"nome": nome_fonte, "copertura": zona.split(" (")[0] if not prompt else "Vari (pagine che riprendono il bando)",
+                 "tipo": "Ricerca guidata", "italia": "verificare", "continente": continente}
         recs, errore, n = [], None, 0
         try:
-            for url, ente in cerca_call(http, chiave, modelli, zona, lingua):
+            for url, ente in cerca_call(http, chiave, modelli, zona, lingua, prompt):
                 n += 1
                 try:
                     for rec in leggi_pagina_call(http, fonte, url):
@@ -2065,7 +2101,7 @@ def main() -> None:
         log.info("Ricerca guidata non attiva: manca il segreto GEMINI_SEARCH_API_KEY")
     if "ricerca" in fonti and chiave_g:
         modelli_r = [m.strip() for m in args.modelli_gemini.split(",") if m.strip()]
-        for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modelli_r):
+        for fonte, recs, n, errore in ricerca_guidata(http, chiave_g, modelli_r, stato):
             raccolti += recs
             esaminati_tot += n
             if errore:
