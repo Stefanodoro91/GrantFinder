@@ -5,59 +5,17 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
   "browser_status": 200,
   "final_url": "https://www.academictransfer.com/en/jobs/?q=clinical+research",
   "html_len": 268898,
   "browser_links": 0,
   "browser_kept": 0,
   "esempi": [],
-  "sec": 7
- },
- {
-  "nome": "AcademicTransfer – rehabilitation",
-  "url": "https://www.academictransfer.com/en/jobs/?q=rehabilitation",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "browser_status": 200,
-  "final_url": "https://www.academictransfer.com/en/jobs/?q=rehabilitation",
-  "html_len": 119966,
-  "browser_links": 0,
-  "browser_kept": 0,
-  "esempi": [],
-  "sec": 5
- },
- {
-  "nome": "AcademicTransfer – biomedical engineering",
-  "url": "https://www.academictransfer.com/en/jobs/?q=biomedical+engineering",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "browser_status": 200,
-  "final_url": "https://www.academictransfer.com/en/jobs/?q=biomedical+engineering",
-  "html_len": 275004,
-  "browser_links": 0,
-  "browser_kept": 0,
-  "esempi": [],
-  "sec": 5
- },
- {
-  "nome": "TU Delft – Vacancies",
-  "url": "https://www.tudelft.nl/en/about-tu-delft/working-at-tu-delft/search-jobs",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "browser_status": 200,
-  "final_url": "https://careers.tudelft.nl/go/All-jobs/9021002/",
-  "html_len": 204933,
-  "browser_links": 64,
-  "browser_kept": 3,
-  "esempi": [
-   "Postdoc Markerless Motion Capture for Home Monitoring in Neurological Populations",
-   "Postdoc Bayesian Methodology for Predicting the Performance of New Implantable Medical Dev",
-   "PhD Position Decision-making Under Uncertainty for Emerging Orphan and Breakthrough Medica"
-  ],
-  "sec": 5
+  "sec": 6
  },
  {
   "nome": "Charité – Stellenangebote",
@@ -65,6 +23,10 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
   "browser_status": 200,
   "final_url": "https://karriere.charite.de/stellenangebote",
   "html_len": 365150,
@@ -79,6 +41,21 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 4,
+  "any_host_links": 8,
+  "hosts": [
+   "www.emeriti-of-excellence.tum.de",
+   "www.ias.tum.de",
+   "www.international.tum.de",
+   "www.professoren.tum.de",
+   "www.tum.de"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "Senior Excellence Faculty",
+   "TUM Faculty Tenure Track",
+   "Professoren­kollegium",
+   "Postdocs\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tZur Übersicht"
+  ],
   "browser_status": 200,
   "final_url": "https://www.tum.de/ueber-die-tum/karriere-und-jobs/stellenangebote",
   "html_len": 394423,
@@ -93,51 +70,28 @@
   "sec": 6
  },
  {
-  "nome": "TUM – Wissenschaftler (portale)",
-  "url": "https://portal.mytum.de/jobs/wissenschaftler",
-  "robots_ok": true,
-  "static_status": 404,
-  "static_links": 0,
-  "browser_status": 404,
-  "final_url": "https://portal.mytum.de/jobs/wissenschaftler",
-  "html_len": 372,
-  "browser_links": 0,
-  "browser_kept": 0,
-  "esempi": [],
-  "sec": 4
- },
- {
   "nome": "KU Leuven – Jobs",
   "url": "https://www.kuleuven.be/personeel/jobsite/jobs",
   "robots_ok": true,
   "static_status": 200,
   "static_links": 1,
+  "any_host_links": 1,
+  "hosts": [
+   "www.kuleuven.be"
+  ],
+  "frames": 2,
+  "esempi_ext": [
+   "Senior Academic Staff & Tenure Track"
+  ],
   "browser_status": 200,
   "final_url": "https://www.kuleuven.be/personeel/jobsite/jobs/staff?lang=nl",
-  "html_len": 179204,
+  "html_len": 179210,
   "browser_links": 1,
   "browser_kept": 0,
   "esempi": [
    "Senior Academic Staff & Tenure Track"
   ],
-  "sec": 8
- },
- {
-  "nome": "KU Leuven – Jobs (en)",
-  "url": "https://www.kuleuven.be/personeel/jobsite/en/jobs",
-  "robots_ok": true,
-  "static_status": 404,
-  "static_links": 2,
-  "browser_status": 404,
-  "final_url": "https://www.kuleuven.be/personeel/jobsite-old/en/jobs",
-  "html_len": 7458,
-  "browser_links": 2,
-  "browser_kept": 0,
-  "esempi": [
-   "Employment conditions Senior Academic Staff & Tenure Track",
-   "Employment conditions PhD"
-  ],
-  "sec": 3
+  "sec": 7
  },
  {
   "nome": "Politecnico di Milano – Assegni di ricerca",
@@ -145,9 +99,20 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 3,
+  "any_host_links": 3,
+  "hosts": [
+   "www.polimi.it"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "Scuola di Dottorato",
+   "FAQ, contatti e PhD Handbook",
+   "Scuola di Dottorato",
+   "FAQ, contatti e PhD Handbook"
+  ],
   "browser_status": 200,
   "final_url": "https://www.polimi.it/docenti-e-ricercatori/bandi-e-concorsi/bandi-per-assegni-di-ricerca",
-  "html_len": 535523,
+  "html_len": 535520,
   "browser_links": 3,
   "browser_kept": 0,
   "esempi": [
@@ -155,7 +120,7 @@
    "FAQ, contatti e PhD Handbook",
    "Modulistica per assegni di ricerca"
   ],
-  "sec": 5
+  "sec": 4
  },
  {
   "nome": "Ghent University – Jobs",
@@ -163,13 +128,17 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
   "browser_status": 200,
   "final_url": "https://jobs.ugent.be/?locale=en",
-  "html_len": 94002,
+  "html_len": 94001,
   "browser_links": 0,
   "browser_kept": 0,
   "esempi": [],
-  "sec": 5
+  "sec": 4
  },
  {
   "nome": "UCLouvain – Jobs",
@@ -177,13 +146,17 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
   "browser_status": 200,
   "final_url": "https://jobs.uclouvain.be/",
-  "html_len": 73705,
+  "html_len": 73704,
   "browser_links": 0,
   "browser_kept": 0,
   "esempi": [],
-  "sec": 6
+  "sec": 5
  },
  {
   "nome": "Heidelberg University – Stellenmarkt",
@@ -191,6 +164,10 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
   "browser_status": 200,
   "final_url": "https://www.uni-heidelberg.de/de/beschaeftigte-in-wissenschaft-verwaltung-und-technik/karriere-und-weiterbildung/stellenmarkt",
   "html_len": 451875,
@@ -205,6 +182,17 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 3,
+  "hosts": [
+   "jobs.uzh.ch",
+   "www.uzh.ch"
+  ],
+  "frames": 2,
+  "esempi_ext": [
+   "Grants und Fellowships",
+   "PhD Student in Philosophy in SNSF-Project CREST-AI\n\nDigital Society Initiative\n\n",
+   "Doctoral Candidate in AI and Optimization\n\nDepartment of Mathematical Modeling a"
+  ],
   "browser_status": 200,
   "final_url": "https://www.uzh.ch/de/explore/work/jobs",
   "html_len": 867055,
@@ -213,7 +201,7 @@
   "esempi": [
    "Grants und Fellowships"
   ],
-  "sec": 7
+  "sec": 6
  },
  {
   "nome": "TU Wien – Jobs",
@@ -221,6 +209,14 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
+  "any_host_links": 1,
+  "hosts": [
+   "jobs.tuwien.ac.at"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "Assistant Professorship (all genders) - Tenure Track"
+  ],
   "browser_status": 200,
   "final_url": "https://jobs.tuwien.ac.at/Jobs",
   "html_len": 71580,
@@ -229,60 +225,7 @@
   "esempi": [
    "Assistant Professorship (all genders) - Tenure Track"
   ],
-  "sec": 14
- },
- {
-  "nome": "University of Twente – Vacancies",
-  "url": "https://www.utwente.nl/en/organisation/careers/vacancies/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "browser_status": 200,
-  "final_url": "https://utwentecareers.nl/en/vacancies/?page=1",
-  "html_len": 79847,
-  "browser_links": 9,
-  "browser_kept": 0,
-  "esempi": [
-   "Tenure Track",
-   "Lecturer Statistics Academic staff Education Doctorate EEMCS 40 hr. € 3,706 - € 5,760 Free",
-   "Postdoctoral Researcher: Social Design of Intergenerational Contact Zones Academic staff P",
-   "Assistant professor in Integrated Photonics Academic staff Assistant professor University ",
-   "4-year Postdoc position: 3D-printing of polymer foams for drones (resin formulation) Acade",
-   "PhD position in-Operando Neuromorphic OptoElectronics Academic staff PhD Master TNW 40 hr."
-  ],
-  "sec": 6
- },
- {
-  "nome": "EMBL – Jobs",
-  "url": "https://www.embl.org/jobs/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "browser_status": 200,
-  "final_url": "https://embl.wd103.myworkdayjobs.com/EMBL",
-  "html_len": 184521,
-  "browser_links": 1,
-  "browser_kept": 0,
-  "esempi": [
-   "Postdoc: Three-photon microscopy and advanced wavefront shaping / adaptive optics"
-  ],
-  "sec": 7
- },
- {
-  "nome": "Aarhus University – Vacancies",
-  "url": "https://international.au.dk/about/profile/vacant-positions",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 1,
-  "browser_status": 200,
-  "final_url": "https://international.au.dk/about/profile/vacant-positions",
-  "html_len": 677193,
-  "browser_links": 33,
-  "browser_kept": 1,
-  "esempi": [
-   "Deadline 10 Nov . Aarhus C, Department of Public Health - Epidemiology, Environment and Bi"
-  ],
-  "sec": 5
+  "sec": 13
  },
  {
   "nome": "DTU – Vacancies",
@@ -290,16 +233,25 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 2,
+  "any_host_links": 2,
+  "hosts": [
+   "www.dtu.dk"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "Pursue your PhD at DTU",
+   "Guest researchers & guest PhD students"
+  ],
   "browser_status": 200,
   "final_url": "https://www.dtu.dk/english/about/job-and-career/vacant-positions",
-  "html_len": 292494,
+  "html_len": 293421,
   "browser_links": 2,
   "browser_kept": 0,
   "esempi": [
    "Pursue your PhD at DTU",
    "Guest researchers & guest PhD students"
   ],
-  "sec": 5
+  "sec": 8
  },
  {
   "nome": "University of Helsinki – Jobs",
@@ -307,6 +259,16 @@
   "robots_ok": true,
   "static_status": 200,
   "static_links": 1,
+  "any_host_links": 1,
+  "hosts": [
+   "jobs.helsinki.fi"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "Professors and assistant / associate professors",
+   "Professors and assistant / associate professors",
+   "Professors, assistant and associate professors"
+  ],
   "browser_status": 200,
   "final_url": "https://jobs.helsinki.fi/",
   "html_len": 75188,
@@ -318,32 +280,22 @@
   "sec": 4
  },
  {
-  "nome": "Aalto University – Open positions",
-  "url": "https://www.aalto.fi/en/open-positions",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 11,
-  "browser_status": 200,
-  "final_url": "https://www.aalto.fi/en/open-positions",
-  "html_len": 292154,
-  "browser_links": 11,
-  "browser_kept": 0,
-  "esempi": [
-   "Doctoral admissions",
-   "Tenure track career system",
-   "Doctoral education",
-   "Doctoral Researcher in Real Estate Economics",
-   "Doctoral Researcher position in Chemical Engineering",
-   "Doctoral and postdoctoral positions in hybrid magnonics-photonics"
-  ],
-  "sec": 4
- },
- {
   "nome": "MedUni Wien – Karriere",
   "url": "https://www.meduniwien.ac.at/web/karriere/",
   "robots_ok": true,
   "static_status": 200,
   "static_links": 12,
+  "any_host_links": 12,
+  "hosts": [
+   "www.meduniwien.ac.at"
+  ],
+  "frames": 1,
+  "esempi_ext": [
+   "PhD und Doktoratsstudien",
+   "Adjunct Professorships",
+   "PhD-Stelle / PhD Position (m/w/d)",
+   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)"
+  ],
   "browser_status": 200,
   "final_url": "https://www.meduniwien.ac.at/web/karriere/offene-stellen/",
   "html_len": 123245,
