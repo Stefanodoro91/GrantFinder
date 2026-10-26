@@ -1,0 +1,780 @@
+[
+ {
+  "nome": "Else Kröner-Fresenius-Stiftung",
+  "url": "https://www.ekfs.de/en/scientific-funding",
+  "status": 200,
+  "final_url": "https://ekfs.de/en/scientific-funding",
+  "len": 47554,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 50
+ },
+ {
+  "nome": "Deutsche Krebshilfe – Förderung",
+  "url": "https://www.krebshilfe.de/forschen/foerderung/",
+  "status": 200,
+  "final_url": "https://www.krebshilfe.de/forschen/foerderung/",
+  "len": 65870,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "Alexander von Humboldt-Stiftung – Programmi",
+  "url": "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes",
+  "status": 200,
+  "final_url": "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes",
+  "len": 68479,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 20
+ },
+ {
+  "nome": "Wilhelm Sander-Stiftung",
+  "url": "https://www.wilhelm-sander-stiftung.de/",
+  "status": 200,
+  "final_url": "https://www.wilhelm-sander-stiftung.de/",
+  "len": 259423,
+  "robots_ok": true,
+  "pagine": 12,
+  "errore": null,
+  "candidati": [],
+  "sec": 28
+ },
+ {
+  "nome": "Fondation pour la Recherche Médicale (FRM)",
+  "url": "https://www.frm.org/fr/chercheurs/appels-a-projets",
+  "status": 404,
+  "final_url": "https://www.frm.org/fr/chercheurs/appels-a-projets",
+  "len": 5426,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 1
+ },
+ {
+  "nome": "AFM-Téléthon – Appels d'offres",
+  "url": "https://www.afm-telethon.fr/fr/appels-offres",
+  "status": 404,
+  "final_url": "https://www.afm-telethon.fr/fr/appels-offres",
+  "len": 37138,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Fondation ARSEP – Appels à projets",
+  "url": "https://www.arsep.org/fr/141-appels-a-projets.html",
+  "status": 404,
+  "final_url": "https://www.france-sclerose-en-plaques.org/fr/141-appels-a-projets.html",
+  "len": 1069,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "IReSP – Institut pour la Recherche en Santé Publique",
+  "url": "https://iresp.net/appels-a-projets/",
+  "status": 200,
+  "final_url": "https://iresp.net/financements/programmes-et-appels/appels-a-projets-programme-autonomie/",
+  "len": 62028,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 31
+ },
+ {
+  "nome": "Fundación \"la Caixa\" – Convocatorias",
+  "url": "https://fundacionlacaixa.org/en/calls",
+  "status": 403,
+  "final_url": "https://lacaixafoundation.org/en/",
+  "len": 5631,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Fundación BBVA – Convocatorias",
+  "url": "https://www.fbbva.es/convocatorias/",
+  "status": 200,
+  "final_url": "https://www.fbbva.es/convocatorias/",
+  "len": 35852,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 20
+ },
+ {
+  "nome": "Fundación Ramón Areces – Ayudas",
+  "url": "https://www.fundacionareces.es/",
+  "status": 200,
+  "final_url": "https://www.fundacionareces.es/fundacionareces/es/",
+  "len": 46300,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 81
+ },
+ {
+  "nome": "Fundação Calouste Gulbenkian – Concursos",
+  "url": "https://gulbenkian.pt/en/grants/",
+  "status": 200,
+  "final_url": "https://gulbenkian.pt/en/grants/",
+  "len": 88734,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Master’s Scholarships for Students from PALOP",
+    "url": "https://gulbenkian.pt/en/bolsas-lista/masters-scholarships-for-students-from-palop/",
+    "scadenza": null,
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ]
+   }
+  ],
+  "sec": 25
+ },
+ {
+  "nome": "NWO – Calls",
+  "url": "https://www.nwo.nl/en/calls",
+  "status": 403,
+  "final_url": "https://www.nwo.nl/en/calls",
+  "len": 93,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "ReumaNederland – Onderzoek",
+  "url": "https://reumanederland.nl/",
+  "status": 200,
+  "final_url": "https://reumanederland.nl/",
+  "len": 78171,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Prinses Beatrix Spierfonds",
+  "url": "https://www.spierfonds.nl/",
+  "status": 200,
+  "final_url": "https://www.spierfonds.nl/",
+  "len": 240765,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 19
+ },
+ {
+  "nome": "Health~Holland – Calls",
+  "url": "https://www.health-holland.com/",
+  "status": 200,
+  "final_url": "https://www.health-holland.com/",
+  "len": 351371,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "King Baudouin Foundation – Calls",
+  "url": "https://kbs-frb.be/en/calls",
+  "status": 404,
+  "final_url": "https://kbs-frb.be/en/calls",
+  "len": 90347,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 1
+ },
+ {
+  "nome": "Fondation Charcot",
+  "url": "https://www.fondation-charcot.org/",
+  "status": 200,
+  "final_url": "https://www.fondation-charcot.org/",
+  "len": 300645,
+  "robots_ok": true,
+  "pagine": 10,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Charcot Clinical Fellowship",
+    "url": "https://www.fondation-charcot.org/recherche/charcot-clinical-fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Charcot PhD Fellowship",
+    "url": "https://www.fondation-charcot.org/recherche/charcot-phd-fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Charcot Clinical Fellowship",
+    "url": "https://www.fondation-charcot.org/nl/recherche/charcot-clinical-fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Charcot Clinical Fellowship",
+    "url": "https://www.fondation-charcot.org/en/recherche/charcot-clinical-fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Charcot PhD Fellowship",
+    "url": "https://www.fondation-charcot.org/en/recherche/charcot-phd-fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica"
+    ]
+   }
+  ],
+  "sec": 11
+ },
+ {
+  "nome": "Swiss Heart Foundation",
+  "url": "https://swissheart.ch/",
+  "status": 403,
+  "final_url": "https://swissheart.ch/",
+  "len": 5499,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 1
+ },
+ {
+  "nome": "Schweizerische MS-Gesellschaft – Forschung",
+  "url": "https://www.multiplesklerose.ch/de/forschung/",
+  "status": 200,
+  "final_url": "https://www.multiplesklerose.ch/de/forschung/",
+  "len": 65789,
+  "robots_ok": true,
+  "pagine": 11,
+  "errore": null,
+  "candidati": [],
+  "sec": 19
+ },
+ {
+  "nome": "WWTF – Vienna Science and Technology Fund",
+  "url": "https://www.wwtf.at/funding/",
+  "status": 200,
+  "final_url": "https://www.wwtf.at/funding/",
+  "len": 50858,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 22
+ },
+ {
+  "nome": "Ludwig Boltzmann Gesellschaft",
+  "url": "https://lbg.ac.at/",
+  "status": 200,
+  "final_url": "https://lbg.ac.at/",
+  "len": 69166,
+  "robots_ok": true,
+  "pagine": 9,
+  "errore": null,
+  "candidati": [],
+  "sec": 15
+ },
+ {
+  "nome": "Gigtforeningen – Forskning",
+  "url": "https://www.gigtforeningen.dk/forskning/",
+  "status": 200,
+  "final_url": "https://www.gigtforeningen.dk/viden/forskning/",
+  "len": 111997,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Kræftens Bekæmpelse – Forskningsstøtte",
+  "url": "https://www.cancer.dk/forskning/",
+  "status": 200,
+  "final_url": "https://www.cancer.dk/forskning/",
+  "len": 90950,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Vinnova – Utlysningar",
+  "url": "https://www.vinnova.se/en/apply-for-funding/find-the-right-funding/",
+  "status": 200,
+  "final_url": "https://www.vinnova.se/en/apply-for-funding/find-the-right-funding/",
+  "len": 97372,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 22
+ },
+ {
+  "nome": "Promobilia",
+  "url": "https://www.promobilia.se/",
+  "status": 200,
+  "final_url": "https://www.promobilia.se/",
+  "len": 130233,
+  "robots_ok": true,
+  "pagine": 3,
+  "errore": null,
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Stiftelsen Dam",
+  "url": "https://dam.no/",
+  "status": 200,
+  "final_url": "https://www.dam.no/",
+  "len": 223789,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 20
+ },
+ {
+  "nome": "Business Finland",
+  "url": "https://www.businessfinland.fi/en/for-finnish-customers/services/funding",
+  "status": 200,
+  "final_url": "https://www.businessfinland.fi/en/services/funding/",
+  "len": 273585,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "Finnish Medical Foundation",
+  "url": "https://www.laaketieteensaatio.fi/en",
+  "status": 200,
+  "final_url": "https://laaketieteensaatio.fi/en/home/",
+  "len": 71567,
+  "robots_ok": true,
+  "pagine": 11,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Grants for Research in Etiology from the Kauppila Fund",
+    "url": "https://laaketieteensaatio.fi/en/grants/grants-for-research-in-etiology-from-the-kauppila-fund/",
+    "scadenza": null,
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ]
+   }
+  ],
+  "sec": 13
+ },
+ {
+  "nome": "Irish Cancer Society – Research funding",
+  "url": "https://www.cancer.ie/",
+  "status": 200,
+  "final_url": "https://www.cancer.ie/",
+  "len": 143208,
+  "robots_ok": true,
+  "pagine": 6,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Irish Cancer Society Cancer Survivorship Seed Funding Award 2026",
+    "url": "https://www.cancer.ie/node/7808",
+    "scadenza": null,
+    "gruppi": [
+     "Oncologia ed ematologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Irish Cancer Society Cancer Clinical Study Seed Award 2026",
+    "url": "https://www.cancer.ie/node/7831",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Radiologia e imaging",
+     "Oncologia ed ematologia",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ]
+   }
+  ],
+  "sec": 6
+ },
+ {
+  "nome": "Foundation for Polish Science",
+  "url": "https://www.fnp.org.pl/en/",
+  "status": 200,
+  "final_url": "https://www.fnp.org.pl/en/",
+  "len": 190090,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "GAČR – Czech Science Foundation",
+  "url": "https://gacr.cz/en/",
+  "status": 200,
+  "final_url": "https://gacr.cz/en/",
+  "len": 62685,
+  "robots_ok": true,
+  "pagine": 8,
+  "errore": null,
+  "candidati": [],
+  "sec": 9
+ },
+ {
+  "nome": "HFRI – Hellenic Foundation for Research and Innovation",
+  "url": "https://www.elidek.gr/en/homepage/",
+  "status": 404,
+  "final_url": "https://www.elidek.gr/en/homepage/",
+  "len": 273545,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "HRZZ – Croatian Science Foundation",
+  "url": "https://hrzz.hr/en/",
+  "status": 200,
+  "final_url": "https://hrzz.hr/en/",
+  "len": 223171,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 61
+ },
+ {
+  "nome": "ETAG – Estonian Research Council",
+  "url": "https://etag.ee/en/",
+  "status": 200,
+  "final_url": "https://etag.ee/en/",
+  "len": 118226,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "FNR – Luxembourg National Research Fund",
+  "url": "https://www.fnr.lu/funding-instruments/",
+  "status": 200,
+  "final_url": "https://www.fnr.lu/funding-instruments/",
+  "len": 225647,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 32
+ },
+ {
+  "nome": "APVV – Slovak Research and Development Agency",
+  "url": "https://www.apvv.sk/",
+  "status": 200,
+  "final_url": "https://www.apvv.sk/",
+  "len": 91377,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 21
+ },
+ {
+  "nome": "Action Medical Research",
+  "url": "https://www.action.org.uk/research/apply-for-funding",
+  "status": 404,
+  "final_url": "https://action.org.uk/research/apply-for-funding",
+  "len": 66732,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 404",
+  "candidati": [],
+  "sec": 3
+ },
+ {
+  "nome": "Brain Research UK",
+  "url": "https://www.brainresearchuk.org.uk/",
+  "status": 200,
+  "final_url": "https://www.brainresearchuk.org.uk/",
+  "len": 42825,
+  "robots_ok": true,
+  "pagine": 11,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Apply for a grant",
+    "url": "https://www.brainresearchuk.org.uk/research/apply",
+    "scadenza": "2026-10-31",
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Oncologia ed ematologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Call for Fellowship applications",
+    "url": "https://www.brainresearchuk.org.uk/research/apply/fellowship",
+    "scadenza": null,
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Oncologia ed ematologia",
+     "Ricerca clinica"
+    ]
+   },
+   {
+    "titolo": "Call for project grant applications",
+    "url": "https://www.brainresearchuk.org.uk/research/apply/project-grant",
+    "scadenza": "2026-10-31",
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neurologia",
+     "Oncologia ed ematologia",
+     "Ricerca clinica"
+    ]
+   }
+  ],
+  "sec": 10
+ },
+ {
+  "nome": "MS Society UK – Research",
+  "url": "https://www.mssociety.org.uk/research",
+  "status": 200,
+  "final_url": "https://www.mssociety.org.uk/research",
+  "len": 94868,
+  "robots_ok": true,
+  "pagine": 8,
+  "errore": null,
+  "candidati": [],
+  "sec": 11
+ },
+ {
+  "nome": "MND Association – Research",
+  "url": "https://www.mndassociation.org/research",
+  "status": 403,
+  "final_url": "https://www.mndassociation.org/research",
+  "len": 5682,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": "HTTP 403",
+  "candidati": [],
+  "sec": 1
+ },
+ {
+  "nome": "Cancer Research UK – Funding",
+  "url": "https://www.cancerresearchuk.org/funding-for-researchers",
+  "status": 200,
+  "final_url": "https://www.cancerresearchuk.org/for-researchers",
+  "len": 2062602,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 18
+ },
+ {
+  "nome": "Rosetrees Trust",
+  "url": "https://rosetreestrust.co.uk/",
+  "status": 200,
+  "final_url": "https://rosetrees.org.uk/",
+  "len": 192536,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 2
+ },
+ {
+  "nome": "Chest Heart & Stroke Scotland – Research",
+  "url": "https://www.chss.org.uk/",
+  "status": 200,
+  "final_url": "https://www.chss.org.uk/",
+  "len": 137278,
+  "robots_ok": true,
+  "pagine": 2,
+  "errore": null,
+  "candidati": [],
+  "sec": 6
+ },
+ {
+  "nome": "Fondazione Cariparma",
+  "url": "https://www.fondazionecrp.it/",
+  "status": 200,
+  "final_url": "https://www.fondazionecrp.it/",
+  "len": 1749304,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [],
+  "sec": 38
+ },
+ {
+  "nome": "Fondazione Cassa di Risparmio di Trento e Rovereto",
+  "url": "https://www.fondazionecaritro.it/",
+  "status": 200,
+  "final_url": "https://www.fondazionecaritro.it/",
+  "len": 572225,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "Fondo per la Repubblica Digitale: online i nuovi bandi - Fondazione Caritro | Cassa di Risparmio di Trento e Rovereto",
+    "url": "https://www.fondazionecaritro.it/fondo-per-la-repubblica-digitale-online-i-nuovi-bandi/",
+    "scadenza": "2026-11-12",
+    "gruppi": [
+     "Invecchiamento"
+    ]
+   }
+  ],
+  "sec": 27
+ },
+ {
+  "nome": "Fondazione Cassa di Risparmio di Lucca",
+  "url": "https://www.fondazionecarilucca.it/",
+  "status": 200,
+  "final_url": "https://www.fondazionecarilucca.it/",
+  "len": 94258,
+  "robots_ok": true,
+  "pagine": 20,
+  "errore": null,
+  "candidati": [
+   {
+    "titolo": "IL WELFARE CULTURALE COME LEVA STRATEGICA: TORNA IL BANDO “BELLA Lì! LA CULTURA CHE CURA”",
+    "url": "https://www.fondazionecarilucca.it/torna-il-bando-bella-li-la-cultura-che-cura",
+    "scadenza": "2026-11-20",
+    "gruppi": [
+     "Invecchiamento",
+     "Fisiatria e ortopedia"
+    ]
+   },
+   {
+    "titolo": "Bando 2026 Sport e socializzazione",
+    "url": "https://www.fondazionecarilucca.it/bandi/bando-2026-sport-e-socializzazione",
+    "scadenza": null,
+    "gruppi": [
+     "Invecchiamento",
+     "Pediatria"
+    ]
+   },
+   {
+    "titolo": "Bando 2026 Welfare e comunità",
+    "url": "https://www.fondazionecarilucca.it/bandi/bando-2026-welfare-e-comunita",
+    "scadenza": null,
+    "gruppi": [
+     "Invecchiamento",
+     "Altre malattie e riabilitazione",
+     "Fisiatria e ortopedia",
+     "Neurologia",
+     "Neuropsicologia",
+     "Pediatria",
+     "Oncologia ed ematologia"
+    ]
+   }
+  ],
+  "sec": 31
+ },
+ {
+  "nome": "Fondazione Cassa di Risparmio di Pisa",
+  "url": "https://www.fondazionepisa.it/",
+  "status": 200,
+  "final_url": "https://fondazionepisa.it/",
+  "len": 633425,
+  "robots_ok": true,
+  "pagine": 15,
+  "errore": null,
+  "candidati": [],
+  "sec": 49
+ },
+ {
+  "nome": "Fondazione Grigioni per il Morbo di Parkinson",
+  "url": "https://www.parkinson.it/",
+  "status": 200,
+  "final_url": "https://www.parkinson.it/",
+  "len": 144874,
+  "robots_ok": true,
+  "pagine": 13,
+  "errore": null,
+  "candidati": [],
+  "sec": 14
+ },
+ {
+  "nome": "Fondazione Neurone",
+  "url": "https://www.fondazioneneurone.it/",
+  "status": 200,
+  "final_url": "https://www.fondazioneneurone.it/",
+  "len": 1075575,
+  "robots_ok": true,
+  "pagine": 5,
+  "errore": null,
+  "candidati": [],
+  "sec": 5
+ },
+ {
+  "nome": "Ministero della Salute – Bandi ricerca",
+  "url": "https://www.salute.gov.it/portale/ricercaSanitaria/homeRicercaSanitaria.jsp",
+  "status": 200,
+  "final_url": "https://www.salute.gov.it/portale/ricercaSanitaria/homeRicercaSanitaria.jsp",
+  "len": 5607,
+  "robots_ok": true,
+  "pagine": 1,
+  "errore": null,
+  "candidati": [],
+  "sec": 1
+ }
+]
