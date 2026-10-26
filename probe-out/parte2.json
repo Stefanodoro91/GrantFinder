@@ -1,0 +1,1624 @@
+[
+ {
+  "nome": "Karolinska Institutet – Vacancies",
+  "url": "https://ki.varbi.com/en/",
+  "status": 200,
+  "len": 197901,
+  "final_url": "https://ki.varbi.com/en/",
+  "link_posizioni": 34,
+  "tenuti": 8,
+  "report": [
+   [
+    "Karolinska Institutet – Vacancies",
+    34,
+    8,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Postdoctoral researcher in liver disease epidemiology and biostatistics",
+    "https://ki.varbi.com/en/what:job/jobID:967378/"
+   ],
+   [
+    "Assistant Professor in Nutritional Epidemiology with a Focus on Cognitive Health and APOE",
+    "https://ki.varbi.com/en/what:job/jobID:979352/"
+   ],
+   [
+    "Research Assistant in Epidemiology of Dementia and Cardiometabolic Disease",
+    "https://ki.varbi.com/en/what:job/jobID:978417/"
+   ],
+   [
+    "Postdoctoral Researcher in environmental epidemiology",
+    "https://ki.varbi.com/en/what:job/jobID:977187/"
+   ],
+   [
+    "Postdoctoral studies in renal epidemiology (scholarship)",
+    "https://ki.varbi.com/en/what:job/jobID:979798/"
+   ],
+   [
+    "Professor of Neurogeriatrics",
+    "https://ki.varbi.com/en/what:job/jobID:962235/"
+   ]
+  ],
+  "esempi_tutti": [
+   "Research Assistant in Molecular Skin Wound Healing and Single-Cell Genomics",
+   "Postdoctoral researcher in liver disease epidemiology and biostatistics",
+   "Postdoc in Adolescent Brain Development, Jens Hjerling-Leffler group (scholarship)",
+   "Postdoctoral Researcher in Single-Cell Epigenetics",
+   "Research assistant in Medical management"
+  ]
+ },
+ {
+  "nome": "Lund University – Vacancies",
+  "url": "https://lu.varbi.com/en/",
+  "status": 200,
+  "len": 222459,
+  "final_url": "https://lu.varbi.com/en/",
+  "link_posizioni": 33,
+  "tenuti": 2,
+  "report": [
+   [
+    "Lund University – Vacancies",
+    33,
+    2,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Postdoctoral Researcher in Neurodegenerative Disease Neuroimaging",
+    "https://lu.varbi.com/en/what:job/jobID:980945/"
+   ],
+   [
+    "Doctoral student in Biomedical Engineering specializing in engineering acoustics",
+    "https://lu.varbi.com/en/what:job/jobID:963476/"
+   ]
+  ],
+  "esempi_tutti": [
+   "Doctoral student in Numerical simulations of turbulent heat transfer over rough surfaces",
+   "Doctoral student in applied nuclear physics",
+   "PHD student in Epigenetics and Chromatin Dynamics",
+   "Postdoctoral position in Electrical Engineering focusing on Nanoelectronics and MOVPE epit",
+   "Postdoctoral Researcher in Neurodegenerative Disease Neuroimaging"
+  ]
+ },
+ {
+  "nome": "Uppsala University – Vacancies",
+  "url": "https://uu.varbi.com/en/",
+  "status": 200,
+  "len": 220308,
+  "final_url": "https://uu.varbi.com/en/",
+  "link_posizioni": 42,
+  "tenuti": 0,
+  "report": [
+   [
+    "Uppsala University – Vacancies",
+    42,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Postdoctoral position in impacts of extreme weather events",
+   "Postdoctoral researcher in chemistry with specialization in organic chemistry",
+   "Postdoc position in quantum matter theory with specialization in unconventional supercondu",
+   "PhD student in experimental nuclear physics with a focus on nuclear fission and gamma-ray ",
+   "Postdoctoral position in fast-neutron dosimetry and reference neutron fields"
+  ]
+ },
+ {
+  "nome": "KTH Royal Institute of Technology – Vacancies",
+  "url": "https://www.kth.se/en/om/work-at-kth/lediga-jobb",
+  "status": 404,
+  "len": 12932,
+  "final_url": "https://www.kth.se/en/om/jobba-pa-kth/lediga-jobb",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "KTH Royal Institute of Technology – Vacancies",
+    0,
+    0,
+    "404 Client Error:  for url: https://www.kth.se/en/om/jobba-pa-kth/lediga-jobb"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Chalmers – Vacancies",
+  "url": "https://www.chalmers.se/en/about-chalmers/work-with-us/vacancies/",
+  "status": 200,
+  "len": 411692,
+  "final_url": "https://www.chalmers.se/en/about-chalmers/work-with-us/vacancies/",
+  "link_posizioni": 2,
+  "tenuti": 0,
+  "report": [
+   [
+    "Chalmers – Vacancies",
+    2,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Assistant professor positions",
+   "Visiting professor"
+  ]
+ },
+ {
+  "nome": "Linköping University – Vacancies",
+  "url": "https://liu.se/en/work-at-liu/vacancies",
+  "status": 200,
+  "len": 55744,
+  "final_url": "https://liu.se/en/work-at-liu/vacancies",
+  "link_posizioni": 1,
+  "tenuti": 0,
+  "report": [
+   [
+    "Linköping University – Vacancies",
+    1,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Doctoral studies"
+  ]
+ },
+ {
+  "nome": "University of Gothenburg – Vacancies",
+  "url": "https://www.gu.se/en/about-the-university/job-opportunities",
+  "status": 404,
+  "len": 189159,
+  "final_url": "https://www.gu.se/en/about-the-university/job-opportunities",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Gothenburg – Vacancies",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.gu.se/en/about-the-university/job-opportunities"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "University of Copenhagen – Vacancies",
+  "url": "https://employment.ku.dk/all-vacancies/",
+  "status": 200,
+  "len": 64553,
+  "final_url": "https://employment.ku.dk/all-vacancies/",
+  "link_posizioni": 60,
+  "tenuti": 2,
+  "report": [
+   [
+    "University of Copenhagen – Vacancies",
+    60,
+    2,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Associate professor of Equine Sports Medicine",
+    "https://employment.ku.dk/all-vacancies/?show=166502"
+   ],
+   [
+    "170026 Clinical Professor of Otorhinolaryngology and Head and Neck Oncology (Fixed-Term, 5",
+    "https://employment.ku.dk/all-vacancies/?show=170026"
+   ]
+  ],
+  "esempi_tutti": [
+   "Faculty and academic positions",
+   "Tenure track assistant professor positions",
+   "PhD-positions",
+   "Tenure Track assistant professor, associate professor or professor of Food Processing & Te",
+   "Tenure-track Assistant Professor or Associate Professor of Food and Ingredient Biochemical"
+  ]
+ },
+ {
+  "nome": "Aarhus University – Vacancies",
+  "url": "https://international.au.dk/about/profile/vacant-positions",
+  "status": 200,
+  "len": 97780,
+  "final_url": "https://international.au.dk/about/profile/vacant-positions",
+  "link_posizioni": 1,
+  "tenuti": 0,
+  "report": [
+   [
+    "Aarhus University – Vacancies",
+    1,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Fellowship programme at AIAS"
+  ]
+ },
+ {
+  "nome": "DTU – Vacancies",
+  "url": "https://www.dtu.dk/english/about/job-and-career/vacant-positions",
+  "status": 200,
+  "len": 166101,
+  "final_url": "https://www.dtu.dk/english/about/job-and-career/vacant-positions",
+  "link_posizioni": 2,
+  "tenuti": 0,
+  "report": [
+   [
+    "DTU – Vacancies",
+    2,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Pursue your PhD at DTU",
+   "Guest researchers & guest PhD students"
+  ]
+ },
+ {
+  "nome": "University of Southern Denmark – Vacancies",
+  "url": "https://www.sdu.dk/en/service/ledige_stillinger",
+  "status": 200,
+  "len": 174986,
+  "final_url": "https://www.sdu.dk/en/om-sdu/job-sdu",
+  "link_posizioni": 21,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Southern Denmark – Vacancies",
+    21,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   ". Faculty of Humanities",
+   ". Faculty of Science",
+   ". Faculty of Business and Social Sciences",
+   ". Faculty of Health Sciences",
+   ". Faculty of Engineering"
+  ]
+ },
+ {
+  "nome": "Aalborg University – Vacancies",
+  "url": "https://www.vacancies.aau.dk/",
+  "status": 200,
+  "len": 137835,
+  "final_url": "https://www.vacancies.aau.dk/",
+  "link_posizioni": 1,
+  "tenuti": 0,
+  "report": [
+   [
+    "Aalborg University – Vacancies",
+    1,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "PhD positions"
+  ]
+ },
+ {
+  "nome": "Jobbnorge – clinical research",
+  "url": "https://www.jobbnorge.no/en/available-jobs?searchtext=clinical",
+  "status": 404,
+  "len": 5527,
+  "final_url": "https://www.jobbnorge.no/en/available-jobs?searchtext=clinical",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Jobbnorge – clinical research",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.jobbnorge.no/en/available-jobs?searchtext=clinical"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Jobbnorge – rehabilitation",
+  "url": "https://www.jobbnorge.no/en/available-jobs?searchtext=rehabilitation",
+  "status": 404,
+  "len": 5539,
+  "final_url": "https://www.jobbnorge.no/en/available-jobs?searchtext=rehabilitation",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Jobbnorge – rehabilitation",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.jobbnorge.no/en/available-jobs?searchtext=rehabilitation"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "University of Helsinki – Jobs",
+  "url": "https://jobs.helsinki.fi/",
+  "status": 200,
+  "len": 75326,
+  "final_url": "https://jobs.helsinki.fi/",
+  "link_posizioni": 1,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Helsinki – Jobs",
+    1,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Professors and assistant / associate professors"
+  ]
+ },
+ {
+  "nome": "Aalto University – Open positions",
+  "url": "https://www.aalto.fi/en/open-positions",
+  "status": 200,
+  "len": 128482,
+  "final_url": "https://www.aalto.fi/en/open-positions",
+  "link_posizioni": 11,
+  "tenuti": 0,
+  "report": [
+   [
+    "Aalto University – Open positions",
+    11,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Doctoral admissions",
+   "Tenure track career system",
+   "Doctoral education",
+   "Doctoral Researcher in Real Estate Economics",
+   "Doctoral Researcher position in Chemical Engineering"
+  ]
+ },
+ {
+  "nome": "Tampere University – Open positions",
+  "url": "https://www.tuni.fi/en/about-us/working-at-tampere-universities/open-positions",
+  "status": 404,
+  "len": 121652,
+  "final_url": "https://www.tuni.fi/en/about-us/working-at-tampere-universities/open-positions",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Tampere University – Open positions",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.tuni.fi/en/about-us/working-at-tampere-universities/open-positions"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – clinical research",
+  "url": "https://www.academictransfer.com/en/jobs/?q=clinical+research",
+  "status": 200,
+  "len": 247385,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=clinical+research",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – clinical research",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – biomedical engineering",
+  "url": "https://www.academictransfer.com/en/jobs/?q=biomedical+engineering",
+  "status": 200,
+  "len": 241026,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=biomedical+engineering",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – biomedical engineering",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – physiotherapy",
+  "url": "https://www.academictransfer.com/en/jobs/?q=physiotherapy",
+  "status": 200,
+  "len": 80920,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=physiotherapy",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – physiotherapy",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – epidemiology",
+  "url": "https://www.academictransfer.com/en/jobs/?q=epidemiology",
+  "status": 200,
+  "len": 199018,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=epidemiology",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – epidemiology",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – radiology",
+  "url": "https://www.academictransfer.com/en/jobs/?q=radiology",
+  "status": 200,
+  "len": 61957,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=radiology",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – radiology",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "AcademicTransfer – paediatrics",
+  "url": "https://www.academictransfer.com/en/jobs/?q=pediatrics",
+  "status": 200,
+  "len": 174832,
+  "final_url": "https://www.academictransfer.com/en/jobs/?q=pediatrics",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "AcademicTransfer – paediatrics",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "TU Eindhoven – Vacancies",
+  "url": "https://jobs.tue.nl/en/vacancies",
+  "status": 200,
+  "len": 133736,
+  "final_url": "https://www.tue.nl/en/working-at-tue/vacancy-overview/",
+  "link_posizioni": 5,
+  "tenuti": 0,
+  "report": [
+   [
+    "TU Eindhoven – Vacancies",
+    5,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Associate Professor",
+   "Engineering Doctorate (EngD)",
+   "Postdoctorate",
+   "Assistant Professor",
+   "Full Professor"
+  ]
+ },
+ {
+  "nome": "University of Twente – Vacancies",
+  "url": "https://www.utwente.nl/en/organisation/careers/vacancies/",
+  "status": 200,
+  "len": 70014,
+  "final_url": "https://utwentecareers.nl/en/vacancies/",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Twente – Vacancies",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "TU Delft – Vacancies",
+  "url": "https://www.tudelft.nl/en/about-tu-delft/working-at-tu-delft/search-jobs",
+  "status": 200,
+  "len": 33792,
+  "final_url": "https://careers.tudelft.nl/?locale=en_US",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "TU Delft – Vacancies",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Erasmus MC – Vacatures",
+  "url": "https://www.werkenbijerasmusmc.nl/vacatures",
+  "status": 200,
+  "len": 240225,
+  "final_url": "https://www.werkenbijerasmusmc.nl/vacatures",
+  "link_posizioni": 1,
+  "tenuti": 0,
+  "report": [
+   [
+    "Erasmus MC – Vacatures",
+    1,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Postdoctoraal onderzoeker / universitair docent Revalidatie . 32 - 36 uur . Gepromoveerd ."
+  ]
+ },
+ {
+  "nome": "Radboudumc – Vacatures",
+  "url": "https://werkenbij.radboudumc.nl/vacatures",
+  "errore": "HTTPSConnectionPool(host='werkenbij.radboudumc.nl', port=443): Max retries exceeded with url: /vacatures (Caused by NameResolutionError(\"HTTPSConnection(host='werkenbij.radboudumc.nl', port=443): Fail"
+ },
+ {
+  "nome": "KU Leuven – Jobs",
+  "url": "https://www.kuleuven.be/personeel/jobsite/en/jobs",
+  "status": 404,
+  "len": 7502,
+  "final_url": "https://www.kuleuven.be/personeel/jobsite-old/en/jobs",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "KU Leuven – Jobs",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.kuleuven.be/personeel/jobsite-old/en/jobs"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Ghent University – Jobs",
+  "url": "https://jobs.ugent.be/?locale=en",
+  "status": 200,
+  "len": 92463,
+  "final_url": "https://jobs.ugent.be/?locale=en",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Ghent University – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "UCLouvain – Jobs",
+  "url": "https://jobs.uclouvain.be/",
+  "status": 200,
+  "len": 71004,
+  "final_url": "https://jobs.uclouvain.be/",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "UCLouvain – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "academics.de – Medizin",
+  "url": "https://www.academics.de/jobs/medizin",
+  "status": 404,
+  "len": 57670,
+  "final_url": "https://www.academics.de/jobs/medizin",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "academics.de – Medizin",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.academics.de/jobs/medizin"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "academics.de – Medizintechnik",
+  "url": "https://www.academics.de/jobs/medizintechnik",
+  "status": 404,
+  "len": 57677,
+  "final_url": "https://www.academics.de/jobs/medizintechnik",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "academics.de – Medizintechnik",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.academics.de/jobs/medizintechnik"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Charité – Stellenangebote",
+  "url": "https://karriere.charite.de/stellenangebote",
+  "status": 200,
+  "len": 64205,
+  "final_url": "https://karriere.charite.de/stellenangebote",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Charité – Stellenangebote",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "TUM – Open positions",
+  "url": "https://www.tum.de/en/about-tum/working-at-tum/open-positions",
+  "status": 404,
+  "len": 367729,
+  "final_url": "https://www.tum.de/en/about-tum/careers-and-jobs/open-positions",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "TUM – Open positions",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.tum.de/en/about-tum/careers-and-jobs/open-positions"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Heidelberg University – Stellenmarkt",
+  "url": "https://www.uni-heidelberg.de/de/stellenmarkt",
+  "status": 200,
+  "len": 150258,
+  "final_url": "https://www.uni-heidelberg.de/de/beschaeftigte-in-wissenschaft-verwaltung-und-technik/karriere-und-weiterbildung/stellenmarkt",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Heidelberg University – Stellenmarkt",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "DKFZ – Jobs",
+  "url": "https://www.dkfz.de/en/stellenangebote/",
+  "status": 200,
+  "len": 174188,
+  "final_url": "https://www.dkfz.de/en/career/jobs",
+  "link_posizioni": 2,
+  "tenuti": 0,
+  "report": [
+   [
+    "DKFZ – Jobs",
+    2,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "International PhD Program",
+   "International Postdoc Program"
+  ]
+ },
+ {
+  "nome": "KIT – Job offers",
+  "url": "https://www.pse.kit.edu/karriere/joboffers.php",
+  "status": 404,
+  "len": 97520,
+  "final_url": "https://www.kit.edu/karriere/joboffers.php",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "KIT – Job offers",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.kit.edu/karriere/joboffers.php"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "ETH Zurich – Jobs",
+  "url": "https://jobs.ethz.ch/",
+  "status": 200,
+  "len": 165914,
+  "final_url": "https://jobs.ethz.ch/",
+  "link_posizioni": 59,
+  "tenuti": 2,
+  "report": [
+   [
+    "ETH Zurich – Jobs",
+    59,
+    2,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Doctoral Student in Environmental Bioengineering . 100%, Zurich, fixed-term . 22.10.2026 |",
+    "https://jobs.ethz.ch/job/view/JOPG_ethz_o0hFrG5T51aXJSr1x4"
+   ],
+   [
+    "PhD Researcher - PDTx . 100%, Singapore, fixed-term . 08.09.2026 | Future Health Technolog",
+    "https://jobs.ethz.ch/job/view/JOPG_ethz_5jfFbj5xGmFSyYoPWI"
+   ]
+  ],
+  "esempi_tutti": [
+   "Doctoral Student in Environmental Bioengineering . 100%, Zurich, fixed-term . 22.10.2026 |",
+   "Two Doctoral Positions in Tropical Forest Ecology, Animal-Plant Interactions and Forest Re",
+   "Three Postdoctoral Positions in Circular Engineering for Architecture . 100%, Zurich, fixe",
+   "Doctoral Student in Machine Learning and Medical Data Science . 100%, Zurich, fixed-term .",
+   "Doctoral Students in Quantum Networking with Superconducting Circuits . 100%, Zurich, fixe"
+  ]
+ },
+ {
+  "nome": "EPFL – Job openings",
+  "url": "https://www.epfl.ch/about/working/working-at-epfl/job-openings/",
+  "status": 200,
+  "len": 73422,
+  "final_url": "https://www.epfl.ch/about/working/working-at-epfl/job-openings/",
+  "link_posizioni": 4,
+  "tenuti": 0,
+  "report": [
+   [
+    "EPFL – Job openings",
+    4,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Faculty Welcome",
+   "Faculty Positions",
+   "PhD Students",
+   "Faculty Members"
+  ]
+ },
+ {
+  "nome": "University of Zurich – Jobs",
+  "url": "https://www.jobs.uzh.ch/",
+  "status": 200,
+  "len": 205481,
+  "final_url": "https://www.uzh.ch/de/explore/work/jobs",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Zurich – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "University of Bern – Jobs",
+  "url": "https://www.unibe.ch/jobs/index_eng.html",
+  "status": 200,
+  "len": 23792,
+  "final_url": "https://www.unibe.ch/jobs/index_eng.html",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "University of Bern – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "MedUni Wien – Karriere",
+  "url": "https://www.meduniwien.ac.at/web/karriere/",
+  "status": 200,
+  "len": 122233,
+  "final_url": "https://www.meduniwien.ac.at/web/karriere/offene-stellen/",
+  "link_posizioni": 12,
+  "tenuti": 0,
+  "report": [
+   [
+    "MedUni Wien – Karriere",
+    12,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "PhD und Doktoratsstudien",
+   "Adjunct Professorships",
+   "PhD-Stelle / PhD Position (m/w/d)",
+   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)",
+   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)"
+  ]
+ },
+ {
+  "nome": "TU Wien – Jobs",
+  "url": "https://jobs.tuwien.ac.at/",
+  "status": 200,
+  "len": 65686,
+  "final_url": "https://jobs.tuwien.ac.at/Jobs",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "TU Wien – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "ABG – PhD and postdoc offers",
+  "url": "https://www.abg.asso.fr/en/candidatOffres",
+  "status": 200,
+  "len": 45110,
+  "final_url": "https://www.abg.asso.fr/en/candidatOffres",
+  "link_posizioni": 2,
+  "tenuti": 0,
+  "report": [
+   [
+    "ABG – PhD and postdoc offers",
+    2,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "A doctoral candidate",
+   "A PhD-holder"
+  ]
+ },
+ {
+  "nome": "Inserm – Nous rejoindre",
+  "url": "https://www.inserm.fr/nous-rejoindre/",
+  "status": 404,
+  "len": 65405,
+  "final_url": "https://www.inserm.fr/nous-rejoindre/",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Inserm – Nous rejoindre",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.inserm.fr/nous-rejoindre/"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Institut Pasteur – Careers",
+  "url": "https://www.pasteur.fr/en/join-us/job-offers",
+  "status": 404,
+  "len": 81656,
+  "final_url": "https://www.pasteur.fr/en/join-us/job-offers",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Institut Pasteur – Careers",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.pasteur.fr/en/join-us/job-offers"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "IBEC – Jobs",
+  "url": "https://ibecbarcelona.eu/jobs/",
+  "status": 200,
+  "len": 167942,
+  "final_url": "https://ibecbarcelona.eu/careers-at-ibec/jobs/",
+  "link_posizioni": 4,
+  "tenuti": 0,
+  "report": [
+   [
+    "IBEC – Jobs",
+    4,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Doing your PhD at IBEC",
+   "PhD Student Committee",
+   "Doctoral Certificate of Excellence",
+   "Postdoc opportunities"
+  ]
+ },
+ {
+  "nome": "Vall d'Hebron Research Institute – Work with us",
+  "url": "https://vhir.vallhebron.com/en/work-with-us",
+  "status": 404,
+  "len": 112636,
+  "final_url": "https://vhir.vallhebron.com/en/work-with-us",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Vall d'Hebron Research Institute – Work with us",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://vhir.vallhebron.com/en/work-with-us"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "IDIBAPS – Job offers",
+  "url": "https://www.clinicbarcelona.org/en/idibaps/work-with-us",
+  "status": 404,
+  "len": 167160,
+  "final_url": "https://www.clinicbarcelona.org/en/idibaps/work-with-us",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "IDIBAPS – Job offers",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.clinicbarcelona.org/en/idibaps/work-with-us"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Scuola Superiore Sant'Anna – Bandi",
+  "url": "https://www.santannapisa.it/it/bandi",
+  "status": 404,
+  "len": 41539,
+  "final_url": "https://www.santannapisa.it/it/bandi",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Scuola Superiore Sant'Anna – Bandi",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.santannapisa.it/it/bandi"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Politecnico di Milano – Bandi ricerca",
+  "url": "https://www.polimi.it/ricerca/opportunita-di-lavoro-nella-ricerca",
+  "status": 404,
+  "len": 496860,
+  "final_url": "https://www.polimi.it/ricerca/opportunita-di-lavoro-nella-ricerca",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "Politecnico di Milano – Bandi ricerca",
+    0,
+    0,
+    "404 Client Error: Not Found for url: https://www.polimi.it/ricerca/opportunita-di-lavoro-nella-ricerca"
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "EMBL – Jobs",
+  "url": "https://www.embl.org/jobs/",
+  "status": 200,
+  "len": 7016,
+  "final_url": "https://embl.wd103.myworkdayjobs.com/EMBL",
+  "link_posizioni": 0,
+  "tenuti": 0,
+  "report": [
+   [
+    "EMBL – Jobs",
+    0,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": []
+ },
+ {
+  "nome": "Nature Careers – radiology",
+  "url": "https://www.nature.com/naturecareers/jobs/search?keywords=radiology",
+  "status": 200,
+  "len": 74133,
+  "final_url": "https://www.nature.com/naturecareers/jobs/?keywords=radiology",
+  "link_posizioni": 7,
+  "tenuti": 7,
+  "report": [
+   [
+    "Nature Careers – radiology",
+    7,
+    7,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Faculty Position - Department of Radiology",
+    "https://www.nature.com/naturecareers/job/12865495/faculty-position-department-of-radiology/"
+   ],
+   [
+    "Faculty position, Chief of Nuclear Medicine, Department of Radiology",
+    "https://www.nature.com/naturecareers/job/12864369/faculty-position-chief-of-nuclear-medicine-department-of-radiology/"
+   ],
+   [
+    "Faculty Position, Department of Radiology - Pediatric Body Radiology",
+    "https://www.nature.com/naturecareers/job/12864379/faculty-position-department-of-radiology-pediatric-body-radiology/"
+   ],
+   [
+    "Faculty Position in Pediatric Neuroradiology, Department of Radiology",
+    "https://www.nature.com/naturecareers/job/12864385/faculty-position-in-pediatric-neuroradiology-department-of-radiology/"
+   ],
+   [
+    "Postdoctoral Research Associate - Radiology",
+    "https://www.nature.com/naturecareers/job/12863064/postdoctoral-research-associate-radiology/"
+   ],
+   [
+    "Faculty Position-Department of Information Services, Clinical Informatics Researcher",
+    "https://www.nature.com/naturecareers/job/12864397/faculty-position-department-of-information-services-clinical-informati"
+   ]
+  ],
+  "esempi_tutti": [
+   "Faculty Position - Department of Radiology",
+   "Faculty position, Chief of Nuclear Medicine, Department of Radiology",
+   "Faculty Position, Department of Radiology - Pediatric Body Radiology",
+   "Faculty Position in Pediatric Neuroradiology, Department of Radiology",
+   "Postdoctoral Research Associate - Radiology"
+  ]
+ },
+ {
+  "nome": "Nature Careers – paediatrics",
+  "url": "https://www.nature.com/naturecareers/jobs/search?keywords=paediatrics",
+  "status": 200,
+  "len": 35248,
+  "final_url": "https://www.nature.com/naturecareers/jobs/?keywords=paediatrics",
+  "link_posizioni": 2,
+  "tenuti": 2,
+  "report": [
+   [
+    "Nature Careers – paediatrics",
+    2,
+    2,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Post-doctoral",
+    "https://www.nature.com/naturecareers/job/12863098/post-doctoral-/"
+   ],
+   [
+    "Postdoctoral fellowship (2 years) in molecular mechanisms of MLL1-driven leukaemia",
+    "https://www.nature.com/naturecareers/job/12864595/postdoctoral-fellowship-2-years-in-molecular-mechanisms-of-mll1-driven"
+   ]
+  ],
+  "esempi_tutti": [
+   "Post-doctoral",
+   "Postdoctoral fellowship (2 years) in molecular mechanisms of MLL1-driven leukaemia"
+  ]
+ },
+ {
+  "nome": "Nature Careers – rheumatology",
+  "url": "https://www.nature.com/naturecareers/jobs/search?keywords=rheumatology",
+  "status": 200,
+  "len": 49325,
+  "final_url": "https://www.nature.com/naturecareers/jobs/?keywords=rheumatology",
+  "link_posizioni": 3,
+  "tenuti": 3,
+  "report": [
+   [
+    "Nature Careers – rheumatology",
+    3,
+    3,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Postdoctoral Fellowships Worldwide",
+    "https://www.nature.com/naturecareers/job/12862293/postdoctoral-fellowships-worldwide/"
+   ],
+   [
+    "Professorship / Director and Chief Physician of the Department of Emergency Medicine",
+    "https://www.nature.com/naturecareers/job/12865903/professorship-director-and-chief-physician-of-the-department-of-emerge"
+   ],
+   [
+    "Postdoctoral and Visiting Scholar positions in Immunology, Stem Cells, and Cancer",
+    "https://www.nature.com/naturecareers/job/12864687/postdoctoral-and-visiting-scholar-positions-in-immunology-stem-cells-a"
+   ]
+  ],
+  "esempi_tutti": [
+   "Postdoctoral Fellowships Worldwide",
+   "Professorship / Director and Chief Physician of the Department of Emergency Medicine",
+   "Postdoctoral and Visiting Scholar positions in Immunology, Stem Cells, and Cancer"
+  ]
+ },
+ {
+  "nome": "Nature Careers – neuropsychology",
+  "url": "https://www.nature.com/naturecareers/jobs/search?keywords=neuropsychology",
+  "status": 200,
+  "len": 66330,
+  "final_url": "https://www.nature.com/naturecareers/jobs/?keywords=neuropsychology",
+  "link_posizioni": 10,
+  "tenuti": 10,
+  "report": [
+   [
+    "Nature Careers – neuropsychology",
+    10,
+    10,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Full-time tenure-track professors’ positions",
+    "https://www.nature.com/naturecareers/job/12864705/full-time-tenure-track-professors-positions/"
+   ],
+   [
+    "Postdoctoral Researcher (f/m/x) — Remote and unsupervised smartphone-based assessments in ",
+    "https://www.nature.com/naturecareers/job/12864763/postdoctoral-researcher-f-m-x-remote-and-unsupervised-smartphone-based"
+   ],
+   [
+    "Postdoctoral Researcher (f/m/x) — Event Segmentation and Laminar 7T fMRI in Alzheimer's Di",
+    "https://www.nature.com/naturecareers/job/12864714/postdoctoral-researcher-f-m-x-event-segmentation-and-laminar-7t-fmri-i"
+   ],
+   [
+    "Clinical Faculty Position, Child and Adolescent Psychiatrist - Department of Pediatric Med",
+    "https://www.nature.com/naturecareers/job/12864368/clinical-faculty-position-child-and-adolescent-psychiatrist-department"
+   ],
+   [
+    "Clinical Research Scientist - Psychology & Biobehavioral Sciences",
+    "https://www.nature.com/naturecareers/job/12864823/clinical-research-scientist-psychology-and-biobehavioral-sciences/"
+   ],
+   [
+    "Clinical Research Associate II - Division, Cognitive Neuroscience",
+    "https://www.nature.com/naturecareers/job/12865532/clinical-research-associate-ii-division-cognitive-neuroscience/"
+   ]
+  ],
+  "esempi_tutti": [
+   "Full-time tenure-track professors’ positions",
+   "Postdoctoral Researcher (f/m/x) — Remote and unsupervised smartphone-based assessments in ",
+   "Postdoctoral Researcher (f/m/x) — Event Segmentation and Laminar 7T fMRI in Alzheimer's Di",
+   "Clinical Faculty Position, Child and Adolescent Psychiatrist - Department of Pediatric Med",
+   "Clinical Research Scientist - Psychology & Biobehavioral Sciences"
+  ]
+ },
+ {
+  "nome": "Times Higher Education – radiology",
+  "url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=radiology",
+  "status": 200,
+  "len": 90015,
+  "final_url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=radiology",
+  "link_posizioni": 7,
+  "tenuti": 7,
+  "report": [
+   [
+    "Times Higher Education – radiology",
+    7,
+    7,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Instructor / Assistant Professor for Department of Radiology and Nuclear Medicine",
+    "https://www.timeshighereducation.com/unijobs/listing/416057/instructor-assistant-professor-for-department-of-radiology-a"
+   ],
+   [
+    "Tenure-Track Clinical Associate Professor/Assistant Professor in Oral and Maxillofacial Ra",
+    "https://www.timeshighereducation.com/unijobs/listing/416125/tenure-track-clinical-associate-professor-assistant-professo"
+   ],
+   [
+    "Faculty Member (Clinical) – Medical Doctor Program",
+    "https://www.timeshighereducation.com/unijobs/listing/403625/faculty-member-clinical-medical-doctor-program/?LinkSource=P"
+   ],
+   [
+    "Assistant Professor / Associate Professor / Professor in Radiology",
+    "https://www.timeshighereducation.com/unijobs/listing/410154/assistant-professor-associate-professor-professor-in-radiolo"
+   ],
+   [
+    "Clinical Prof./Associate Professor/Assistant Professor of Practice in the LKS Faculty of M",
+    "https://www.timeshighereducation.com/unijobs/listing/415555/clinical-prof-associate-professor-assistant-professor-of-pra"
+   ],
+   [
+    "Tenure-Track Professor/Associate Professor/Assistant Professor in Medical Physics",
+    "https://www.timeshighereducation.com/unijobs/listing/414660/tenure-track-professor-associate-professor-assistant-profess"
+   ]
+  ],
+  "esempi_tutti": [
+   "Instructor / Assistant Professor for Department of Radiology and Nuclear Medicine",
+   "Tenure-Track Clinical Associate Professor/Assistant Professor in Oral and Maxillofacial Ra",
+   "Faculty Member (Clinical) – Medical Doctor Program",
+   "Assistant Professor / Associate Professor / Professor in Radiology",
+   "Clinical Prof./Associate Professor/Assistant Professor of Practice in the LKS Faculty of M"
+  ]
+ },
+ {
+  "nome": "Times Higher Education – paediatrics",
+  "url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=paediatrics",
+  "status": 200,
+  "len": 67372,
+  "final_url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=paediatrics",
+  "link_posizioni": 3,
+  "tenuti": 3,
+  "report": [
+   [
+    "Times Higher Education – paediatrics",
+    3,
+    3,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Assistant Professor / Associate Professor / Professor in Paediatrics",
+    "https://www.timeshighereducation.com/unijobs/listing/410162/assistant-professor-associate-professor-professor-in-paediat"
+   ],
+   [
+    "Clinical Prof./Associate Professor/Assistant Professor of Practice in the LKS Faculty of M",
+    "https://www.timeshighereducation.com/unijobs/listing/415555/clinical-prof-associate-professor-assistant-professor-of-pra"
+   ],
+   [
+    "Tenure-Track Clinical Prof./Associate Professor/Assistant Professor in the LKS Faculty of ",
+    "https://www.timeshighereducation.com/unijobs/listing/415556/tenure-track-clinical-prof-associate-professor-assistant-pro"
+   ]
+  ],
+  "esempi_tutti": [
+   "Assistant Professor / Associate Professor / Professor in Paediatrics",
+   "Clinical Prof./Associate Professor/Assistant Professor of Practice in the LKS Faculty of M",
+   "Tenure-Track Clinical Prof./Associate Professor/Assistant Professor in the LKS Faculty of "
+  ]
+ },
+ {
+  "nome": "Times Higher Education – neuropsychology",
+  "url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=neuropsychology",
+  "status": 200,
+  "len": 60578,
+  "final_url": "https://www.timeshighereducation.com/unijobs/listings/?keywords=neuropsychology",
+  "link_posizioni": 1,
+  "tenuti": 1,
+  "report": [
+   [
+    "Times Higher Education – neuropsychology",
+    1,
+    1,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Tenure-Track Professor/Associate Professor/Assistant Professor in Educational/School Psych",
+    "https://www.timeshighereducation.com/unijobs/listing/415415/tenure-track-professor-associate-professor-assistant-profess"
+   ]
+  ],
+  "esempi_tutti": [
+   "Tenure-Track Professor/Associate Professor/Assistant Professor in Educational/School Psych"
+  ]
+ },
+ {
+  "nome": "jobs.ac.uk – radiology",
+  "url": "https://www.jobs.ac.uk/search/?keywords=radiology",
+  "status": 200,
+  "len": 210724,
+  "final_url": "https://www.jobs.ac.uk/search/?keywords=radiology",
+  "link_posizioni": 2,
+  "tenuti": 2,
+  "report": [
+   [
+    "jobs.ac.uk – radiology",
+    2,
+    2,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "AstraZeneca Non-Clinical PhD Studentship in Development of an Integrated Pre-Clinical Pipe",
+    "https://www.jobs.ac.uk/job/DSZ804/astrazeneca-non-clinical-phd-studentship-in-development-of-an-integrated-pre-clinical-"
+   ],
+   [
+    "PhD Studentship in Cell Biology - Discovering a New Muscular Dystrophy Mechanism Involving",
+    "https://www.jobs.ac.uk/job/DTD418/phd-studentship-in-cell-biology-discovering-a-new-muscular-dystrophy-mechanism-involvi"
+   ]
+  ],
+  "esempi_tutti": [
+   "AstraZeneca Non-Clinical PhD Studentship in Development of an Integrated Pre-Clinical Pipe",
+   "PhD Studentship in Cell Biology - Discovering a New Muscular Dystrophy Mechanism Involving"
+  ]
+ },
+ {
+  "nome": "jobs.ac.uk – rheumatology",
+  "url": "https://www.jobs.ac.uk/search/?keywords=rheumatology",
+  "status": 200,
+  "len": 204948,
+  "final_url": "https://www.jobs.ac.uk/search/?keywords=rheumatology",
+  "link_posizioni": 3,
+  "tenuti": 3,
+  "report": [
+   [
+    "jobs.ac.uk – rheumatology",
+    3,
+    3,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Daphne Jackson Research Fellowship with the Kennedy Trust for Rheumatology Research",
+    "https://www.jobs.ac.uk/job/DTE310/daphne-jackson-research-fellowship-with-the-kennedy-trust-for-rheumatology-research"
+   ],
+   [
+    "Postdoctoral Research Assistant in Immunology",
+    "https://www.jobs.ac.uk/job/DTG056/postdoctoral-research-assistant-in-immunology"
+   ],
+   [
+    "Translational Research Scientist: Experimental Medicine",
+    "https://www.jobs.ac.uk/job/DTG846/translational-research-scientist-experimental-medicine"
+   ]
+  ],
+  "esempi_tutti": [
+   "Daphne Jackson Research Fellowship with the Kennedy Trust for Rheumatology Research",
+   "Postdoctoral Research Assistant in Immunology",
+   "Translational Research Scientist: Experimental Medicine"
+  ]
+ },
+ {
+  "nome": "jobs.ac.uk – paediatrics",
+  "url": "https://www.jobs.ac.uk/search/?keywords=paediatrics",
+  "status": 200,
+  "len": 230551,
+  "final_url": "https://www.jobs.ac.uk/search/?keywords=paediatrics",
+  "link_posizioni": 8,
+  "tenuti": 8,
+  "report": [
+   [
+    "jobs.ac.uk – paediatrics",
+    8,
+    8,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "NIHR Academic Clinical Lecturer in Paediatric Dentistry",
+    "https://www.jobs.ac.uk/job/DTI656/nihr-academic-clinical-lecturer-in-paediatric-dentistry"
+   ],
+   [
+    "Lecturer in Speech and Language Therapy",
+    "https://www.jobs.ac.uk/job/DTF492/lecturer-in-speech-and-language-therapy"
+   ],
+   [
+    "Clinical Lecturer in Child Health",
+    "https://www.jobs.ac.uk/job/DTJ815/clinical-lecturer-in-child-health"
+   ],
+   [
+    "Postdoctoral Neuropsychologist",
+    "https://www.jobs.ac.uk/job/DTE200/postdoctoral-neuropsychologist"
+   ],
+   [
+    "Research Assistant",
+    "https://www.jobs.ac.uk/job/DTG707/research-assistant"
+   ],
+   [
+    "Lecturer/ Senior Lecturer in Optometry",
+    "https://www.jobs.ac.uk/job/DTG014/lecturer-senior-lecturer-in-optometry"
+   ]
+  ],
+  "esempi_tutti": [
+   "NIHR Academic Clinical Lecturer in Paediatric Dentistry",
+   "Lecturer in Speech and Language Therapy",
+   "Clinical Lecturer in Child Health",
+   "Postdoctoral Neuropsychologist",
+   "Research Assistant"
+  ]
+ },
+ {
+  "nome": "jobs.ac.uk – neuropsychology",
+  "url": "https://www.jobs.ac.uk/search/?keywords=neuropsychology",
+  "status": 200,
+  "len": 208077,
+  "final_url": "https://www.jobs.ac.uk/search/?keywords=neuropsychology",
+  "link_posizioni": 3,
+  "tenuti": 3,
+  "report": [
+   [
+    "jobs.ac.uk – neuropsychology",
+    3,
+    3,
+    ""
+   ]
+  ],
+  "esempi": [
+   [
+    "Postdoctoral Neuropsychologist",
+    "https://www.jobs.ac.uk/job/DTE200/postdoctoral-neuropsychologist"
+   ],
+   [
+    "Research Assistant",
+    "https://www.jobs.ac.uk/job/DTG707/research-assistant"
+   ],
+   [
+    "Research Assistant",
+    "https://www.jobs.ac.uk/job/DTH295/research-assistant"
+   ]
+  ],
+  "esempi_tutti": [
+   "Postdoctoral Neuropsychologist",
+   "Research Assistant",
+   "Research Assistant"
+  ]
+ },
+ {
+  "nome": "jobs.ac.uk – clinical genetics",
+  "url": "https://www.jobs.ac.uk/search/?keywords=genetics",
+  "status": 200,
+  "len": 266866,
+  "final_url": "https://www.jobs.ac.uk/search/?keywords=genetics",
+  "link_posizioni": 22,
+  "tenuti": 0,
+  "report": [
+   [
+    "jobs.ac.uk – clinical genetics",
+    22,
+    0,
+    ""
+   ]
+  ],
+  "esempi": [],
+  "esempi_tutti": [
+   "Research Associate in Genetic Vector Control",
+   "Postdoctoral Research Associate in Disease Transmission Genetics and Modelling",
+   "PhD Studentship: From Brain to Germline: How Perception Affects Genetic Inheritance",
+   "PhD Studentship: Quantification and Characterisation of Genetic Diversity and Population S",
+   "Postdoctoral Research Associate (Fixed Term)"
+  ]
+ },
+ {
+  "debug": "https://www.era-learn.eu/network-information/networks/rare-diseases/erdera-clinical-trial-call-2026-pre-announcement",
+  "h1": "ERDERA Clinical Trial Call 2026 (pre-announcement)",
+  "len": 1682,
+  "testo": "ERDERA Clinical Trial Call 2026 (pre-announcement) — ERA-LEARN ERDERA Home Explore Partnerships Partnerships ERDERA ERDERA Clinical Trial Call 2026 (pre-announcement) ERDERA Clinical Trial Call 2026 (pre-announcement) Basic Information Organisations Participating Basic Information The European Rare Diseases Research Alliance (ERDERA)is pleased to pre‑announce the upcoming launch of the ERDERA Clinical Trial Call, expected to open on 1 July 2026. You can read the pre-announcement document here and the draft Call text here Network ERDERA Website https://erdera.org/news/erdera-clinical-trial-call-2026-pre-announcement-and-key-dates/ Aim of the joint call The ECTC aims to support multinational, Good Clinical Practice (GCP)‑compliant Phase I, Phase I/II and Phase II interventional clinical trials in rare diseases. The purpose is to generate robust clinical evidence and, where appropriate, data of regulatory relevance to support future interactions with regulatory authorities and subsequent clinical development Type of joint call Two Stages - Call with pre-proposals and full proposals submissions Events Launch date 01/07/2026 Deadline Pre-Proposal 29/10/2026 Submitted proposal: n/a Deadline Full-Proposal 30/09/2027 Submitted proposal: n/a Evaluation End Date 29/02/2028 Successful proposal: n/a Proposals funded: n/a Is call co-funded? No Call follow up funding n/a Call reasons n/a Research fields n/a Type of research n/a Target groups n/a Participating networks n/a Organisations Participating No participating organisations found. Use of cookies We use cookies for statistical purposes and to remember your settings. Please check our privacy and cookies policy. OK",
+  "scad": "(datetime.date(2026, 10, 29), False)",
+  "pagina_bando": false,
+  "aperto": true,
+  "classifica": [
+   [
+    "Fisiatria e ortopedia",
+    "Genetica clinica e malattie rare",
+    "Ricerca clinica"
+   ],
+   [
+    "joint",
+    "rare diseases",
+    "clinical trial"
+   ]
+  ]
+ },
+ {
+  "debug": "https://www.era-learn.eu/network-information/networks/innovative-health-initiative/ihi-call-13",
+  "h1": "IHI Call 13",
+  "len": 1915,
+  "testo": "IHI Call 13 — ERA-LEARN Innovative Health Initiative Home Explore Partnerships Partnerships Innovative Health Initiative IHI Call 13 IHI Call 13 Basic Information Organisations Participating Basic Information IHI call 13 is a two-stage call with topics on accelerating healthcare innovation through networks, reducing animal use in drug safety studies, and decoding the immuno-science of diseases affected by ageing and the immune system. Network Innovative Health Initiative Website https://www.ihi.europa.eu/ihi-call-13 Aim of the joint call The overall aim of this call topic is to create a European HealthCare Incubator Network (‘the Network’) that delivers a structured support framework to enable more effective progression of outputs of early-stage healthcare companies toward deployable innovations in the healthcare ecosystem. The Network should create a unique, multi-sectorial network of business leaders and funders across the whole health industry and be exceptionally well placed to provide cross-industry business support and networking to promising start-ups. In practice, this should be achieved by providing both financial support (via FSTP) and direct interactions with large-cap pharmaceutical and medical technology industries/ companies. Type of joint call Two Stages - Call with pre-proposals and full proposals submissions Events Launch date 02/07/2026 Deadline Pre-Proposal 08/10/2026 Submitted proposal: n/a Deadline Full-Proposal 21/04/2027 Submitted proposal: n/a Evaluation End Date n/a Successful proposal: n/a Proposals funded: n/a Is call co-funded? Yes Call follow up funding n/a Call reasons n/a Research fields n/a Type of research n/a Target groups n/a Participating networks n/a Organisations Participating No participating organisations found. Use of cookies We use cookies for statistical purposes and to remember your settings. Please check our privacy and cookies policy. OK",
+  "scad": "(datetime.date(2027, 4, 21), False)",
+  "pagina_bando": false,
+  "aperto": true,
+  "classifica": [
+   [],
+   []
+  ]
+ }
+]
