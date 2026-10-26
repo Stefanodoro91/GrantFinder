@@ -45,6 +45,8 @@ with sync_playwright() as p:
             info["hosts"] = sorted({urlparse(h).netloc for h, _ in ext})[:6]
             info["frames"] = len(pg.frames)
             info["esempi_ext"] = [t_[:80] for _, t_ in ext[:4]]
+            import re as _re
+            info["link_bandi"] = sorted({h for h, t_ in anchors if _re.search(r"band|concors|lavora|career|job|assegn|borse|selezion|opportunit", (h + " " + t_).lower())})[:25]
             info.update(browser_status=resp.status if resp else None, final_url=final, html_len=len(html))
             items = positions._html_items(html, final)
             info["browser_links"] = len(items)
