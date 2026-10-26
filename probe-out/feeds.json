@@ -1,0 +1,397 @@
+[
+ {
+  "ente": "NIHR",
+  "base": "https://www.nihr.ac.uk",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Stroke Association",
+  "base": "https://www.stroke.org.uk",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "American Heart Association",
+  "base": "https://professional.heart.org",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "ZonMw",
+  "base": "https://www.zonmw.nl",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "HRB Ireland",
+  "base": "https://www.hrb.ie",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "HFSP",
+  "base": "https://www.hfsp.org",
+  "home": 404,
+  "robots": 200,
+  "sitemap_in_robots": [],
+  "feed": [
+   {
+    "url": "https://www.hfsp.org/rss.xml",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "Global Science Leaders Herald New Era of Ground-breaking Climate and Sustainability Science at Paris Summit &amp; Symposium",
+     "The 2023 class of HFSP Fellows ",
+     "Support for frontier research: the 2023 HFSP Research Grants",
+     " High-Level Summit and International Scientific Symposium"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   }
+  ],
+  "sitemap": []
+ },
+ {
+  "ente": "Cure Parkinson's",
+  "base": "https://cureparkinsons.org.uk",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://cureparkinsons.org.uk/sitemap_index.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "ANID",
+  "base": "https://anid.cl",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "GrantConnect",
+  "base": "https://www.grants.gov.au",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "fundsforNGOs",
+  "base": "https://www2.fundsforngos.org",
+  "home": 200,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [
+   {
+    "url": "https://www2.fundsforngos.org/feed/",
+    "status": 200,
+    "feed": true,
+    "voci": 25,
+    "titoli": [
+     "fundsforNGOs",
+     "Call for Support to Civil Society Organisations and Human Rights and Democracy (Cambodia)",
+     "Request for Applications: Species Conservation Program (Canada)",
+     "Submit Applications for Project Award Grant Program"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   }
+  ],
+  "sitemap": []
+ },
+ {
+  "ente": "la Caixa",
+  "base": "https://fundacionlacaixa.org",
+  "home": 404,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://fundacionlacaixa.org:443/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": [
+   {
+    "url": "https://fundacionlacaixa.org/sitemap.xml",
+    "status": 200,
+    "feed": false,
+    "voci": 0,
+    "titoli": [],
+    "sitemap": true,
+    "sitemap_urls": 534
+   }
+  ]
+ },
+ {
+  "ente": "NWO",
+  "base": "https://www.nwo.nl",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Swiss Heart",
+  "base": "https://swissheart.ch",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://swissheart.ch/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "FFG",
+  "base": "https://www.ffg.at",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "MND Association",
+  "base": "https://www.mndassociation.org",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://www.mndassociation.org/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Muscular Dystrophy UK",
+  "base": "https://www.musculardystrophyuk.org",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Academy of Medical Sciences",
+  "base": "https://acmedsci.ac.uk",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://acmedsci.ac.uk/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Epilepsy Research Institute",
+  "base": "https://epilepsy-institute.org.uk",
+  "home": 202,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://epilepsy-institute.org.uk/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Fiocruz",
+  "base": "https://portal.fiocruz.br",
+  "home": 404,
+  "robots": 200,
+  "sitemap_in_robots": [],
+  "feed": [
+   {
+    "url": "https://portal.fiocruz.br/rss.xml",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "Chamada Pública para livros da coleção Fazer Saúde no SUS - ENCERRADA",
+     "Sessões Colaborativas do PROCC abrem o ciclo de 2026 com debate sobre esporotricose",
+     "Webinário reúne experiências da Fiocruz em formação de integridade e ética em pesquisa",
+     "PROCC amplia número de bolsistas de produtividade do CNPq"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   }
+  ],
+  "sitemap": []
+ },
+ {
+  "ente": "CONACYT Paraguay",
+  "base": "https://www.conacyt.gov.py",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "BID Lab",
+  "base": "https://bidlab.org",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "Argentina Salud",
+  "base": "https://www.argentina.gob.ar",
+  "home": 404,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://www.argentina.gob.ar/sitemap.xml"
+  ],
+  "feed": [
+   {
+    "url": "https://www.argentina.gob.ar/rss.xml",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "de Santana ",
+     "Nuñez",
+     "Tolosa Massa",
+     "Insúa"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   }
+  ],
+  "sitemap": []
+ },
+ {
+  "ente": "Ospedale San Raffaele",
+  "base": "https://www.hsr.it",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "EURAXESS",
+  "base": "https://euraxess.ec.europa.eu",
+  "home": 403,
+  "robots": 403,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "AcademicPositions",
+  "base": "https://academicpositions.com",
+  "home": 403,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://academicpositions.com/sitemap.xml",
+   "https://academicpositions.com/se/sitemap.xml",
+   "https://academicpositions.com/no/sitemap.xml"
+  ],
+  "feed": [],
+  "sitemap": []
+ },
+ {
+  "ente": "MUR",
+  "base": "https://www.mur.gov.it",
+  "home": 404,
+  "robots": 200,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": [
+   {
+    "url": "https://www.mur.gov.it/sitemap.xml",
+    "status": 200,
+    "feed": false,
+    "voci": 0,
+    "titoli": [],
+    "sitemap": true,
+    "sitemap_urls": 1124
+   }
+  ]
+ },
+ {
+  "ente": "University Affairs",
+  "base": "https://universityaffairs.ca",
+  "home": 200,
+  "robots": 200,
+  "sitemap_in_robots": [
+   "https://universityaffairs.ca/sitemap_index.xml"
+  ],
+  "feed": [
+   {
+    "url": "https://universityaffairs.ca/feed/",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "NSERC announces Arthur B. McDonald Fellowship winners",
+     "Feds announce $880 million for research",
+     "OCAD University celebrates 150 years of shaping Canadian culture",
+     "B.C. higher education: tweak or reform?"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   },
+   {
+    "url": "https://universityaffairs.ca/rss",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "NSERC announces Arthur B. McDonald Fellowship winners",
+     "Feds announce $880 million for research",
+     "OCAD University celebrates 150 years of shaping Canadian culture",
+     "B.C. higher education: tweak or reform?"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   },
+   {
+    "url": "https://universityaffairs.ca/?feed=rss2",
+    "status": 200,
+    "feed": true,
+    "voci": 10,
+    "titoli": [
+     "NSERC announces Arthur B. McDonald Fellowship winners",
+     "Feds announce $880 million for research",
+     "OCAD University celebrates 150 years of shaping Canadian culture",
+     "B.C. higher education: tweak or reform?"
+    ],
+    "sitemap": false,
+    "sitemap_urls": 0
+   }
+  ],
+  "sitemap": []
+ },
+ {
+  "ente": "NYU IFP (aggregatore)",
+  "base": "https://ifp.nyu.edu",
+  "home": "HTTPSConnectionPool(host='ifp.nyu.edu', port=443): Max retri",
+  "robots": null,
+  "sitemap_in_robots": [],
+  "feed": [],
+  "sitemap": []
+ }
+]
