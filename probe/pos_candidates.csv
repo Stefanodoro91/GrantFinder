@@ -1,0 +1,66 @@
+nome;url;tipo;note
+Karolinska Institutet – Vacancies;https://ki.varbi.com/en/;html;Svezia, università medica
+Lund University – Vacancies;https://lu.varbi.com/en/;html;Svezia
+Uppsala University – Vacancies;https://uu.varbi.com/en/;html;Svezia
+KTH Royal Institute of Technology – Vacancies;https://www.kth.se/en/om/work-at-kth/lediga-jobb;html;Svezia, ingegneria biomedica
+Chalmers – Vacancies;https://www.chalmers.se/en/about-chalmers/work-with-us/vacancies/;html;Svezia
+Linköping University – Vacancies;https://liu.se/en/work-at-liu/vacancies;html;Svezia
+University of Gothenburg – Vacancies;https://www.gu.se/en/about-the-university/job-opportunities;html;Svezia
+University of Copenhagen – Vacancies;https://employment.ku.dk/all-vacancies/;html;Danimarca
+Aarhus University – Vacancies;https://international.au.dk/about/profile/vacant-positions;html;Danimarca
+DTU – Vacancies;https://www.dtu.dk/english/about/job-and-career/vacant-positions;html;Danimarca, ingegneria
+University of Southern Denmark – Vacancies;https://www.sdu.dk/en/service/ledige_stillinger;html;Danimarca
+Aalborg University – Vacancies;https://www.vacancies.aau.dk/;html;Danimarca
+Jobbnorge – clinical research;https://www.jobbnorge.no/en/available-jobs?searchtext=clinical;html;Norvegia (università)
+Jobbnorge – rehabilitation;https://www.jobbnorge.no/en/available-jobs?searchtext=rehabilitation;html;Norvegia
+University of Helsinki – Jobs;https://jobs.helsinki.fi/;html;Finlandia
+Aalto University – Open positions;https://www.aalto.fi/en/open-positions;html;Finlandia, ingegneria
+Tampere University – Open positions;https://www.tuni.fi/en/about-us/working-at-tampere-universities/open-positions;html;Finlandia
+AcademicTransfer – clinical research;https://www.academictransfer.com/en/jobs/?q=clinical+research;html;Paesi Bassi
+AcademicTransfer – biomedical engineering;https://www.academictransfer.com/en/jobs/?q=biomedical+engineering;html;Paesi Bassi
+AcademicTransfer – physiotherapy;https://www.academictransfer.com/en/jobs/?q=physiotherapy;html;Paesi Bassi
+AcademicTransfer – epidemiology;https://www.academictransfer.com/en/jobs/?q=epidemiology;html;Paesi Bassi
+AcademicTransfer – radiology;https://www.academictransfer.com/en/jobs/?q=radiology;html;Paesi Bassi
+AcademicTransfer – paediatrics;https://www.academictransfer.com/en/jobs/?q=pediatrics;html;Paesi Bassi
+TU Eindhoven – Vacancies;https://jobs.tue.nl/en/vacancies;html;Paesi Bassi, ingegneria biomedica
+University of Twente – Vacancies;https://www.utwente.nl/en/organisation/careers/vacancies/;html;Paesi Bassi
+TU Delft – Vacancies;https://www.tudelft.nl/en/about-tu-delft/working-at-tu-delft/search-jobs;html;Paesi Bassi
+Erasmus MC – Vacatures;https://www.werkenbijerasmusmc.nl/vacatures;html;Paesi Bassi, università medica
+Radboudumc – Vacatures;https://werkenbij.radboudumc.nl/vacatures;html;Paesi Bassi
+KU Leuven – Jobs;https://www.kuleuven.be/personeel/jobsite/en/jobs;html;Belgio
+Ghent University – Jobs;https://jobs.ugent.be/?locale=en;html;Belgio
+UCLouvain – Jobs;https://jobs.uclouvain.be/;html;Belgio
+academics.de – Medizin;https://www.academics.de/jobs/medizin;html;Germania
+academics.de – Medizintechnik;https://www.academics.de/jobs/medizintechnik;html;Germania
+Charité – Stellenangebote;https://karriere.charite.de/stellenangebote;html;Germania, università medica
+TUM – Open positions;https://www.tum.de/en/about-tum/working-at-tum/open-positions;html;Germania, tecnica
+Heidelberg University – Stellenmarkt;https://www.uni-heidelberg.de/de/stellenmarkt;html;Germania
+DKFZ – Jobs;https://www.dkfz.de/en/stellenangebote/;html;Germania
+KIT – Job offers;https://www.pse.kit.edu/karriere/joboffers.php;html;Germania, tecnica
+ETH Zurich – Jobs;https://jobs.ethz.ch/;html;Svizzera, tecnica
+EPFL – Job openings;https://www.epfl.ch/about/working/working-at-epfl/job-openings/;html;Svizzera, tecnica
+University of Zurich – Jobs;https://www.jobs.uzh.ch/;html;Svizzera
+University of Bern – Jobs;https://www.unibe.ch/jobs/index_eng.html;html;Svizzera
+MedUni Wien – Karriere;https://www.meduniwien.ac.at/web/karriere/;html;Austria, università medica
+TU Wien – Jobs;https://jobs.tuwien.ac.at/;html;Austria, tecnica
+ABG – PhD and postdoc offers;https://www.abg.asso.fr/en/candidatOffres;html;Francia
+Inserm – Nous rejoindre;https://www.inserm.fr/nous-rejoindre/;html;Francia
+Institut Pasteur – Careers;https://www.pasteur.fr/en/join-us/job-offers;html;Francia
+IBEC – Jobs;https://ibecbarcelona.eu/jobs/;html;Spagna, bioingegneria
+Vall d'Hebron Research Institute – Work with us;https://vhir.vallhebron.com/en/work-with-us;html;Spagna
+IDIBAPS – Job offers;https://www.clinicbarcelona.org/en/idibaps/work-with-us;html;Spagna
+Scuola Superiore Sant'Anna – Bandi;https://www.santannapisa.it/it/bandi;html;Italia, BioRobotica
+Politecnico di Milano – Bandi ricerca;https://www.polimi.it/ricerca/opportunita-di-lavoro-nella-ricerca;html;Italia, ingegneria biomedica
+EMBL – Jobs;https://www.embl.org/jobs/;html;Europa
+Nature Careers – radiology;https://www.nature.com/naturecareers/jobs/search?keywords=radiology;html;
+Nature Careers – paediatrics;https://www.nature.com/naturecareers/jobs/search?keywords=paediatrics;html;
+Nature Careers – rheumatology;https://www.nature.com/naturecareers/jobs/search?keywords=rheumatology;html;
+Nature Careers – neuropsychology;https://www.nature.com/naturecareers/jobs/search?keywords=neuropsychology;html;
+Times Higher Education – radiology;https://www.timeshighereducation.com/unijobs/listings/?keywords=radiology;html;
+Times Higher Education – paediatrics;https://www.timeshighereducation.com/unijobs/listings/?keywords=paediatrics;html;
+Times Higher Education – neuropsychology;https://www.timeshighereducation.com/unijobs/listings/?keywords=neuropsychology;html;
+jobs.ac.uk – radiology;https://www.jobs.ac.uk/search/?keywords=radiology;html;
+jobs.ac.uk – rheumatology;https://www.jobs.ac.uk/search/?keywords=rheumatology;html;
+jobs.ac.uk – paediatrics;https://www.jobs.ac.uk/search/?keywords=paediatrics;html;
+jobs.ac.uk – neuropsychology;https://www.jobs.ac.uk/search/?keywords=neuropsychology;html;
+jobs.ac.uk – clinical genetics;https://www.jobs.ac.uk/search/?keywords=genetics;html;

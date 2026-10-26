@@ -972,7 +972,7 @@ RX_URL_NON_BANDO = re.compile(
     r"press-release|comunicato-stampa)", re.I)
 RX_TITOLO_NON_BANDO = re.compile(
     r"\b(recipients?|awardees?|grantees?|vincitori|portfolio|templates?|nomination|award conditions|"
-    r"terms and conditions|committee|annual report|press release|comunicato stampa|newsletter|celebrat\w+|national annex\w*|annexes|"
+    r"terms and conditions|committee|annual report|press release|comunicato stampa|newsletter|celebrat\w+|annex|"
     r""
     r"announces?|receives?|we'?re investing|we are investing|meet\b|research we fund|what research)", re.I)
 # senza una scadenza futura la pagina deve almeno dire che la call è aperta
