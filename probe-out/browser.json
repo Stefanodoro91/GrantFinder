@@ -1,314 +1,443 @@
 [
  {
-  "nome": "AcademicTransfer – clinical research",
-  "url": "https://www.academictransfer.com/en/jobs/?q=clinical+research",
+  "nome": "Sant'Anna – Concorsi selezioni e gare",
+  "url": "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare",
   "robots_ok": true,
   "static_status": 200,
-  "static_links": 0,
-  "any_host_links": 0,
-  "hosts": [],
-  "frames": 1,
-  "esempi_ext": [],
+  "static_links": 7,
+  "any_host_links": 7,
+  "hosts": [
+   "www.santannapisa.it"
+  ],
+  "frames": 4,
+  "esempi_ext": [
+   "Selezioni per ricercatori a tempo determinato",
+   "Contratti di ricerca",
+   "Incarichi di ricerca - Selezione",
+   "Incarichi di ricerca - Manifestazione di interesse"
+  ],
+  "link_bandi": [
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare#block-sssa-main-menu",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare#edit-search-api-fulltext",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare#main-content",
+   "https://www.santannapisa.it/it/cerca-concorsi?categories%5B0%5D=borse",
+   "https://www.santannapisa.it/it/cerca-gare/1?categories%5B0%5D=avvisi_bandi_concessioni",
+   "https://www.santannapisa.it/it/cerca-gare/1?categories%5B0%5D=avvisi_bandi_vendita_patrimonio",
+   "https://www.santannapisa.it/it/cerca-gare?categories%5B0%5D=bandi_cascata_pnrr",
+   "https://www.santannapisa.it/it/cerca-gare?categories%5B0%5D=contratti_pubblici_e_procedure",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=assegni_di_ricerca",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=avvisi_mobilita",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=contratto_di_ricerca",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=incarichi_di_insegnamento",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=incarichi_di_ricerca_interesse",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=incarichi_di_ricerca_selezione",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=incarichi_esterni",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=incarichi_post_doc",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=personale_docente_e_ricercatore",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=selezioni_personale_tecnico_amm",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=selezioni_personale_tecnologo",
+   "https://www.santannapisa.it/it/cerca-selezioni?categories%5B0%5D=selezioni_ricercatori_a_temp_determinato",
+   "https://www.santannapisa.it/it/concorsi-selezioni-e-gare",
+   "https://www.santannapisa.it/it/corsi-ordinari",
+   "https://www.santannapisa.it/it/terza-missione/career-service"
+  ],
   "browser_status": 200,
-  "final_url": "https://www.academictransfer.com/en/jobs/?q=clinical+research",
-  "html_len": 268898,
-  "browser_links": 0,
+  "final_url": "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare",
+  "html_len": 60637,
+  "browser_links": 7,
   "browser_kept": 0,
-  "esempi": [],
-  "sec": 6
+  "esempi": [
+   "Selezioni per ricercatori a tempo determinato",
+   "Contratti di ricerca",
+   "Incarichi di ricerca - Selezione",
+   "Incarichi di ricerca - Manifestazione di interesse",
+   "Archivio selezioni assegni di ricerca",
+   "Borse di studio post laurea"
+  ],
+  "sec": 7
  },
  {
-  "nome": "Charité – Stellenangebote",
-  "url": "https://karriere.charite.de/stellenangebote",
+  "nome": "Sant'Anna – Assegni di ricerca",
+  "url": "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare/assegni-di-ricerca",
   "robots_ok": true,
-  "static_status": 200,
+  "static_status": 404,
   "static_links": 0,
   "any_host_links": 0,
   "hosts": [],
-  "frames": 1,
+  "frames": 4,
   "esempi_ext": [],
-  "browser_status": 200,
-  "final_url": "https://karriere.charite.de/stellenangebote",
-  "html_len": 365150,
+  "link_bandi": [
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare/assegni-di-ricerca#block-sssa-main-menu",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare/assegni-di-ricerca#edit-search-api-fulltext",
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare/assegni-di-ricerca#main-content",
+   "https://www.santannapisa.it/it/terza-missione/career-service"
+  ],
+  "browser_status": 404,
+  "final_url": "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare/assegni-di-ricerca",
+  "html_len": 47852,
   "browser_links": 0,
   "browser_kept": 0,
   "esempi": [],
   "sec": 5
  },
  {
-  "nome": "TUM – Stellenangebote",
-  "url": "https://www.tum.de/ueber-die-tum/karriere-und-jobs/stellenangebote",
+  "nome": "Sant'Anna – Bandi",
+  "url": "https://www.santannapisa.it/it/bandi",
   "robots_ok": true,
-  "static_status": 200,
-  "static_links": 4,
-  "any_host_links": 8,
-  "hosts": [
-   "www.emeriti-of-excellence.tum.de",
-   "www.ias.tum.de",
-   "www.international.tum.de",
-   "www.professoren.tum.de",
-   "www.tum.de"
+  "static_status": 404,
+  "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 4,
+  "esempi_ext": [],
+  "link_bandi": [
+   "https://www.santannapisa.it/it/ateneo/concorsi-selezioni-e-gare",
+   "https://www.santannapisa.it/it/bandi#block-sssa-main-menu",
+   "https://www.santannapisa.it/it/bandi#edit-search-api-fulltext",
+   "https://www.santannapisa.it/it/bandi#main-content",
+   "https://www.santannapisa.it/it/terza-missione/career-service"
   ],
-  "frames": 1,
-  "esempi_ext": [
-   "Senior Excellence Faculty",
-   "TUM Faculty Tenure Track",
-   "Professoren­kollegium",
-   "Postdocs\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\tZur Übersicht"
-  ],
-  "browser_status": 200,
-  "final_url": "https://www.tum.de/ueber-die-tum/karriere-und-jobs/stellenangebote",
-  "html_len": 394423,
-  "browser_links": 4,
+  "browser_status": 404,
+  "final_url": "https://www.santannapisa.it/it/bandi",
+  "html_len": 47709,
+  "browser_links": 0,
   "browser_kept": 0,
-  "esempi": [
-   "TUM Faculty Tenure Track",
-   "Postdocs Zur Übersicht",
-   "TUM Global Postdoc Fellowship",
-   "EuroTechPostdoc2-Programm"
-  ],
-  "sec": 6
+  "esempi": [],
+  "sec": 4
  },
  {
-  "nome": "KU Leuven – Jobs",
-  "url": "https://www.kuleuven.be/personeel/jobsite/jobs",
+  "nome": "Santa Lucia – Lavora con noi",
+  "url": "https://www.hsantalucia.it/lavora-con-noi",
   "robots_ok": true,
   "static_status": 200,
   "static_links": 1,
   "any_host_links": 1,
   "hosts": [
-   "www.kuleuven.be"
+   "www.hsantalucia.it"
   ],
-  "frames": 2,
+  "frames": 4,
   "esempi_ext": [
-   "Senior Academic Staff & Tenure Track"
+   "Borse di Studio e Dottorati"
+  ],
+  "link_bandi": [
+   "http://www.hsantalucia.it/borse-di-studio",
+   "https://hsantalucia.it/bandi-e-concorsi-0",
+   "https://hsantalucia.it/files/bandocompletopdf",
+   "https://hsantalucia.it/files/bandodiselezionemedicirevultima-dapubblicaresigned1pdf",
+   "https://hsantalucia.it/files/bandodiselezioneoperatoresociosanitariorevultimasigned1pdf",
+   "https://hsantalucia.it/files/bandoperpubblicazioneareariabilitativasignedpdf",
+   "https://hsantalucia.it/files/determinabandoinfermieri-3-7signedpdf",
+   "https://hsantalucia.it/files/graduatoriabandofisioterapistidapubblicarepdf",
+   "https://www.hsantalucia.it/lavora-con-noi",
+   "https://www.hsantalucia.it/lavora-con-noi#",
+   "https://www.hsantalucia.it/lavora-con-noi#main-content",
+   "mailto:selezioni@hsantalucia.it"
   ],
   "browser_status": 200,
-  "final_url": "https://www.kuleuven.be/personeel/jobsite/jobs/staff?lang=nl",
-  "html_len": 179210,
+  "final_url": "https://www.hsantalucia.it/lavora-con-noi",
+  "html_len": 81782,
   "browser_links": 1,
   "browser_kept": 0,
   "esempi": [
-   "Senior Academic Staff & Tenure Track"
+   "Borse di Studio e Dottorati"
   ],
   "sec": 7
  },
  {
-  "nome": "Politecnico di Milano – Assegni di ricerca",
-  "url": "https://www.polimi.it/docenti-e-ricercatori/bandi-e-concorsi/bandi-per-assegni-di-ricerca",
+  "nome": "Santa Lucia – Bandi",
+  "url": "https://www.hsantalucia.it/bandi",
   "robots_ok": true,
-  "static_status": 200,
-  "static_links": 3,
-  "any_host_links": 3,
+  "static_status": 404,
+  "static_links": 1,
+  "any_host_links": 1,
   "hosts": [
-   "www.polimi.it"
+   "www.hsantalucia.it"
   ],
-  "frames": 1,
+  "frames": 4,
   "esempi_ext": [
-   "Scuola di Dottorato",
-   "FAQ, contatti e PhD Handbook",
-   "Scuola di Dottorato",
-   "FAQ, contatti e PhD Handbook"
+   "Borse di Studio e Dottorati"
   ],
-  "browser_status": 200,
-  "final_url": "https://www.polimi.it/docenti-e-ricercatori/bandi-e-concorsi/bandi-per-assegni-di-ricerca",
-  "html_len": 535520,
-  "browser_links": 3,
+  "link_bandi": [
+   "http://www.hsantalucia.it/borse-di-studio",
+   "https://hsantalucia.it/bandi-e-concorsi-0",
+   "https://www.hsantalucia.it/bandi#",
+   "https://www.hsantalucia.it/bandi#main-content",
+   "https://www.hsantalucia.it/lavora-con-noi"
+  ],
+  "browser_status": 404,
+  "final_url": "https://www.hsantalucia.it/bandi",
+  "html_len": 79709,
+  "browser_links": 1,
   "browser_kept": 0,
   "esempi": [
-   "Scuola di Dottorato",
-   "FAQ, contatti e PhD Handbook",
-   "Modulistica per assegni di ricerca"
+   "Borse di Studio e Dottorati"
   ],
-  "sec": 4
- },
- {
-  "nome": "Ghent University – Jobs",
-  "url": "https://jobs.ugent.be/?locale=en",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "any_host_links": 0,
-  "hosts": [],
-  "frames": 1,
-  "esempi_ext": [],
-  "browser_status": 200,
-  "final_url": "https://jobs.ugent.be/?locale=en",
-  "html_len": 94001,
-  "browser_links": 0,
-  "browser_kept": 0,
-  "esempi": [],
-  "sec": 4
- },
- {
-  "nome": "UCLouvain – Jobs",
-  "url": "https://jobs.uclouvain.be/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "any_host_links": 0,
-  "hosts": [],
-  "frames": 1,
-  "esempi_ext": [],
-  "browser_status": 200,
-  "final_url": "https://jobs.uclouvain.be/",
-  "html_len": 73704,
-  "browser_links": 0,
-  "browser_kept": 0,
-  "esempi": [],
   "sec": 5
  },
  {
-  "nome": "Heidelberg University – Stellenmarkt",
-  "url": "https://www.uni-heidelberg.de/de/stellenmarkt",
+  "nome": "Santa Lucia – home",
+  "url": "https://www.hsantalucia.it/",
+  "robots_ok": true,
+  "static_status": 200,
+  "static_links": 1,
+  "any_host_links": 1,
+  "hosts": [
+   "www.hsantalucia.it"
+  ],
+  "frames": 7,
+  "esempi_ext": [
+   "Borse di Studio e Dottorati"
+  ],
+  "link_bandi": [
+   "http://www.hsantalucia.it/borse-di-studio",
+   "https://hsantalucia.it/bandi-e-concorsi-0",
+   "https://www.hsantalucia.it/lavora-con-noi"
+  ],
+  "browser_status": 200,
+  "final_url": "https://www.hsantalucia.it/",
+  "html_len": 105182,
+  "browser_links": 1,
+  "browser_kept": 0,
+  "esempi": [
+   "Borse di Studio e Dottorati"
+  ],
+  "sec": 7
+ },
+ {
+  "nome": "San Raffaele Roma – Lavora con noi",
+  "url": "https://sanraffaele.it/lavora-con-noi/",
+  "robots_ok": true,
+  "static_status": 404,
+  "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 7,
+  "esempi_ext": [],
+  "link_bandi": [
+   "https://sanraffaele.it/bandi-di-ricerca/",
+   "https://www.srlavoro.it/"
+  ],
+  "browser_status": 404,
+  "final_url": "https://sanraffaele.it/lavora-con-noi/",
+  "html_len": 236397,
+  "browser_links": 0,
+  "browser_kept": 0,
+  "esempi": [],
+  "sec": 10
+ },
+ {
+  "nome": "San Raffaele Roma – Bandi",
+  "url": "https://sanraffaele.it/bandi/",
+  "robots_ok": true,
+  "static_status": 404,
+  "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 7,
+  "esempi_ext": [],
+  "link_bandi": [
+   "https://sanraffaele.it/bandi-di-ricerca/",
+   "https://www.srlavoro.it/"
+  ],
+  "browser_status": 404,
+  "final_url": "https://sanraffaele.it/bandi/",
+  "html_len": 236237,
+  "browser_links": 0,
+  "browser_kept": 0,
+  "esempi": [],
+  "sec": 8
+ },
+ {
+  "nome": "San Raffaele Roma – home",
+  "url": "https://sanraffaele.it/",
   "robots_ok": true,
   "static_status": 200,
   "static_links": 0,
   "any_host_links": 0,
   "hosts": [],
-  "frames": 1,
+  "frames": 8,
   "esempi_ext": [],
+  "link_bandi": [
+   "https://sanraffaele.it/bandi-di-ricerca/",
+   "https://sanraffaele.it/sindrome-della-bandelletta-ileotibiale-cose-il-problema-al-ginocchio-che-ha-fermato-jannik-sinner/",
+   "https://www.srlavoro.it/"
+  ],
   "browser_status": 200,
-  "final_url": "https://www.uni-heidelberg.de/de/beschaeftigte-in-wissenschaft-verwaltung-und-technik/karriere-und-weiterbildung/stellenmarkt",
-  "html_len": 451875,
+  "final_url": "https://sanraffaele.it/",
+  "html_len": 305978,
   "browser_links": 0,
   "browser_kept": 0,
   "esempi": [],
   "sec": 6
  },
  {
-  "nome": "University of Zurich – Jobs",
-  "url": "https://www.jobs.uzh.ch/",
+  "nome": "UniSR – Bandi e concorsi",
+  "url": "https://www.unisr.it/bandi-e-concorsi",
   "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "any_host_links": 3,
+  "static_status": 404,
+  "static_links": 2,
+  "any_host_links": 2,
   "hosts": [
-   "jobs.uzh.ch",
-   "www.uzh.ch"
+   "www.unisr.it"
   ],
-  "frames": 2,
+  "frames": 4,
   "esempi_ext": [
-   "Grants und Fellowships",
-   "PhD Student in Philosophy in SNSF-Project CREST-AI\n\nDigital Society Initiative\n\n",
-   "Doctoral Candidate in AI and Optimization\n\nDepartment of Mathematical Modeling a"
+   "Corsi di Dottorato di Ricerca (PhD)",
+   "Borse di studio e Agevolazioni",
+   "Corsi di dottorato di ricerca (PhD)"
   ],
-  "browser_status": 200,
-  "final_url": "https://www.uzh.ch/de/explore/work/jobs",
-  "html_len": 867055,
-  "browser_links": 1,
+  "link_bandi": [
+   "https://www.unisr.it/ateneo/comitato-unico-garanzia-pari-opportunita",
+   "https://www.unisr.it/bandi-e-concorsi#",
+   "https://www.unisr.it/en/bandi-e-concorsi?errorCode=404",
+   "https://www.unisr.it/servizi/borse-di-studio",
+   "https://www.unisr.it/unisr/offerta-formativa",
+   "https://zinrec.intervieweb.it/unisr/it/career"
+  ],
+  "browser_status": 404,
+  "final_url": "https://www.unisr.it/bandi-e-concorsi",
+  "html_len": 225658,
+  "browser_links": 2,
   "browser_kept": 0,
   "esempi": [
-   "Grants und Fellowships"
+   "Corsi di Dottorato di Ricerca (PhD)",
+   "Borse di studio e Agevolazioni"
   ],
-  "sec": 6
+  "sec": 8
  },
  {
-  "nome": "TU Wien – Jobs",
-  "url": "https://jobs.tuwien.ac.at/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 0,
-  "any_host_links": 1,
-  "hosts": [
-   "jobs.tuwien.ac.at"
-  ],
-  "frames": 1,
-  "esempi_ext": [
-   "Assistant Professorship (all genders) - Tenure Track"
-  ],
-  "browser_status": 200,
-  "final_url": "https://jobs.tuwien.ac.at/Jobs",
-  "html_len": 71580,
-  "browser_links": 1,
-  "browser_kept": 0,
-  "esempi": [
-   "Assistant Professorship (all genders) - Tenure Track"
-  ],
-  "sec": 13
- },
- {
-  "nome": "DTU – Vacancies",
-  "url": "https://www.dtu.dk/english/about/job-and-career/vacant-positions",
+  "nome": "UniSR – home",
+  "url": "https://www.unisr.it/",
   "robots_ok": true,
   "static_status": 200,
   "static_links": 2,
   "any_host_links": 2,
   "hosts": [
-   "www.dtu.dk"
+   "www.unisr.it"
   ],
-  "frames": 1,
+  "frames": 3,
   "esempi_ext": [
-   "Pursue your PhD at DTU",
-   "Guest researchers & guest PhD students"
+   "Corsi di Dottorato di Ricerca (PhD)",
+   "Borse di studio e Agevolazioni",
+   "Corsi di dottorato di ricerca (PhD)"
+  ],
+  "link_bandi": [
+   "https://www.unisr.it/ateneo/comitato-unico-garanzia-pari-opportunita",
+   "https://www.unisr.it/servizi/borse-di-studio",
+   "https://www.unisr.it/unisr/offerta-formativa",
+   "https://zinrec.intervieweb.it/unisr/it/career"
   ],
   "browser_status": 200,
-  "final_url": "https://www.dtu.dk/english/about/job-and-career/vacant-positions",
-  "html_len": 293421,
+  "final_url": "https://www.unisr.it/",
+  "html_len": 251027,
   "browser_links": 2,
   "browser_kept": 0,
   "esempi": [
-   "Pursue your PhD at DTU",
-   "Guest researchers & guest PhD students"
-  ],
-  "sec": 8
- },
- {
-  "nome": "University of Helsinki – Jobs",
-  "url": "https://jobs.helsinki.fi/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 1,
-  "any_host_links": 1,
-  "hosts": [
-   "jobs.helsinki.fi"
-  ],
-  "frames": 1,
-  "esempi_ext": [
-   "Professors and assistant / associate professors",
-   "Professors and assistant / associate professors",
-   "Professors, assistant and associate professors"
-  ],
-  "browser_status": 200,
-  "final_url": "https://jobs.helsinki.fi/",
-  "html_len": 75188,
-  "browser_links": 1,
-  "browser_kept": 0,
-  "esempi": [
-   "Professors and assistant / associate professors"
-  ],
-  "sec": 4
- },
- {
-  "nome": "MedUni Wien – Karriere",
-  "url": "https://www.meduniwien.ac.at/web/karriere/",
-  "robots_ok": true,
-  "static_status": 200,
-  "static_links": 12,
-  "any_host_links": 12,
-  "hosts": [
-   "www.meduniwien.ac.at"
-  ],
-  "frames": 1,
-  "esempi_ext": [
-   "PhD und Doktoratsstudien",
-   "Adjunct Professorships",
-   "PhD-Stelle / PhD Position (m/w/d)",
-   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)"
-  ],
-  "browser_status": 200,
-  "final_url": "https://www.meduniwien.ac.at/web/karriere/offene-stellen/",
-  "html_len": 123245,
-  "browser_links": 12,
-  "browser_kept": 0,
-  "esempi": [
-   "PhD und Doktoratsstudien",
-   "Adjunct Professorships",
-   "PhD-Stelle / PhD Position (m/w/d)",
-   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)",
-   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)",
-   "Wissenschaftliche:r Mitarbeiter:in mit PhD – Postdoc (m/w/d)"
+   "Corsi di Dottorato di Ricerca (PhD)",
+   "Borse di studio e Agevolazioni"
   ],
   "sec": 5
+ },
+ {
+  "nome": "Ospedale San Raffaele – Lavora con noi",
+  "url": "https://www.hsr.it/lavora-con-noi",
+  "robots_ok": true,
+  "static_status": 403,
+  "static_links": 0,
+  "any_host_links": 0,
+  "hosts": [],
+  "frames": 1,
+  "esempi_ext": [],
+  "link_bandi": [],
+  "browser_status": 403,
+  "final_url": "https://www.hsr.it/lavora-con-noi",
+  "html_len": 117,
+  "browser_links": 0,
+  "browser_kept": 0,
+  "esempi": [],
+  "sec": 3
+ },
+ {
+  "nome": "Link Campus – Bandi e concorsi",
+  "url": "https://www.unilink.it/bandi-e-concorsi",
+  "robots_ok": true,
+  "static_status": 404,
+  "static_links": 3,
+  "any_host_links": 3,
+  "hosts": [
+   "www.unilink.it"
+  ],
+  "frames": 4,
+  "esempi_ext": [
+   "Dottorati di Ricerca",
+   "Borse di studio LINK",
+   "Borse di studio INPS",
+   "Dottorati di Ricerca"
+  ],
+  "link_bandi": [
+   "https://jobster.com/en/privacy-policy/",
+   "https://www.unilink.it/ateneo/bandi-e-concorsi",
+   "https://www.unilink.it/ateneo/notizie/master-executive-inps-30-borse-di-studio-per-i-dipendenti-della-pubblica-amministrazione",
+   "https://www.unilink.it/ateneo/notizie/master-i-e-ii-livello-108-borse-di-studio",
+   "https://www.unilink.it/bandi-e-concorsi",
+   "https://www.unilink.it/bandi-e-concorsi#",
+   "https://www.unilink.it/bandi-e-concorsi#form_kesearch_searchfield",
+   "https://www.unilink.it/rassegna-stampa",
+   "https://www.unilink.it/studenti/career-service"
+  ],
+  "browser_status": 404,
+  "final_url": "https://www.unilink.it/bandi-e-concorsi",
+  "html_len": 5011409,
+  "browser_links": 3,
+  "browser_kept": 0,
+  "esempi": [
+   "Dottorati di Ricerca",
+   "Borse di studio LINK",
+   "Borse di studio INPS"
+  ],
+  "sec": 7
+ },
+ {
+  "nome": "Link Campus – home",
+  "url": "https://www.unilink.it/",
+  "robots_ok": true,
+  "static_status": 200,
+  "static_links": 4,
+  "any_host_links": 3,
+  "hosts": [
+   "www.unilink.it"
+  ],
+  "frames": 4,
+  "esempi_ext": [
+   "Dottorati di Ricerca",
+   "Borse di studio LINK",
+   "Borse di studio INPS",
+   "Dottorati di Ricerca"
+  ],
+  "link_bandi": [
+   "https://jobster.com/en/privacy-policy/",
+   "https://www.unilink.it/ateneo/bandi-attivi-corsi-di-laurea",
+   "https://www.unilink.it/ateneo/bandi-attivi-percorsi-abilitanti-docenti",
+   "https://www.unilink.it/ateneo/bandi-e-concorsi",
+   "https://www.unilink.it/ateneo/notizie/master-executive-inps-30-borse-di-studio-per-i-dipendenti-della-pubblica-amministrazione",
+   "https://www.unilink.it/ateneo/notizie/master-i-e-ii-livello-108-borse-di-studio",
+   "https://www.unilink.it/ateneo/notizie/proiezione-del-cortometraggio-il-gioco-del-silenzio-un-progetto-del-dams-selezionato-dal-bando-siae-per-chi-crea",
+   "https://www.unilink.it/rassegna-stampa",
+   "https://www.unilink.it/studenti/career-service"
+  ],
+  "browser_status": 200,
+  "final_url": "https://www.unilink.it/",
+  "html_len": 5493039,
+  "browser_links": 4,
+  "browser_kept": 0,
+  "esempi": [
+   "Dottorati di Ricerca",
+   "Borse di studio LINK",
+   "Borse di studio INPS",
+   ". 14 maggio 2025 Università degli Studi LINK | Antica Biblioteca Dottorato honoris causa T"
+  ],
+  "sec": 8
  }
 ]
