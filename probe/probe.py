@@ -5,9 +5,10 @@ spec = importlib.util.spec_from_file_location("ng", "neurogrant.py"); ng = impor
 sys.argv = ["ng"]; spec.loader.exec_module(ng)
 http = ng.Http(pausa=1.0)
 out = []
-if part in (0, 1):
-    rows = list(csv.DictReader(open("probe/grant_candidates.csv", encoding="utf-8"), delimiter=";"))
-    rows = rows[part::2]
+if part in (0, 1, 3, 4):
+    f = "probe/grant_candidates.csv" if part in (0, 1) else "probe/sa_candidates.csv"
+    rows = list(csv.DictReader(open(f, encoding="utf-8"), delimiter=";"))
+    rows = rows[part % 2::2] if part in (0, 1) else rows[(part - 3)::2]
     for row in rows:
         t0 = time.time(); info = {"nome": row["nome"], "url": row["url"]}
         try:

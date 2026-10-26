@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [0, 1, 2]
+        part: [3, 4]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
