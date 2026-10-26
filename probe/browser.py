@@ -33,6 +33,18 @@ with sync_playwright() as p:
             for _ in range(3):
                 pg.mouse.wheel(0, 4000); pg.wait_for_timeout(800)
             html = pg.content(); final = pg.url
+            # anche i link verso altri siti (portali di candidatura esterni) e il contenuto degli iframe
+            anchors = []
+            for fr in pg.frames:
+                try:
+                    anchors += fr.eval_on_selector_all("a[href]", "els => els.map(e => [e.href, (e.innerText||'').trim()])")
+                except Exception:
+                    pass
+            ext = [(h, t_) for h, t_ in anchors if 12 <= len(t_) <= 220 and positions.RX_POSITION.search(t_)]
+            info["any_host_links"] = len({h for h, _ in ext})
+            info["hosts"] = sorted({urlparse(h).netloc for h, _ in ext})[:6]
+            info["frames"] = len(pg.frames)
+            info["esempi_ext"] = [t_[:80] for _, t_ in ext[:4]]
             info.update(browser_status=resp.status if resp else None, final_url=final, html_len=len(html))
             items = positions._html_items(html, final)
             info["browser_links"] = len(items)
