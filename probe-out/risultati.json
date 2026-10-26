@@ -1,0 +1,1580 @@
+{
+ "web": [
+  {
+   "nome": "ERA-LEARN calendario",
+   "url": "https://www.era-learn.eu/network-information/call-calendar",
+   "status": 200,
+   "final_url": "https://www.era-learn.eu/network-information/call-calendar",
+   "len": 93773,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 26
+  },
+  {
+   "nome": "ERA-LEARN calendario +3",
+   "url": "https://www.era-learn.eu/network-information/call-calendar?el.offset=3",
+   "status": 200,
+   "final_url": "https://www.era-learn.eu/network-information/call-calendar?el.offset=3",
+   "len": 68564,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 25
+  },
+  {
+   "nome": "EP PerMed calls",
+   "url": "https://www.eppermed.eu/funding-projects/calls/",
+   "status": 200,
+   "final_url": "https://www.eppermed.eu/funding-projects/calls/",
+   "len": 155719,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 32
+  },
+  {
+   "nome": "ERDERA calls",
+   "url": "https://erdera.org/calls/",
+   "status": 404,
+   "final_url": "https://erdera.org/calls/",
+   "len": 162600,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": "HTTP 404",
+   "candidati": [],
+   "sec": 3
+  },
+  {
+   "nome": "ERDERA call",
+   "url": "https://erdera.org/call/",
+   "status": 200,
+   "final_url": "https://erdera.org/news/call-for-nominations-join-the-erdera-multistakeholder-advisory-board/",
+   "len": 198113,
+   "robots_ok": true,
+   "pagine": 12,
+   "errore": null,
+   "candidati": [],
+   "sec": 15
+  },
+  {
+   "nome": "EP BrainHealth calls",
+   "url": "https://www.brainhealth-partnership.eu/calls/",
+   "status": 200,
+   "final_url": "https://www.brainhealth-partnership.eu/calls/",
+   "len": 61470,
+   "robots_ok": true,
+   "pagine": 7,
+   "errore": null,
+   "candidati": [
+    {
+     "titolo": "NationalAnnexesCompiledCall 1",
+     "url": "https://www.brainhealth-partnership.eu/wp-content/uploads/NationalAnnexesCompiledCall-1.pdf",
+     "scadenza": null,
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Neurologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "NationalAnnexesCompiledCall 2",
+     "url": "https://www.brainhealth-partnership.eu/wp-content/uploads/NationalAnnexesCompiledCall-2.pdf",
+     "scadenza": null,
+     "gruppi": [
+      "Neurologia",
+      "Ricerca clinica"
+     ]
+    }
+   ],
+   "sec": 10
+  },
+  {
+   "nome": "THCS funding",
+   "url": "https://www.thcspartnership.eu/funding",
+   "status": 200,
+   "final_url": "https://www.thcspartnership.eu/funding/investing-in-health-and-care-systems-research-and-innovation.kl",
+   "len": 17841,
+   "robots_ok": true,
+   "pagine": 11,
+   "errore": null,
+   "candidati": [],
+   "sec": 13
+  },
+  {
+   "nome": "THCS funding.kl",
+   "url": "https://www.thcspartnership.eu/funding.kl",
+   "status": 403,
+   "final_url": "https://www.thcspartnership.eu/funding.kl",
+   "len": 0,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": "HTTP 403",
+   "candidati": [],
+   "sec": 0
+  },
+  {
+   "nome": "ERA4Health calls",
+   "url": "https://era4health.eu/calls/",
+   "status": 200,
+   "final_url": "https://era4health.eu/calls/",
+   "len": 13918,
+   "robots_ok": true,
+   "pagine": 21,
+   "errore": null,
+   "candidati": [],
+   "sec": 178
+  },
+  {
+   "nome": "ERA4Health calls.php",
+   "url": "https://era4health.eu/calls.php",
+   "status": "ERR HTTP 429",
+   "robots_ok": true,
+   "pagine": 0,
+   "errore": "irraggiungibile: HTTP 429",
+   "candidati": [],
+   "sec": 7
+  },
+  {
+   "nome": "OHAMR calls",
+   "url": "https://ohamr.eu/calls/",
+   "status": 200,
+   "final_url": "https://ohamr.eu/calls/",
+   "len": 110194,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 27
+  },
+  {
+   "nome": "BE READY",
+   "url": "https://beready4pandemics.eu/",
+   "status": 200,
+   "final_url": "https://beready4pandemics.eu/",
+   "len": 453019,
+   "robots_ok": true,
+   "pagine": 3,
+   "errore": null,
+   "candidati": [],
+   "sec": 4
+  },
+  {
+   "nome": "IHI open calls",
+   "url": "https://www.ihi.europa.eu/apply-funding/open-calls",
+   "status": 200,
+   "final_url": "https://www.ihi.europa.eu/apply-funding/open-calls",
+   "len": 43908,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 25
+  },
+  {
+   "nome": "IHI future",
+   "url": "https://www.ihi.europa.eu/apply-funding/future-opportunities",
+   "status": 200,
+   "final_url": "https://www.ihi.europa.eu/apply-funding/future-opportunities",
+   "len": 48350,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 25
+  },
+  {
+   "nome": "EIT Health opportunities",
+   "url": "https://eithealth.eu/opportunities/",
+   "status": 404,
+   "final_url": "https://eithealth.eu/opportunities/",
+   "len": 60,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": "HTTP 404",
+   "candidati": [],
+   "sec": 1
+  },
+  {
+   "nome": "EIT Health calls",
+   "url": "https://eithealth.eu/calls/",
+   "status": 200,
+   "final_url": "https://eithealth.eu/news-article/calls-for-accelerator-programmes-now-open/",
+   "len": 95410,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 25
+  },
+  {
+   "nome": "COST open call",
+   "url": "https://www.cost.eu/funding/open-call/",
+   "status": 200,
+   "final_url": "https://www.cost.eu/open-call-2022-analysis/",
+   "len": 397407,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 33
+  },
+  {
+   "nome": "FOREUM calls",
+   "url": "https://foreum.org/foreum-grants/foreum-calls-overview/",
+   "status": 200,
+   "final_url": "https://foreum.org/foreum-grants/foreum-calls-overview/",
+   "len": 84262,
+   "robots_ok": true,
+   "pagine": 22,
+   "errore": null,
+   "candidati": [
+    {
+     "titolo": "Funding Opportunities",
+     "url": "https://foreum.org/foreum-grants/",
+     "scadenza": null,
+     "gruppi": [
+      "Ricerca sanitaria a tema libero"
+     ]
+    },
+    {
+     "titolo": "FOREUM-argenx Interdisciplinary Call 2026: Rheumatology and Neurology - Foreum",
+     "url": "https://foreum.org/foreum-grants/foreum-calls-overview/foreum-argenx-call-2026/",
+     "scadenza": "2026-11-05",
+     "gruppi": [
+      "Altre malattie e riabilitazione",
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Neurologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM-EULAR Topic Call 2026 - Foreum",
+     "url": "https://foreum.org/foreum-grants/foreum-calls-overview/foreum-eular-topic-call-2026/",
+     "scadenza": "2026-10-30",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM-Lilly Interdisciplinary Call 2026: Rheumatology and Obesity Medicine - Foreum",
+     "url": "https://foreum.org/?page_id=1078",
+     "scadenza": "2026-11-05",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM-BI Interdisciplinary Call 2026: Rheumatology and Data Science - Foreum",
+     "url": "https://foreum.org/?page_id=1083",
+     "scadenza": "2026-11-05",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica",
+      "Ingegneria clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM-BI Interdisciplinary Call 2026: Rheumatology and Data Science 2 - Foreum",
+     "url": "https://foreum.org/?page_id=1087",
+     "scadenza": "2026-11-05",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica",
+      "Ingegneria clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM-EADV Interdisciplinary Call 2026: Rheumatology and Dermatology - Foreum",
+     "url": "https://foreum.org/?page_id=1094",
+     "scadenza": "2026-11-05",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM Topic Call 2026 - Foreum",
+     "url": "https://foreum.org/foreum-grants/foreum-calls-overview/foreum-topic-call-2026/",
+     "scadenza": "2026-10-30",
+     "gruppi": [
+      "Invecchiamento",
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Neurologia",
+      "Neuropsicologia",
+      "Ricerca clinica"
+     ]
+    },
+    {
+     "titolo": "FOREUM Early Career Grant Call 2026 - Foreum",
+     "url": "https://foreum.org/foreum-grants/foreum-calls-overview/foreum-early-career-grant-call-2026",
+     "scadenza": "2026-11-06",
+     "gruppi": [
+      "Fisiatria e ortopedia",
+      "Reumatologia",
+      "Ricerca clinica"
+     ]
+    }
+   ],
+   "sec": 28
+  },
+  {
+   "nome": "EULAR research",
+   "url": "https://www.eular.org/research",
+   "status": 404,
+   "final_url": "https://www.eular.org/research",
+   "len": 56025,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": "HTTP 404",
+   "candidati": [],
+   "sec": 2
+  },
+  {
+   "nome": "EULAR funding",
+   "url": "https://www.eular.org/eular-research-funding",
+   "status": 200,
+   "final_url": "https://www.eular.org/eular-research-funding",
+   "len": 77042,
+   "robots_ok": true,
+   "pagine": 15,
+   "errore": null,
+   "candidati": [],
+   "sec": 15
+  },
+  {
+   "nome": "EIBIR funding calls",
+   "url": "https://eibir.org/funding-calls/",
+   "status": 404,
+   "final_url": "https://www.eibir.org/funding-calls/",
+   "len": 76253,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": "HTTP 404",
+   "candidati": [],
+   "sec": 7
+  },
+  {
+   "nome": "EIBIR open calls",
+   "url": "https://www.eibir.org/open-funding-calls/",
+   "status": 200,
+   "final_url": "https://www.eibir.org/open-funding-calls/",
+   "len": 232616,
+   "robots_ok": true,
+   "pagine": 6,
+   "errore": null,
+   "candidati": [],
+   "sec": 13
+  },
+  {
+   "nome": "ESPR funding",
+   "url": "https://www.espr.eu/funding/",
+   "status": 200,
+   "final_url": "https://www.espr.eu/funding/",
+   "len": 2488,
+   "robots_ok": true,
+   "pagine": 19,
+   "errore": null,
+   "candidati": [],
+   "sec": 19
+  },
+  {
+   "nome": "ESPGHAN funding",
+   "url": "https://www.espghan.org/research-funding",
+   "status": 200,
+   "final_url": "https://www.espghan.org/research-funding",
+   "len": 21666,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 26
+  },
+  {
+   "nome": "ESPID",
+   "url": "https://www.espid.org/",
+   "status": 200,
+   "final_url": "https://www.espid.org/",
+   "len": 45172,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 25
+  },
+  {
+   "nome": "EPNS",
+   "url": "https://www.epns.info/",
+   "status": 200,
+   "final_url": "https://www.epns.info/",
+   "len": 124103,
+   "robots_ok": true,
+   "pagine": 12,
+   "errore": null,
+   "candidati": [
+    {
+     "titolo": "EPNS Fellowships",
+     "url": "https://www.epns.info/epns-fellowships/",
+     "scadenza": null,
+     "gruppi": [
+      "Altre malattie e riabilitazione",
+      "Neurologia",
+      "Pediatria"
+     ]
+    }
+   ],
+   "sec": 14
+  },
+  {
+   "nome": "EAN research",
+   "url": "https://www.ean.org/research",
+   "status": 200,
+   "final_url": "https://www.ean.org/research",
+   "len": 108491,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 26
+  },
+  {
+   "nome": "ESTRO",
+   "url": "https://www.estro.org/",
+   "status": 200,
+   "final_url": "https://www.estro.org/",
+   "len": 16785,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": null,
+   "candidati": [],
+   "sec": 1
+  },
+  {
+   "nome": "BIAL Foundation",
+   "url": "https://www.fundacaobial.com/en/",
+   "status": 200,
+   "final_url": "https://www.fundacaobial.com/en",
+   "len": 65106,
+   "robots_ok": true,
+   "pagine": 7,
+   "errore": null,
+   "candidati": [],
+   "sec": 7
+  },
+  {
+   "nome": "Fondation Lejeune",
+   "url": "https://www.fondationlejeune.org/",
+   "status": 200,
+   "final_url": "https://www.fondationlejeune.org/",
+   "len": 157171,
+   "robots_ok": true,
+   "pagine": 1,
+   "errore": null,
+   "candidati": [],
+   "sec": 7
+  },
+  {
+   "nome": "Thrasher Research Fund",
+   "url": "https://www.thrasherresearch.org/",
+   "status": 200,
+   "final_url": "https://www.thrasherresearch.org/",
+   "len": 14617,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 26
+  },
+  {
+   "nome": "RSNA funding",
+   "url": "https://www.rsna.org/research/funding-opportunities",
+   "status": 200,
+   "final_url": "https://www.rsna.org/research/funding-opportunities",
+   "len": 77080,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 24
+  },
+  {
+   "nome": "EDCTP3 (attuale)",
+   "url": "https://www.global-health-edctp3.europa.eu/funding/calls-proposals_en",
+   "status": 200,
+   "final_url": "https://www.global-health-edctp3.europa.eu/funding/calls-proposals_en",
+   "len": 104021,
+   "robots_ok": true,
+   "pagine": 25,
+   "errore": null,
+   "candidati": [],
+   "sec": 34
+  }
+ ],
+ "eu": {
+  "prefissi": [
+   [
+    "HORIZON-CL5",
+    182
+   ],
+   [
+    "HORIZON-CL6",
+    133
+   ],
+   [
+    "HORIZON-CL4",
+    92
+   ],
+   [
+    "HORIZON-CL3",
+    88
+   ],
+   [
+    "HORIZON-CL2",
+    54
+   ],
+   [
+    "HORIZON-MISS",
+    52
+   ],
+   [
+    "HORIZON-EIC",
+    47
+   ],
+   [
+    "HORIZON-JU",
+    37
+   ],
+   [
+    "HORIZON-HLTH",
+    37
+   ],
+   [
+    "SMP-COSME",
+    35
+   ],
+   [
+    "HORIZON-WIDERA",
+    34
+   ],
+   [
+    "EDF-2023",
+    32
+   ],
+   [
+    "LIFE-2023",
+    30
+   ],
+   [
+    "HORIZON-EIT",
+    23
+   ],
+   [
+    "HORIZON-INFRA",
+    23
+   ],
+   [
+    "HORIZON-NEB",
+    22
+   ],
+   [
+    "HORIZON-MSCA",
+    20
+   ],
+   [
+    "DIGITAL-ECCC",
+    18
+   ],
+   [
+    "DIGITAL-2023",
+    16
+   ],
+   [
+    "CREA-MEDIA",
+    16
+   ],
+   [
+    "HORIZON-EIE",
+    15
+   ],
+   [
+    "DIGITAL-2022",
+    13
+   ],
+   [
+    "DIGITAL-2024",
+    12
+   ],
+   [
+    "HORIZON-EURATOM",
+    12
+   ],
+   [
+    "EDF-EDIP",
+    10
+   ],
+   [
+    "CERV-2026",
+    10
+   ],
+   [
+    "CERV-2024",
+    8
+   ],
+   [
+    "CREA-CULT",
+    8
+   ],
+   [
+    "HORIZON-BRIDGING",
+    8
+   ],
+   [
+    "DIGITAL-JU",
+    6
+   ],
+   [
+    "HORIZON-NATURE",
+    6
+   ],
+   [
+    "CEF-T",
+    6
+   ],
+   [
+    "HORIZON-RAISE",
+    5
+   ],
+   [
+    "CREA-CROSS",
+    5
+   ],
+   [
+    "ISF-2026",
+    4
+   ],
+   [
+    "EURATOM-2021",
+    3
+   ],
+   [
+    "DIGITAL-2025",
+    3
+   ],
+   [
+    "I3-2023",
+    3
+   ],
+   [
+    "EUBA-EFSA",
+    3
+   ],
+   [
+    "ERASMUS-EDU",
+    3
+   ],
+   [
+    "EP-COMM",
+    3
+   ],
+   [
+    "SOCPL-2023",
+    3
+   ],
+   [
+    "I3-2026",
+    2
+   ],
+   [
+    "JTM-2026",
+    2
+   ],
+   [
+    "DT-ICT",
+    2
+   ],
+   [
+    "TOURINN-01",
+    2
+   ],
+   [
+    "ESC-HUMAID",
+    2
+   ],
+   [
+    "NDICI-2023",
+    2
+   ],
+   [
+    "CERV-2023",
+    2
+   ],
+   [
+    "HORIZON-EUROHPC",
+    2
+   ],
+   [
+    "ESF-2023",
+    2
+   ],
+   [
+    "HORIZON-CID",
+    2
+   ],
+   [
+    "DIGITAL-2021",
+    1
+   ],
+   [
+    "EDF-2024",
+    1
+   ],
+   [
+    "CERV-2025",
+    1
+   ],
+   [
+    "EuropeAid/187670/DD/ACT/Multi",
+    1
+   ],
+   [
+    "EuropeAid/187126/DD/ACT/VN",
+    1
+   ],
+   [
+    "EuropeAid/187801/DD/ACT/ET",
+    1
+   ],
+   [
+    "EuropeAid/187611/DD/ACT/MD",
+    1
+   ],
+   [
+    "EuropeAid/187517/DD/ACT/AL",
+    1
+   ],
+   [
+    "I3-2024",
+    1
+   ],
+   [
+    "EuropeAid/187686/ID/ACT/MK",
+    1
+   ],
+   [
+    "PPPA-2026",
+    1
+   ],
+   [
+    "EuropeAid/186411/DD/ACT/CN",
+    1
+   ],
+   [
+    "EuropeAid/187109/DD/ACT/VN",
+    1
+   ],
+   [
+    "CEF-DIG",
+    1
+   ],
+   [
+    "ERC-2027",
+    1
+   ],
+   [
+    "ESF-2027",
+    1
+   ],
+   [
+    "SOCPL-2026",
+    1
+   ],
+   [
+    "EuropeAid/187639/DD/ACT/US",
+    1
+   ],
+   [
+    "EuropeAid/187757/DD/ACT/KH",
+    1
+   ],
+   [
+    "EuropeAid/187862/DD/ACT/Multi",
+    1
+   ],
+   [
+    "EuropeAid/187764/DD/ACT/UA",
+    1
+   ],
+   [
+    "EuropeAid/187605/DD/ACT/ID",
+    1
+   ],
+   [
+    "EuropeAid/187397/DD/ACT/BJ",
+    1
+   ],
+   [
+    "EuropeAid/187975/DD/ACT/ZM",
+    1
+   ],
+   [
+    "IMCAP-2027",
+    1
+   ],
+   [
+    "LIFE-2025",
+    1
+   ],
+   [
+    "EuropeAid/172802/ID/ACT/RS",
+    1
+   ],
+   [
+    "CLUSINT-01",
+    1
+   ]
+  ],
+  "erc_msca_eic_miss_ihi": [
+   "ERC-2027-COG",
+   "HORIZON-EIC-2021-EEN-01-01",
+   "HORIZON-EIC-2021-STARTUPEU-01-01",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-01",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-02",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-03",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-04",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-05",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-06",
+   "HORIZON-EIC-2023-ACCELERATORCHALLENGES-07",
+   "HORIZON-EIC-2023-ACCELERATOROPEN-01",
+   "HORIZON-EIC-2023-EUIPA-PRIZES-03-01",
+   "HORIZON-EIC-2023-EUIPA-PRIZES-03-02",
+   "HORIZON-EIC-2023-EUSIC-PRIZES-04",
+   "HORIZON-EIC-2023-HUMANITARIAN-PRIZES-05",
+   "HORIZON-EIC-2023-ICAPITAL-PRIZE-02-1",
+   "HORIZON-EIC-2023-ICAPITAL-PRIZE-02-2",
+   "HORIZON-EIC-2023-PATHFINDERCHALLENGES-01-01",
+   "HORIZON-EIC-2023-PATHFINDERCHALLENGES-01-02",
+   "HORIZON-EIC-2023-PATHFINDERCHALLENGES-01-03",
+   "HORIZON-EIC-2023-PATHFINDERCHALLENGES-01-04",
+   "HORIZON-EIC-2023-PATHFINDERCHALLENGES-01-05",
+   "HORIZON-EIC-2023-TRANSITIONCHALLENGES-01",
+   "HORIZON-EIC-2023-TRANSITIONCHALLENGES-02",
+   "HORIZON-EIC-2023-TRANSITIONCHALLENGES-03",
+   "HORIZON-EIC-2023-TRANSITIONOPEN-01",
+   "HORIZON-EIC-2025-WOMENTECH",
+   "HORIZON-EIC-2026-ACCELERATOR-01",
+   "HORIZON-EIC-2026-DEFENCE-01",
+   "HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-01",
+   "HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02",
+   "HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-03",
+   "HORIZON-EIC-2026-PRIZE-WIP",
+   "HORIZON-EIC-2026-PRIZE-WIP-RisingInnovators",
+   "HORIZON-EIC-2026-STEP",
+   "HORIZON-HLTH-2027-01-ENVHLTH-MISSCLIMA-03",
+   "HORIZON-MISS-2021-OCEAN-02-02",
+   "HORIZON-MISS-2023-CIT-02-01",
+   "HORIZON-MISS-2023-OCEAN-01-01",
+   "HORIZON-MISS-2023-OCEAN-01-02",
+   "HORIZON-MISS-2023-OCEAN-01-03",
+   "HORIZON-MISS-2023-OCEAN-01-04",
+   "HORIZON-MISS-2023-OCEAN-01-05",
+   "HORIZON-MISS-2023-OCEAN-01-06",
+   "HORIZON-MISS-2023-OCEAN-01-07",
+   "HORIZON-MISS-2023-OCEAN-01-08",
+   "HORIZON-MISS-2023-OCEAN-01-10",
+   "HORIZON-MISS-2023-OCEAN-01-11",
+   "HORIZON-MISS-2023-OCEAN-SOIL-01-01",
+   "HORIZON-MISS-2023-SOIL-01-01",
+   "HORIZON-MISS-2023-SOIL-01-02",
+   "HORIZON-MISS-2023-SOIL-01-03",
+   "HORIZON-MISS-2023-SOIL-01-04",
+   "HORIZON-MISS-2023-SOIL-01-05",
+   "HORIZON-MISS-2023-SOIL-01-06",
+   "HORIZON-MISS-2023-SOIL-01-07",
+   "HORIZON-MISS-2023-SOIL-01-08",
+   "HORIZON-MISS-2024-CROSS-02-01",
+   "HORIZON-MISS-2024-OCEAN-02-01",
+   "HORIZON-MISS-2024-SOIL-01-01",
+   "HORIZON-MISS-2025-CIT-SGA",
+   "HORIZON-MISS-2026-07-CROSS-04",
+   "HORIZON-MISS-2027-01-CLIMA-01",
+   "HORIZON-MISS-2027-01-CLIMA-02",
+   "HORIZON-MISS-2027-02-CANCER-02",
+   "HORIZON-MISS-2027-02-CANCER-06",
+   "HORIZON-MISS-2027-03-OCEAN-01",
+   "HORIZON-MISS-2027-03-OCEAN-02",
+   "HORIZON-MISS-2027-03-OCEAN-05",
+   "HORIZON-MISS-2027-04-CIT-03",
+   "HORIZON-MISS-2027-05-SOIL-02-two-stage",
+   "HORIZON-MISS-2027-05-SOIL-03-two-stage",
+   "HORIZON-MISS-2027-05-SOIL-04-two-stage",
+   "HORIZON-MISS-2027-05-SOIL-05-two-stage",
+   "HORIZON-MISS-2027-05-SOIL-06-two-stage",
+   "HORIZON-MISS-2027-06-SOIL-CANCER",
+   "HORIZON-MSCA-2023-CITIZENS-01-01",
+   "HORIZON-MSCA-2023-COFUND-01-01",
+   "HORIZON-MSCA-2023-DN-01-01",
+   "HORIZON-MSCA-2023-FTP-01-01",
+   "HORIZON-MSCA-2023-PF-01-01",
+   "HORIZON-MSCA-2023-SE-01-01",
+   "HORIZON-MSCA-2024-DN-01-01",
+   "HORIZON-MSCA-2024-INCO-01-01",
+   "HORIZON-MSCA-2024-NCP-01-01",
+   "HORIZON-MSCA-2024-PF-01-01",
+   "HORIZON-MSCA-2024-RR-01-01",
+   "HORIZON-MSCA-2024-SE-01-01",
+   "HORIZON-MSCA-2026-DN-01-01",
+   "HORIZON-MSCA-2027-CITIZENS-01-01",
+   "HORIZON-MSCA-2027-COFUND-01-01",
+   "HORIZON-MSCA-2027-COFUND-02-01",
+   "HORIZON-MSCA-2027-DN-01-01",
+   "HORIZON-MSCA-2027-PF-01-01",
+   "HORIZON-MSCA-2027-SE-01-01",
+   "LIFE-2023-CET-ENERCOMFACILITY"
+  ],
+  "esaminati": 1209,
+  "pertinenti": [
+   {
+    "id": "EU-ERC-2027-COG",
+    "titolo": "ERC Consolidator Grant",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-01-12",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2026-DN-01-01",
+    "titolo": "MSCA Doctoral Networks 2026",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2026-11-24",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2026-ACCELERATOR-01",
+    "titolo": "EIC Accelerator 2026 - Short proposal",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2026-11-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2026-PATHFINDERCHALLENGES-01-02",
+    "titolo": "Biotechnology for Healthy Ageing",
+    "gruppi": [
+     "Invecchiamento",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica"
+    ],
+    "scadenza": "2026-10-28",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-BRIDGING-2027-02-05",
+    "titolo": "Advancing promising results from Pillar II collaborative research through the innovation journey",
+    "gruppi": [
+     "Tecnologie riabilitazione",
+     "Reumatologia",
+     "Neurologia",
+     "Neuropsicologia",
+     "Radiologia e imaging",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-01-28",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-BRIDGING-2027-06-02",
+    "titolo": "Valorising Horizon project results via innovation ecosystems",
+    "gruppi": [
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-02-16",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-05",
+    "titolo": "EIC Accelerator Challenge: Emerging semiconductor or quantum technology components",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-TRANSITIONCHALLENGES-02",
+    "titolo": "EIC Transition Challenge: Environmental Intelligence ",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-09-27",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-STAYHLTH-01-02-two-stage",
+    "titolo": "Towards a holistic support to children and adolescents’ health and care provisions in an increasingly digital ",
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Neuropsicologia",
+     "Pediatria",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-TRANSITIONCHALLENGES-01",
+    "titolo": "EIC Transition Challenge: Full scale Micro-Nano-Bio devices for medical and medical research applications",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-09-27",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-07",
+    "titolo": "EIC Accelerator Challenge: Customer-driven, innovative space technologies and services",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-06",
+    "titolo": "EIC Accelerator Challenge: Novel technologies for resilient agriculture",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-04",
+    "titolo": "EIC Accelerator Challenge: New European Bauhaus and Architecture, Engineering and Construction digitalisation ",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-TRANSITIONOPEN-01",
+    "titolo": "Transition Open 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-09-27",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2023-DISEASE-07-01",
+    "titolo": "European Partnership on Rare Diseases",
+    "gruppi": [
+     "Invecchiamento",
+     "Fisiatria e ortopedia",
+     "Neurologia",
+     "Pediatria",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica"
+    ],
+    "scadenza": "2023-09-19",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-TRANSITIONCHALLENGES-03",
+    "titolo": "EIC Transition Challenge: Chip-scale optical frequency combs",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-09-27",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-02",
+    "titolo": "EIC Accelerator Challenge: Aerosol and surface decontamination for pandemic management",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATOROPEN-01",
+    "titolo": "EIC Accelerator Open 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-DISEASE-03-08-two-stage",
+    "titolo": "Comparative effectiveness research for healthcare interventions in areas of high public health need",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-03",
+    "titolo": "EIC Accelerator Challenge: Energy storage",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-EIC-2023-ACCELERATORCHALLENGES-01",
+    "titolo": "EIC Accelerator Challenge: Novel biomarker-based assays to guide personalised cancer treatment",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-10-04",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-DISEASE-03-13-two-stage",
+    "titolo": "Validation of fluid-derived biomarkers for the prediction and prevention of brain disorders",
+    "gruppi": [
+     "Invecchiamento",
+     "Altre malattie e riabilitazione",
+     "Neurologia"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-STAYHLTH-01-05-two-stage",
+    "titolo": "Personalised prevention of non-communicable diseases - addressing areas of unmet needs using multiple data sou",
+    "gruppi": [
+     "Neurologia",
+     "Neuropsicologia",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-01-03",
+    "titolo": "Implementation research/real life assessment of existing interventions in women and children’s health",
+    "gruppi": [
+     "Pediatria",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2023-06-29",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-01-01",
+    "titolo": "Global Health EDCTP3 Training Networks - Clinical Research Fellowships",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2023-06-29",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-01-04",
+    "titolo": "Research to rapidly evaluate interventions on Ebola outbreaks in sub-Saharan Africa",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2023-06-29",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-01-02",
+    "titolo": "Funding to successfully finalise EDCTP2-funded clinical trials that were negatively impacted by the COVID-19 p",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2023-06-29",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-01-05",
+    "titolo": "Strengthening ethics and regulatory capacity",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2023-06-29",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-DISEASE-03-14-two-stage",
+    "titolo": "Tackling high-burden for patients, under-researched medical conditions",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-DIGITAL-2023-CLOUD-AI-04-GENOME",
+    "titolo": "Genome of Europe",
+    "gruppi": [
+     "Genetica clinica e malattie rare",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2023-09-26",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-DIGITAL-2023-CLOUD-AI-04-ICU-DATA",
+    "titolo": "Federated European Infrastructure for intensive care units' (ICU) data",
+    "gruppi": [
+     "Radiologia e imaging",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2023-09-26",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2023-PF-01-01",
+    "titolo": "MSCA Postdoctoral Fellowships 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-09-13",
+    "stato": "Aperto"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-03-TOOL-04",
+    "titolo": "Virtual Human Twins (VHTs) for integrated clinical decision support in prevention and diagnosis",
+    "gruppi": [
+     "Neuropsicologia",
+     "Radiologia e imaging",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-09-16",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2027-DN-01-01",
+    "titolo": "MSCA Doctoral Networks 2027",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-11-23",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2027-COFUND-02-01",
+    "titolo": "MSCA Choose Europe for Science 2027",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-04-06",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2027-SE-01-01",
+    "titolo": "MSCA Staff Exchanges 2027",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-04-15",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2027-COFUND-01-01",
+    "titolo": "MSCA COFUND 2027",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-04-06",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-CL4-2027-04-DIGITAL-EMERGING-04",
+    "titolo": "Apply AI: Challenge-Driven AI Innovation Booster in Apply AI prioritised sectors (RIA) (Partnership in AI, Dat",
+    "gruppi": [
+     "Tecnologie riabilitazione",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-03-18",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-03-TOOL-02",
+    "titolo": "Advancing bio-printing of living cells for regenerative medicine",
+    "gruppi": [
+     "Fisiatria e ortopedia",
+     "Radiologia e imaging",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-09-16",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-03-TOOL-08",
+    "titolo": "Towards the next generation of frontier Artificial Intelligence models for healthcare",
+    "gruppi": [
+     "Radiologia e imaging",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-09-16",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-01-CARE-02",
+    "titolo": "Personalised approaches to reduce risks from Adverse Drug Reactions due to administration of multiple medicati",
+    "gruppi": [
+     "Invecchiamento",
+     "Fisiatria e ortopedia",
+     "Radiologia e imaging",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-02-17",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2027-PF-01-01",
+    "titolo": "MSCA Postdoctoral Fellowships 2027",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2027-09-08",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MISS-2027-02-CANCER-02",
+    "titolo": "Clinical research by Comprehensive Cancer Infrastructures for the benefit of patients with common cancers",
+    "gruppi": [
+     "Fisiatria e ortopedia",
+     "Radiologia e imaging",
+     "Oncologia ed ematologia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-09-16",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-02-DISEASE-01-two-stage",
+    "titolo": "Innovative healthcare interventions for non-communicable diseases",
+    "gruppi": [
+     "Tecnologie riabilitazione",
+     "Altre malattie e riabilitazione",
+     "Fisiatria e ortopedia",
+     "Pediatria",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-02-17",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MISS-2027-02-CANCER-06",
+    "titolo": "Support a Young Cancer Survivor Quality of Life (QoL) research programme by cancer charities and funding agenc",
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Fisiatria e ortopedia",
+     "Neuropsicologia",
+     "Pediatria",
+     "Oncologia ed ematologia",
+     "Ricerca clinica"
+    ],
+    "scadenza": "2027-09-16",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-01-IND-01",
+    "titolo": "Development of cell-free protein synthesis platforms for discovery and/or production of biologicals",
+    "gruppi": [
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-02-17",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-BRIDGING-2027-03-04",
+    "titolo": "Supporting the long-term resilience and European sovereignty of critical research data and knowledge repositor",
+    "gruppi": [
+     "Neurologia",
+     "Neuropsicologia",
+     "Genetica clinica e malattie rare",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-06-15",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-02-IND-02-two-stage",
+    "titolo": "Portable and versatile Point-of-care diagnostics",
+    "gruppi": [
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-02-17",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2027-01-DISEASE-05",
+    "titolo": "Development of novel small molecule antiviral therapeutics for pathogens with epidemic potential",
+    "gruppi": [
+     "Altre malattie e riabilitazione",
+     "Ricerca clinica"
+    ],
+    "scadenza": "2027-02-17",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2026-03-DISEASE-13",
+    "titolo": "European Partnership for Pandemic Preparedness (Phase 2)",
+    "gruppi": [
+     "Fisiatria e ortopedia",
+     "Genetica clinica e malattie rare",
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2027-04-13",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2024-PF-01-01",
+    "titolo": "MSCA Postdoctoral Fellowships 2024",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2024-09-11",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2024-SE-01-01",
+    "titolo": "MSCA Staff Exchanges 2024",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2025-03-05",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-CL4-2024-DIGITAL-EMERGING-01-03",
+    "titolo": "Novel paradigms and approaches, towards AI-powered robots– step change in functionality (AI, data and robotics",
+    "gruppi": [
+     "Tecnologie riabilitazione",
+     "Neuropsicologia",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2024-03-19",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-CL4-2024-DIGITAL-EMERGING-01-04",
+    "titolo": "Industrial leadership in AI, Data and Robotics boosting competitiveness and the green transition (AI Data and ",
+    "gruppi": [
+     "Tecnologie riabilitazione",
+     "Neuropsicologia",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2024-03-19",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-HLTH-2024-IND-06-08",
+    "titolo": "Developing EU methodological frameworks for clinical/performance evaluation and post-market clinical/performan",
+    "gruppi": [
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2024-04-11",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-02-01-two-stage",
+    "titolo": "Improving modes of delivery, deployment, and uptake of vaccines through phase IV/implementation research",
+    "gruppi": [
+     "Ricerca clinica"
+    ],
+    "scadenza": "2024-03-28",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-JU-GH-EDCTP3-2023-02-02-two-stage",
+    "titolo": "Advancing point-of-care diagnostics to the market",
+    "gruppi": [
+     "Ricerca clinica",
+     "Ingegneria clinica"
+    ],
+    "scadenza": "2024-03-28",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2023-DN-01-01",
+    "titolo": "MSCA Doctoral Networks 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2023-11-28",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2024-DN-01-01",
+    "titolo": "MSCA Doctoral Networks 2024",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2024-11-27",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2023-COFUND-01-01",
+    "titolo": "MSCA COFUND 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2024-02-08",
+    "stato": "In apertura"
+   },
+   {
+    "id": "EU-HORIZON-MSCA-2023-SE-01-01",
+    "titolo": "MSCA Staff Exchanges 2023",
+    "gruppi": [
+     "Ricerca sanitaria a tema libero"
+    ],
+    "scadenza": "2024-02-28",
+    "stato": "In apertura"
+   }
+  ]
+ }
+}
