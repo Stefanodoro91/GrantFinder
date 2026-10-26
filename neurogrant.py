@@ -616,7 +616,7 @@ def scarica_eu(http: Http) -> tuple[list[dict], int]:
 # programmi europei aperti a qualsiasi disciplina (anche la ricerca medica): ERC, MSCA, EIC «open»
 EU_TEMA_LIBERO = re.compile(
     r"^(HORIZON-)?(ERC-\d{4}-(STG|COG|ADG|SYG|POC)|MSCA-\d{4}-(PF|DN|SE|COFUND)|"
-    r"EIC-\d{4}-(PATHFINDEROPEN|TRANSITIONOPEN|TRANSITION|ACCELERATOR))", re.I)
+    r"EIC-\d{4}-(PATHFINDEROPEN|TRANSITIONOPEN|TRANSITION|ACCELERATOR(OPEN)?)-)", re.I)
 
 
 def converti_eu(v: dict) -> dict | None:
@@ -972,7 +972,8 @@ RX_URL_NON_BANDO = re.compile(
     r"press-release|comunicato-stampa)", re.I)
 RX_TITOLO_NON_BANDO = re.compile(
     r"\b(recipients?|awardees?|grantees?|vincitori|portfolio|templates?|nomination|award conditions|"
-    r"terms and conditions|committee|annual report|press release|comunicato stampa|newsletter|celebrat\w+|"
+    r"terms and conditions|committee|annual report|press release|comunicato stampa|newsletter|celebrat\w+|national annex\w*|annexes|"
+    r""
     r"announces?|receives?|we'?re investing|we are investing|meet\b|research we fund|what research)", re.I)
 # senza una scadenza futura la pagina deve almeno dire che la call è aperta
 RX_APERTO = re.compile(
@@ -984,6 +985,55 @@ RX_APERTO = re.compile(
     r"termine (per la presentazione|ultimo))", re.I)
 ESTENSIONI_SALTA = (".jpg", ".jpeg", ".png", ".gif", ".svg", ".zip", ".doc", ".docx", ".xls",
                     ".xlsx", ".ppt", ".pptx", ".mp4", ".mp3", ".ics")
+
+
+# ERA-LEARN: calendario unico delle call dei partenariati europei (THCS, EP PerMed, ERDERA, BrainHealth, ERA4Health, IHI...)
+ERA_LEARN = "https://www.era-learn.eu/network-information/call-calendar"
+ERA_LEARN_SALUTE = re.compile(
+    r"/networks/(era-for-health|rare-diseases|brain-health|pandemic-preparedness|innovative-health-initiative|"
+    r"one-health-anti-microbial-resistance|personali[sz]ed-medicine|transforming-health-and-care-systems|"
+    r"global-health|chemicals-risk-assessment|health|neuro|cancer|trans-?can|ageing|eupermed|ep-?permed|thcs)[^/]*/[^/?#]+/?$", re.I)
+
+
+def esplora_eralearn(http: Http, max_call: int = 20) -> tuple[list[dict], int, str | None]:
+    """Call sanitarie dal calendario ERA-LEARN (mesi correnti e prossimi): una pagina per call, poi i filtri soliti."""
+    from bs4 import BeautifulSoup
+    link, visitate, errore = {}, 0, None
+    for off in ("", "?el.offset=3", "?el.offset=6"):
+        try:
+            r = http.get(ERA_LEARN + off, cortese=True, timeout=60)
+            visitate += 1
+            r.raise_for_status()
+        except Exception as e:
+            errore = errore or f"calendario: {e}"
+            continue
+        for a in BeautifulSoup(r.text, "lxml").find_all("a", href=True):
+            href = urldefrag(urljoin(ERA_LEARN, a["href"]))[0]
+            if ERA_LEARN_SALUTE.search(urlparse(href).path):
+                link.setdefault(href, a.get_text(" ", strip=True))
+    candidati = []
+    for href, etichetta in list(link.items())[:max_call]:
+        rete = urlparse(href).path.rstrip("/").split("/")[-2]
+        try:
+            r = http.get(href, cortese=True, timeout=60)
+            visitate += 1
+            if r.status_code >= 400:
+                continue
+        except Exception:
+            continue
+        soup = BeautifulSoup(r.text, "lxml")
+        titolo = (soup.find("h1").get_text(" ", strip=True) if soup.find("h1") else "") or etichetta
+        for tag in soup(["script", "style", "noscript", "nav", "footer", "header", "form"]):
+            tag.decompose()
+        testo = re.sub(r"\s+", " ", soup.get_text(" ")).strip()
+        rec = valuta_pagina({"nome": f"ERA-LEARN – {rete}", "copertura": "Europa (partenariato europeo: finanziatori nazionali)",
+                             "italia": "verificare"}, href, titolo, testo)
+        if rec:
+            rec["fonte"] = "ERA-LEARN – partenariati europei"
+            candidati.append(rec)
+    if not link and not errore:
+        errore = "nessuna call sanitaria trovata nel calendario (struttura cambiata?)"
+    return candidati, visitate, errore
 
 
 def leggi_fonti_web(path: Path) -> list[dict]:
@@ -1975,6 +2025,16 @@ def main() -> None:
             log.error("Grants.gov non disponibile: %s", e)
 
     if "web" in fonti:
+        try:
+            recs, n, errore = esplora_eralearn(http)
+        except Exception as e:
+            recs, n, errore = [], 0, str(e)
+        raccolti += recs
+        esaminati_tot += n
+        (errori.append(f"ERA-LEARN: {errore}") if errore else fonti_ok.add("ERA-LEARN"))
+        registra_fonte(stato, "ERA-LEARN – partenariati europei", "Lettura pagine web", "Europa", "Pubblico europeo",
+                       ERA_LEARN, recs, n, errore)
+        log.info("ERA-LEARN: %d pagine, %d candidati%s", n, len(recs), f" (errore: {errore})" if errore else "")
         for fonte in leggi_fonti_web(BASE / "fonti_web.csv"):
             nome = fonte.get("nome") or fonte["url"]
             pausa = da_iso((stato["fonti"].get(nome) or {}).get("pausa_fino"))

@@ -1,34 +1,4 @@
 nome;url
-ERA-LEARN calendario;https://www.era-learn.eu/network-information/call-calendar
-ERA-LEARN calendario +3;https://www.era-learn.eu/network-information/call-calendar?el.offset=3
-EP PerMed calls;https://www.eppermed.eu/funding-projects/calls/
-ERDERA calls;https://erdera.org/calls/
-ERDERA call;https://erdera.org/call/
+EFIC grants;https://europeanpainfederation.eu/grants/
+EFIC E-G-G;https://europeanpainfederation.eu/e-g-g/
 EP BrainHealth calls;https://www.brainhealth-partnership.eu/calls/
-THCS funding;https://www.thcspartnership.eu/funding
-THCS funding.kl;https://www.thcspartnership.eu/funding.kl
-ERA4Health calls;https://era4health.eu/calls/
-ERA4Health calls.php;https://era4health.eu/calls.php
-OHAMR calls;https://ohamr.eu/calls/
-BE READY;https://beready4pandemics.eu/
-IHI open calls;https://www.ihi.europa.eu/apply-funding/open-calls
-IHI future;https://www.ihi.europa.eu/apply-funding/future-opportunities
-EIT Health opportunities;https://eithealth.eu/opportunities/
-EIT Health calls;https://eithealth.eu/calls/
-COST open call;https://www.cost.eu/funding/open-call/
-FOREUM calls;https://foreum.org/foreum-grants/foreum-calls-overview/
-EULAR research;https://www.eular.org/research
-EULAR funding;https://www.eular.org/eular-research-funding
-EIBIR funding calls;https://eibir.org/funding-calls/
-EIBIR open calls;https://www.eibir.org/open-funding-calls/
-ESPR funding;https://www.espr.eu/funding/
-ESPGHAN funding;https://www.espghan.org/research-funding
-ESPID;https://www.espid.org/
-EPNS;https://www.epns.info/
-EAN research;https://www.ean.org/research
-ESTRO;https://www.estro.org/
-BIAL Foundation;https://www.fundacaobial.com/en/
-Fondation Lejeune;https://www.fondationlejeune.org/
-Thrasher Research Fund;https://www.thrasherresearch.org/
-RSNA funding;https://www.rsna.org/research/funding-opportunities
-EDCTP3 (attuale);https://www.global-health-edctp3.europa.eu/funding/calls-proposals_en

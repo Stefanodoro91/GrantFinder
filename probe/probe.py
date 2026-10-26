@@ -21,6 +21,12 @@ for row in csv.DictReader(open("probe/candidati.csv", encoding="utf-8"), delimit
         info["errore"] = str(e)[:300]
     info["sec"] = round(time.time() - t0)
     out["web"].append(info); print(info["nome"], info.get("status"), info.get("pagine"), len(info.get("candidati", [])), flush=True)
+recs, n, err = ng.esplora_eralearn(http)
+out["eralearn"] = {"pagine": n, "errore": err, "candidati": [{"titolo": x["titolo"][:120], "url": x["url"], "scadenza": x["scadenza"], "gruppi": x["macrogruppi"], "stato": x["stato"]} for x in recs]}
+print("ERA-LEARN", n, err, len(recs), flush=True)
+from bs4 import BeautifulSoup
+r = http.get(ng.ERA_LEARN); soup = BeautifulSoup(r.text, "lxml")
+out["eralearn"]["link_networks"] = sorted({a["href"] for a in soup.find_all("a", href=True) if "/networks/" in a["href"]})[:120]
 # EU: tutti i topic aperti/in apertura, per prefisso, e quelli pertinenti col nuovo filtro
 ALL = []
 _orig = ng.converti_eu
