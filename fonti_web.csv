@@ -36,12 +36,12 @@ Canadian Institutes of Health Research;https://cihr-irsc.gc.ca/;Canada;Pubblico 
 Brain Canada;https://braincanada.ca/;Canada;Fondazione privata;no;Nord America;Enti canadesi
 NHMRC;https://www.nhmrc.gov.au/funding;Australia;Pubblico estero;no;Oceania;Enti australiani
 DFG – Deutsche Forschungsgemeinschaft;https://www.dfg.de/en/research-funding/funding-opportunities;Germania;Pubblico estero;no;Europa;Enti con sede in Germania
-BMBF – Gesundheitsforschung (bandi);https://www.gesundheitsforschung-bmbf.de/de/bekanntmachungen.php;Germania;Pubblico estero;no;Europa;Pagina in tedesco
+BMBF – Gesundheitsforschung (bandi);https://www.gesundheitsforschung-bmftr.de/;Germania;Pubblico estero;no;Europa;Pagina in tedesco
 ANR – Agence Nationale de la Recherche;https://anr.fr/en/open-calls-and-preannouncements/;Francia;Pubblico estero;verificare;Europa;Alcuni bandi bilaterali aperti a partner esteri
-ZonMw;https://www.zonmw.nl/en;Paesi Bassi;Pubblico estero;no;Europa;Enti con sede nei Paesi Bassi
+ZonMw;https://www.zonmw.nl/en/subsidies;Paesi Bassi;Pubblico estero;no;Europa;Enti con sede nei Paesi Bassi
 SNSF – Swiss National Science Foundation;https://www.snf.ch/en;Svizzera;Pubblico estero;no;Europa;
 FWF – Austrian Science Fund;https://www.fwf.ac.at/en/funding;Austria;Pubblico estero;no;Europa;
-FWO – Research Foundation Flanders;https://www.fwo.be/en/fellowships-funding/;Belgio;Pubblico estero;no;Europa;
+FWO – Research Foundation Flanders;https://www.fwo.be/en/;Belgio;Pubblico estero;no;Europa;
 Research Council of Norway;https://www.forskningsradet.no/en/call-for-proposals/;Norvegia;Pubblico estero;no;Europa;
 Swedish Research Council;https://www.vr.se/english/applying-for-funding/calls-and-decisions.html;Svezia;Pubblico estero;no;Europa;
 Independent Research Fund Denmark;https://dff.dk/en;Danimarca;Pubblico estero;no;Europa;
@@ -50,16 +50,16 @@ Health Research Board Ireland;https://www.hrb.ie/funding/;Irlanda;Pubblico ester
 ISCIII – Instituto de Salud Carlos III;https://www.isciii.es/financiacion;Spagna;Pubblico estero;no;Europa;Pagina in spagnolo
 FCT – Fundação para a Ciência e a Tecnologia;https://www.fct.pt/en/funding/;Portogallo;Pubblico estero;no;Europa;
 NCN – National Science Centre Poland;https://www.ncn.gov.pl/en;Polonia;Pubblico estero;no;Europa;
-Lundbeck Foundation;https://lundbeckfonden.com/en/research;Danimarca;Fondazione privata;verificare;Europa;Neuroscienze
+Lundbeck Foundation;https://lundbeckfonden.com/en/grants-prizes;Danimarca;Fondazione privata;verificare;Europa;Neuroscienze
 Novo Nordisk Foundation;https://novonordiskfonden.dk/en/grants/;Danimarca;Fondazione privata;verificare;Europa;Alcuni schemi internazionali
 Hertie Foundation;https://www.ghst.de/en/;Germania;Fondazione privata;verificare;Europa;Neuroscienze
 VolkswagenStiftung;https://www.volkswagenstiftung.de/en/funding;Germania;Fondazione privata;verificare;Europa;
 Wings for Life;https://www.wingsforlife.com/en/research/;Mondiale;Fondazione privata;verificare;Internazionale;Lesioni midollari
 Global Health EDCTP3;https://www.global-health-edctp3.europa.eu/funding/calls-proposals_en;Europa e Africa;Pubblico europeo;verificare;Internazionale;Partenariato Europa-Africa
-Human Frontier Science Program;https://www.hfsp.org/funding;Mondiale;Pubblico internazionale;verificare;Internazionale;Collaborazioni intercontinentali
+Human Frontier Science Program;https://www.hfsp.org/funding/hfsp-funding/research-grants;Mondiale;Pubblico internazionale;verificare;Internazionale;Collaborazioni intercontinentali
 IBRO – International Brain Research Organization;https://ibro.org/grants/;Mondiale;Pubblico internazionale;verificare;Internazionale;
 Gates Foundation – Grand Challenges;https://gcgh.grandchallenges.org/challenges;Mondiale;Fondazione privata;verificare;Internazionale;
-Chan Zuckerberg Initiative;https://chanzuckerberg.com/rfa/;Mondiale;Fondazione privata;verificare;Internazionale;
+Chan Zuckerberg Initiative;https://apply.chanzuckerberg.com/;Mondiale;Fondazione privata;verificare;Internazionale;
 Alzheimer's Drug Discovery Foundation;https://www.alzdiscovery.org/research-and-grants/funding-opportunities;Mondiale;Fondazione privata;verificare;Internazionale;
 ALS Association;https://www.als.org/research/for-researchers;Mondiale;Charity;verificare;Internazionale;SLA
 MS International Federation;https://www.msif.org/research/;Mondiale;Charity;verificare;Internazionale;Sclerosi multipla
@@ -78,7 +78,7 @@ CNPq;https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao;Brasile;Pubbl
 CONICET;https://convocatorias.conicet.gov.ar/;Argentina;Pubblico estero;no;America Latina;Pagina in spagnolo
 ANID Chile;https://anid.cl/concursos/;Cile;Pubblico estero;no;America Latina;Pagina in spagnolo
 Minciencias Colombia;https://minciencias.gov.co/convocatorias;Colombia;Pubblico estero;no;America Latina;Pagina in spagnolo
-SAMRC – South African Medical Research Council;https://www.samrc.ac.za/funding;Sudafrica;Pubblico estero;no;Africa;
+SAMRC – South African Medical Research Council;https://www.samrc.ac.za/index.php/funding/request-for-applications;Sudafrica;Pubblico estero;no;Africa;
 NRF South Africa;https://www.nrf.ac.za/funding/;Sudafrica;Pubblico estero;no;Africa;
 Science for Africa Foundation;https://scienceforafrica.foundation/funding;Africa;Fondazione privata;verificare;Africa;
 Health Research Council of New Zealand;https://www.hrc.govt.nz/funding-opportunities;Nuova Zelanda;Pubblico estero;no;Oceania;
@@ -116,11 +116,10 @@ KHIDI – Korea Health Industry Development Institute;https://www.khidi.or.kr/ep
 NSTC – National Science and Technology Council Taiwan;https://www.nstc.gov.tw/?l=en;Taiwan;Pubblico estero;no;Asia;
 IDRC – International Development Research Centre;https://idrc-crdi.ca/en/funding;Paesi a basso e medio reddito;Pubblico internazionale;no;Internazionale;Ricerca in Asia, America Latina e Africa
 SECIHTI México – Convocatorias;https://secihti.mx/;Messico;Pubblico estero;no;America Latina;Pagina in spagnolo
-fundsforNGOs – Health;https://www2.fundsforngos.org/category/health/;Mondiale;Aggregatore;verificare;Internazionale;Bandi per Paesi a basso e medio reddito
 India Science & Technology – Calls for proposals;https://www.indiascienceandtechnology.gov.in/;India;Pubblico estero;no;Asia;Portale governativo che raccoglie i bandi di ANRF, DBT, ICMR e altri
 NRF – National Research Foundation of Korea;https://www.nrf.re.kr/eng;Corea del Sud;Pubblico estero;no;Asia;
 HSRI – Health Systems Research Institute Thailand;https://www.hsri.or.th/;Thailandia;Pubblico estero;no;Asia;Pagina in thailandese
-NAFOSTED Vietnam;https://nafosted.gov.vn/en/;Vietnam;Pubblico estero;no;Asia;
+NAFOSTED Vietnam;https://nafosted.gov.vn/portal/trang-chu.html;Vietnam;Pubblico estero;no;Asia;
 CYTED – Programa Iberoamericano de Ciencia y Tecnología;https://www.cyted.org/;Iberoamerica;Pubblico internazionale;verificare;America Latina;Reti tematiche iberoamericane (Spagna, Portogallo e America Latina)
 FINEP – Chamadas públicas;http://www.finep.gov.br/chamadas-publicas;Brasile;Pubblico estero;no;America Latina;Pagina in portoghese
 Ministério da Saúde – DECIT;https://www.gov.br/saude/pt-br/composicao/sectics/decit;Brasile;Pubblico estero;no;America Latina;Ricerca sanitaria pubblica brasiliana

@@ -423,6 +423,76 @@ class Http:
         raise RuntimeError("irraggiungibile")
 
 
+class Browser:
+    """Ripiego per i siti che respingono le richieste semplici (403, certificati incompleti, timeout): li legge con un
+    browser vero (Chromium headless, user agent dichiarato). Rispetta robots.txt (controllato prima) e NON aggira le
+    verifiche anti-bot: se il sito chiede un CAPTCHA o una verifica «sei umano?», la fonte resta bloccata."""
+    RX_VERIFICA = re.compile(r"captcha|verify you are human|are you a robot|just a moment|attention required|"
+                             r"request could not be satisfied|access denied|incapsula", re.I)
+
+    def __init__(self):
+        self._pw = self._br = self._ctx = None
+        self.disponibile = True
+
+    def _avvia(self) -> bool:
+        if self._ctx or not self.disponibile:
+            return bool(self._ctx)
+        try:
+            from playwright.sync_api import sync_playwright
+            self._pw = sync_playwright().start()
+            self._br = self._pw.chromium.launch()
+            self._ctx = self._br.new_context(locale="en-GB")
+            return True
+        except Exception as e:                      # playwright non installato: si continua senza ripiego
+            log.info("Browser non disponibile (%s): niente ripiego per le fonti bloccate", str(e)[:120])
+            self.disponibile = False
+            return False
+
+    def get(self, url: str) -> "PaginaBrowser":
+        if not self._avvia():
+            raise RuntimeError("browser non disponibile")
+        pg = self._ctx.new_page()
+        try:
+            resp = pg.goto(url, wait_until="domcontentloaded", timeout=60000)
+            try:
+                pg.wait_for_load_state("networkidle", timeout=15000)
+            except Exception:
+                pass
+            html_ = pg.content()
+            stato = resp.status if resp else 200
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(html_, "lxml")
+            for tag in soup(["script", "style", "noscript"]):
+                tag.decompose()
+            testo = re.sub(r"\s+", " ", soup.get_text(" ")).strip()
+            if len(testo) < 4000 and self.RX_VERIFICA.search(testo[:4000]):
+                raise RuntimeError(f"bloccato dal sito (protezione anti-bot, HTTP {stato}): non aggirato")
+            return PaginaBrowser(pg.url, stato, html_)
+        finally:
+            pg.close()
+
+    def chiudi(self):
+        try:
+            if self._br:
+                self._br.close()
+            if self._pw:
+                self._pw.stop()
+        except Exception:
+            pass
+        self._pw = self._br = self._ctx = None
+
+
+class PaginaBrowser:
+    """Risposta del browser con gli stessi campi usati da esplora_fonte (come requests.Response)."""
+    def __init__(self, url: str, status: int, text: str):
+        self.url, self.status_code, self.text = url, status, text
+        self.content = text.encode("utf-8", "replace")
+        self.headers = {"content-type": "text/html"}
+
+
+BROWSER = Browser()
+
+
 def html_a_testo(h: str | None) -> str:
     if not h:
         return ""
@@ -958,7 +1028,7 @@ RX_LINK_BANDO = re.compile(
     r"(bando|bandi|avvis|call|grant|funding|finanziament|opportunit|fellowship|award|"
     r"research[-_ ]?(programme|program|fund)|ricerca|apply|contribut|premi|programm|scheme|"
     r"convocatori|chamad|edita|appel|ausschreibung|forderung|foerder|financia|financement|subvenc|beca|bolsa|"
-    r"公募|募集|研究費|공모|모집|과제|申报|指南|项目)", re.I)
+    r"公募|募集|研究費|공모|모집|과제|申报|指南|项目|tai-tro|tài trợ|kêu gọi|de-xuat|đề xuất)", re.I)
 RX_PAGINA_BANDO = re.compile(
     r"(bando|avviso|call for (proposals|applications)|grant|funding (opportunity|call|round)|"
     r"fellowship|award|finanziament|application deadline|how to apply|come partecipare|scadenza|"
@@ -1072,6 +1142,7 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
     visti: set[str] = set()
     candidati: list[dict] = []
     visitate, errore = 0, None
+    con_browser: set[str] = set()                 # domini letti con il browser in questa visita
     while coda and visitate < max_pagine:
         url, prof = coda.pop(0)
         url = urldefrag(url)[0]
@@ -1083,16 +1154,34 @@ def esplora_fonte(http: Http, fonte: dict, max_pagine: int) -> tuple[list[dict],
         if not http.consentito(url):
             log.debug("robots.txt non consente %s", url)
             continue
-        try:
-            r = http.get(url, cortese=True, timeout=60)
-        except Exception as e:
-            if prof == 0:
-                errore = f"irraggiungibile: {e}"
+        dominio = urlparse(url).netloc
+        r = None
+        if dominio not in con_browser:
+            try:
+                r = http.get(url, cortese=True, timeout=60)
+            except Exception as e:
+                if prof == 0:
+                    errore = f"irraggiungibile: {e}"
+        if r is None or r.status_code in (401, 403, 406) or r.status_code >= 500:
+            try:                                  # lettura normale respinta: si riprova con un browser vero
+                rb = BROWSER.get(url)
+                if rb.status_code < 400:
+                    r = rb
+                    con_browser.add(dominio)
+                    if prof == 0:
+                        errore = None
+                        log.info("Web %s: letta con il browser", fonte.get("nome"))
+                elif r is None:
+                    r = rb
+            except Exception as e:
+                if prof == 0 and ("anti-bot" in str(e) or r is None):
+                    errore = str(e)[:200] if "anti-bot" in str(e) else (errore or f"irraggiungibile: {e}")
+        if r is None:
             continue
         visitate += 1
         if r.status_code >= 400:
             if prof == 0:
-                errore = f"HTTP {r.status_code}"
+                errore = errore if errore and "anti-bot" in errore else f"HTTP {r.status_code}"
             continue
         tipo = r.headers.get("content-type", "").lower()
         if "pdf" in tipo or url.lower().endswith(".pdf"):
@@ -1871,7 +1960,9 @@ def enti_bloccati(stato: dict) -> list[str]:
     """Fonti web che rispondono «accesso negato» (HTTP 403) all'ultima esecuzione, più quelli già noti: nome dell'ente."""
     out = list(ENTI_BLOCCATI_NOTI)
     for nome, f in (stato.get("fonti") or {}).items():
-        if "HTTP 403" in str(f.get("note", "")) and not nome.startswith(("Ricerca web", "Riprese", "fundsforNGOs")):
+        nota = str(f.get("note", ""))
+        if (("HTTP 403" in nota or "anti-bot" in nota or "irraggiungibile" in nota)
+                and not nome.startswith(("Ricerca web", "Riprese", "fundsforNGOs"))):
             out.append(re.sub(r"\s*[–-]\s*.*$", "", nome).strip() or nome)
     return sorted(set(out))
 
@@ -2094,6 +2185,8 @@ def main() -> None:
             registra_fonte(stato, nome, "Lettura pagine web", fonte.get("copertura"), fonte.get("tipo"),
                            fonte["url"], recs, n, errore)
             log.info("Web %s: %d pagine, %d candidati%s", nome, n, len(recs), f" (errore: {errore})" if errore else "")
+
+    BROWSER.chiudi()
 
     # Google Search con Gemini non è nel piano gratuito: serve la chiave di un progetto con fatturazione
     chiave_g = os.environ.get("GEMINI_SEARCH_API_KEY", "").strip()
